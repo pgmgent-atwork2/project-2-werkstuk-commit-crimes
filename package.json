@@ -1,0 +1,37 @@
+{
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "knex": "^3.1.0",
+    "objection": "^3.1.5",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "name": "project-2-werkstuk-commit-crimes",
+  "version": "1.0.0",
+  "description": "An application for Boudewijn Seapark in Bruges.",
+  "main": "./src/app.js",
+  "type": "module",
+  "scripts": {
+    "db:up": "knex migrate:latest",
+    "db:down": "knex migrate:rollback",
+    "db:seed": "knex seed:run",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon ./src/app.js --experimental-print-required-tla"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pgmgent-atwork2/project-2-werkstuk-commit-crimes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pgmgent-atwork2/project-2-werkstuk-commit-crimes/issues"
+  },
+  "homepage": "https://github.com/pgmgent-atwork2/project-2-werkstuk-commit-crimes#readme"
+}
