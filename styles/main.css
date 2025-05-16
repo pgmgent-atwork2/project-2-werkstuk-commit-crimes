@@ -1,4 +1,5 @@
 @import url("/styles/setup.css");
+@import url("/styles/quiz.css");
 * {
   margin: 0;
   padding: 0;
@@ -7,4 +8,13 @@
 
 body {
   background-image: url("/images/dolphin-pattern.png");
+}
+
+:root {
+  --color-primary: #f0f0f0;
+  --color-secondary: #000000;
+  --background-primary: #ffffff;
+  --background-secondary: #000000;
+
+  --h1-font-family: "Ancizar Serif", serif;
 }
