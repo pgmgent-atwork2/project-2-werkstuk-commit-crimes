@@ -8,7 +8,6 @@ export function up(knex) {
     table.boolean("is_correct").defaultTo(false); 
 
     table.foreign("question_id").references("question_items.id").onDelete("CASCADE");
-    table.foreighn("user_id").references("user_items.id").onDelete("CASCADE");
   });
 }
  

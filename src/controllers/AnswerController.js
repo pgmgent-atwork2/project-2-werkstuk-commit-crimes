@@ -9,7 +9,7 @@ export const index = (req, res) => {
 
 export const getAllAnswers = async (req, res) => {
   try {
-    const answers = await AnswerItem.query();
+    const answers = await AnswerItem.query().withGraphFetched("question");
     console.log(answers);
     res.json(answers);
   } catch (error) {
