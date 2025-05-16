@@ -1,0 +1,19 @@
+.setup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #2b4e7c;
+}
+
+.setup-container__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+}
+
+.setup-container__bottom {
+}
