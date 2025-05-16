@@ -1,3 +1,3 @@
 # commit-crimes_quiz
 
-An application for Boudewijn Seapark in Bruges. heehveh
+An application for Boudewijn Seapark in Bruges.
