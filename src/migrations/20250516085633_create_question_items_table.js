@@ -4,7 +4,7 @@ export function up(knex) {
     return knex.schema.createTable(tableName, function (table) {
         table.increments("id").primary();
         table.string("question").notNullable();
-        table.boolean("completed").defaultTo(false);
+        table.string("image_path").nullable();
     });
 }
  
