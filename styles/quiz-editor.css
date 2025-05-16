@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.editor-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  margin: 0px 50px 0px 50px;
+  width: 1232px;
+  height: 814.17px;
+  gap: 20px;
+  border: solid black 1px;
+}
+
+.new-title {
+  height: fill;
+}
+
+.new-title textarea {
+  width: 350px;
+  height: 200px;
+  height: auto;
+}
+
+.editor-nav {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  gap: 10px;
+}
+
+.editor-nav a {
+  text-decoration: none;
+}
+
+.first-link {
+  color: #a7a7a7;
+}
+
+.second-link {
+  color: #5d5d5d;
+}
+
+.new-questions {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-template-rows: 2fr 2fr;
+  gap: 20px;
+  width: 100%;
+}
+
+.new-question textarea {
+  width: 100%;
+  height: 50px;
+}
+
+.add-btn {
+  width: 100px;
+  height: auto;
+  margin: 20px 20px 20px 20px;
+}
