@@ -18,11 +18,16 @@ class QuestionItem extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["question", "image_path"],
+      required: ["question_text", "quiz_id", "image_path"],
       properties: {
         id: { type: "integer" },
-        question: { type: "string", minLength: 1, maxLength: 255 },
+        quiz_id: { type: "integer" },
+        question_text: { type: "string", minLength: 1, maxLength: 255 },
         image_path: { type: "string", maxLength: 255 },
+        created_at: {
+          type: "string",
+          format: "date-time"
+        },
       },
     };
   }
