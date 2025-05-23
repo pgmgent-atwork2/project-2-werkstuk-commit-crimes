@@ -10,7 +10,7 @@ export const index = (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await UserItem.query().withGraphFetched("answers");
+    const users = await UserItem.query().withGraphFetched("[sessions, answers]");
     console.log(users);
     res.json(users);
   } catch (error) {
