@@ -1,4 +1,4 @@
-import UserItem from "../lib/models/UserItem.js";
+import QuizItem from "../lib/models/QuizItem.js";
 
 export const index = (req, res) => {
     res.render('layout', {
@@ -7,11 +7,11 @@ export const index = (req, res) => {
     });
 };
 
-export const getAllUsers = async (req, res) => {
+export const getAllQuizes = async (req, res) => {
   try {
-    const users = await UserItem.query().withGraphFetched("session");
-    console.log(users);
-    res.json(users);
+    const quizes = await QuizItem.query().withGraphFetched("questions");
+    console.log(quizes);
+    res.json(quizes);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

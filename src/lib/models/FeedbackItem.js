@@ -1,10 +1,14 @@
+import Knex from "../knex.js";
 import { Model } from "objection";
-import UserItem from "./UserItem.js";
-import AnswerItem from "./AnswerItem.js";
 
-class UserAnswer extends Model {
+import UserItem from "./UserItem.js";
+import SessionItem from "./SessionItem.js";
+
+Model.knex(Knex);
+
+class FeedbackItem extends Model {
   static get tableName() {
-    return "user_answers";
+    return "feedback_items";
   }
 
   static get idColumn() {
@@ -14,35 +18,36 @@ class UserAnswer extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["user_id", "answer_id"],
+      required: ["name", "age", "session_id"],
       properties: {
         id: { type: "integer" },
         user_id: { type: "integer" },
-        answer_id: { type: "integer" },
+        quiz_id: { type: "integer" },
+        feedback: { type: "string", minLength: 1, maxLength: 255 },
+        rating: { type: "integer" }
       },
     };
   }
-
   static get relationMappings() {
     return {
       user: {
         relation: Model.BelongsToOneRelation,
         modelClass: UserItem,
         join: {
-          from: "user_answers.user_id",
-          to: "user_items.id",
+          from: "feedback_items.user_id",
+          to: "users.id",
         },
       },
-      answer: {
+      quiz: {
         relation: Model.BelongsToOneRelation,
-        modelClass: AnswerItem,
+        modelClass: SessionItem,
         join: {
-          from: "user_answers.answer_id",
-          to: "answer_items.id",
+          from: "feedback_items.session_id",
+          to: "session.id",
         },
       },
     };
   }
 }
 
-export default UserAnswer;
+export default FeedbackItem;

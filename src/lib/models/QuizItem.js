@@ -1,14 +1,14 @@
 import Knex from "../knex.js";
 import { Model } from "objection";
-
-import AnswerItem from "./AnswerItem.js";
  
 // instantiate the model
 Model.knex(Knex);
+
+import QuestionItem from "./QuestionItem.js";
  
-class QuestionItem extends Model {
+class QuizItem extends Model {
   static get tableName() {
-    return "question_items";
+    return "quiz_items";
   }
  
   static get idColumn() {
@@ -18,12 +18,11 @@ class QuestionItem extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["question_text", "quiz_id", "image_path"],
+      required: ["language", "title"],
       properties: {
         id: { type: "integer" },
-        quiz_id: { type: "integer" },
-        question_text: { type: "string", minLength: 1, maxLength: 255 },
-        image_path: { type: "string", maxLength: 255 },
+        language: { type: "string", minLength: 1, maxLength: 255 },
+        title: { type: "string", minLength: 1, maxLength: 255 },
         created_at: {
           type: "string",
           format: "date-time"
@@ -31,19 +30,18 @@ class QuestionItem extends Model {
       },
     };
   }
-  
   static get relationMappings() {
     return {
-      answers: {
+      questions: {
         relation: Model.HasManyRelation,
-        modelClass: AnswerItem,
+        modelClass: QuestionItem,
         join: {
-          from: "question_items.id",
-          to: "answer_items.question_id",
+          from: "quiz_items.id",
+          to: "question_items.quiz_id",
         },
       },
     };
   }
 }
  
-export default QuestionItem;
+export default QuizItem;

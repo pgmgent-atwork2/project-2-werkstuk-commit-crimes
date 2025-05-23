@@ -1,4 +1,4 @@
-import UserItem from "../lib/models/UserItem.js";
+import SessionItem from "../lib/models/SessionItem.js";
 
 export const index = (req, res) => {
     res.render('layout', {
@@ -7,11 +7,11 @@ export const index = (req, res) => {
     });
 };
 
-export const getAllUsers = async (req, res) => {
+export const getAllSessions = async (req, res) => {
   try {
-    const users = await UserItem.query().withGraphFetched("session");
-    console.log(users);
-    res.json(users);
+    const sessions = await SessionItem.query().withGraphFetched("user");
+    console.log(sessions);
+    res.json(sessions);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
