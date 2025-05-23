@@ -38,12 +38,12 @@ class UserItem extends Model {
           to: "answer_items.id",
         },
       },
-      sessions: {
+      session: {
         relation: Model.BelongsToOneRelation,
         modelClass: SessionItem,
         join: {
           from: 'user_items.session_id',
-          to: 'sessions.id',
+          to: 'session.id',
         },
       },
     };

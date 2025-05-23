@@ -7,7 +7,7 @@ Model.knex(Knex);
 // define the CategoryItem model
 class SessionItem extends Model {
   static get tableName() {
-    return "sessions";
+    return "session";
   }
 
   static get idColumn() {
@@ -26,6 +26,7 @@ class SessionItem extends Model {
       },
     };
   }
+  
 }
 
 export default SessionItem;
