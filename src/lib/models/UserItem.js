@@ -1,5 +1,6 @@
 import { Model } from "objection";
 import AnswerItem from "./AnswerItem.js";
+import SessionItem from "./SessionItem.js";
 
 class UserItem extends Model {
   static get tableName() {
@@ -13,11 +14,12 @@ class UserItem extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["name", "age"],
+      required: ["name", "age", "session_id"],
       properties: {
         id: { type: "integer" },
         name: { type: "string", minLength: 1, maxLength: 255 },
         age: { type: "integer" },
+        session_id: { type: "integer" },
       },
     };
   }
@@ -34,6 +36,14 @@ class UserItem extends Model {
             to: "user_answers.answer_id",
           },
           to: "answer_items.id",
+        },
+      },
+      session: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: SessionItem,
+        join: {
+          from: 'user_items.session_id',
+          to: 'session.id',
         },
       },
     };
