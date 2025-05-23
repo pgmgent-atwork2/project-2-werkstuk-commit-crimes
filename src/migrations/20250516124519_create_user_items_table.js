@@ -5,6 +5,9 @@ export function up(knex) {
     table.increments("id").primary();
     table.string("name", 255).notNullable();
     table.integer("age").notNullable().unsigned();
+    table.integer("session_id").unsigned().unique().notNullable();
+
+    table.foreign("session_id").references("session.id").onDelete("CASCADE");
   });
 }
 
