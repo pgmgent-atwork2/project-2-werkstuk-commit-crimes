@@ -1,4 +1,3 @@
-import UserAnswer from "../lib/models/UserAnswer.js";
 import UserItem from "../lib/models/UserItem.js";
 
 export const index = (req, res) => {
@@ -10,7 +9,7 @@ export const index = (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await UserItem.query().withGraphFetched("answers");
+    const users = await UserItem.query().withGraphFetched("session");
     console.log(users);
     res.json(users);
   } catch (error) {

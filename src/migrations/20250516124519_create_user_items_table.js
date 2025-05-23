@@ -3,8 +3,11 @@ const tableName = "user_items";
 export function up(knex) {
   return knex.schema.createTable(tableName, function (table) {
     table.increments("id").primary();
-    table.integer("age").notNullable().unsigned();
     table.string("name", 255).notNullable();
+    table.integer("age").notNullable().unsigned();
+    table.integer("session_id").unsigned().unique().notNullable();
+
+    table.foreign("session_id").references("session.id").onDelete("CASCADE");
   });
 }
 
