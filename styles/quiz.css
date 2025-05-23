@@ -33,12 +33,24 @@
 
 .question-answers {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   gap: 20px;
   width: 30%;
   text-align: center;
+  align-items: center;
+}
+
+.answers-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.answers-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .question-option {
@@ -46,10 +58,12 @@
 }
 
 .question-answer {
-  width: fit-content;
-  height: auto;
+  width: 20rem;
+  height: 5rem;
   border: none;
   background: transparent;
+  border: 0.1rem solid black;
+  border-radius: 5px;
 }
 
 .question-answer:hover {
