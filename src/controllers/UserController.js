@@ -1,10 +1,10 @@
 import UserItem from "../lib/models/UserItem.js";
 
 export const index = (req, res) => {
-    res.render('layout', {
-        title: "Make It Happen",
-        body: "index",
-    });
+  res.render("layout", {
+    title: "Make It Happen",
+    body: "index",
+  });
 };
 
 export const getAllUsers = async (req, res) => {
