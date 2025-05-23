@@ -3,6 +3,7 @@
 @import url("./quiz.css");
 @import url("./admin.css");
 @import url("./registration.css");
+@import url("./feedback.css");
 * {
   margin: 0;
   padding: 0;
