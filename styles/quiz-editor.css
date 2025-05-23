@@ -8,21 +8,27 @@ body {
   flex-direction: column;
   align-items: center;
 }
-.editor-section {
+.form-editor {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   padding: 20px;
-  margin: 0px 50px 0px 50px;
+  margin: 0px 50px 50px 50px;
   width: 1232px;
   height: 814.17px;
   gap: 20px;
-  border: solid black 1px;
+  border: solid #539CC5 1px;
+  background-color: #539CC5;
+  color: white;
+  border-radius: 10px;
 }
 
 .new-title {
   height: fill;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .new-title textarea {
@@ -67,4 +73,18 @@ body {
   width: 100px;
   height: auto;
   margin: 20px 20px 20px 20px;
+}
+
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown_selector {
+  width: 10rem;
+}
+
+.editor_submit_btn {
+  padding: 0.5rem 10rem;
 }
