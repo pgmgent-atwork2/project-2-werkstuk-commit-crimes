@@ -1,4 +1,4 @@
-import SessionItem from "../lib/models/SessionItem";
+import SessionItem from "../lib/models/SessionItem.js";
 
 export const index = (req, res) => {
     res.render('layout', {
