@@ -16,55 +16,71 @@
     <header class="editor-header">
         <nav class="editor-nav">
             <a href="admin.html" class="first-link">Admin panel</a>
-            <img src="images/Vector.svg" alt="">
             <a href="quiz-editor.html" class="second-link">Quiz editor</a>
         </nav>
     </header>
-    <form action="POST" class="form-editor">
-        <article class="new-title">
-            <div>
-                <label for="question">De vraag:</label>
-            </div>
-            <div>
-                <textarea type="text" placeholder="Type je vraag"></textarea>
-            </div>
-        </article>
-        <article class="new-image">
-            <input type="file" id="myFile" name="filename" accept="image/*">
-        </article>
-        <section class="new-questions">
-            <article class="new-question">
-                <textarea type="text" placeholder="Antwoord 1"></textarea>
-            </article>
-            <article class="new-question">
-                    <textarea type="text" placeholder="Antwoord 2"></textarea>
-            </article>
-            <article class="new-question">
-                <textarea type="text" placeholder="Antwoord 3"></textarea>
-            </article>
-            <article class="new-question">
-                <textarea type="text" placeholder="Antwoord 4"></textarea>
-            </article>
+    <main class="editor__main">
+        <section class="editor__quizzes">
+            <button class="editor__quizzes--btn" id="questionFormBtn">Voeg een quiz toe <img src="/images/add-icon.svg" alt="add icon" class="icon"></button>
         </section>
-        <article class="dropdown">
-            <div>
-                <label for="correct-answer">Kies het juiste antwoord:</label>
-            </div>
-            <div>
-                <select name="correct-answer" id="correct-answer" class="dropdown_selector">
-                    <option value="1">Antwoord 1</option>
-                    <option value="2">Antwoord 2</option>
-                    <option value="3">Antwoord 3</option>
-                    <option value="4">Antwoord 4</option>
-                </select>
-            </div>
-        </article>
-        <article>
-            <input type="submit" name="submit" id="" value="Voeg toe" class="editor_submit_btn">
-        </article>
-    </form>
+        <form action="POST" class="form-editor" id="questionForm">
+            <section class="form-editor__section">
+                <article class="new-title">
+                    <div>
+                        <label for="title">Quiz titel:</label>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="type je titel" class="input-questions">
+                    </div>
+                </article>
+                <article class="new-question__title">
+                    <div>
+                        <label for="question">Quiz vraag:</label>
+                    </div>
+                    <div>
+                        <input id="question" type="text" placeholder="Type je vraag" class="input-questions"></input>
+                    </div>
+                </article>
+            </section>
+            <article class="new-image">
+                <input type="file" id="myFile" name="filename" accept="image/*">
+                            <img id="previewImage" class="preview-image" alt="">
+            </article>
+            <section class="new-questions">
+                <article class="new-question">
+                    <textarea type="text" placeholder="Antwoord 1"></textarea>
+                </article>
+                <article class="new-question">
+                    <textarea type="text" placeholder="Antwoord 2"></textarea>
+                </article>
+                <article class="new-question">
+                    <textarea type="text" placeholder="Antwoord 3"></textarea>
+                </article>
+                <article class="new-question">
+                    <textarea type="text" placeholder="Antwoord 4"></textarea>
+                </article>
+            </section>
+            <article class="dropdown">
+                <div>
+                    <label for="correct-answer">Kies het juiste antwoord:</label>
+                </div>
+                <div>
+                    <select name="correct-answer" id="correct-answer" class="dropdown_selector">
+                        <option value="1">Antwoord 1</option>
+                        <option value="2">Antwoord 2</option>
+                        <option value="3">Antwoord 3</option>
+                        <option value="4">Antwoord 4</option>
+                    </select>
+                </div>
+            </article>
+            <article>
+                <input type="submit" name="submit" id="" value="Voeg toe" class="editor_submit_btn">
+            </article>
+        </form>
 
-    <script src="/scripts/main.js"></script>
+    </main>
+
+    <script type="module" src="/scripts/main.js"></script>
 </body>
 
 </html>
