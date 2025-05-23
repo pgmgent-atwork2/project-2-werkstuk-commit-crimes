@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz | Boudewijn Seapark</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="setup-container">
+        <div class="setup-container__top">
+            <h1>Boudewijn Seapark Quiz</h1>
+            <p>Selecteer uw taal | Choissisez votre langue | Choose your language</p>
+        </div>
+        <div class="setup-container__bottom">
+            <div class="language-option" id="nl">
+                <button class="language-btn">NL Nederlands</button>
+            </div>
+            <div class="language-option" id="fr">
+                <button class="language-btn">FR Français</button>
+            </div>
+            <div class="language-option" id="en">
+                <button class="language-btn">GB English</button>
+            </div>
+        </div>
+        <div class="btm-text">
+            <p>Ontmoet. Heb lief. Bescherm</p>
+        </div>
+    </div>
+
+    <div class="registration-container">
+        <div class="registration__top">
+            <h1>Vandaag ontmoet je de dolfijnen!</h1>
+            <p>Beantwoord onze vragen en ontdek meer over deze bijzondere dieren!</p>
+        </div>
+        <div class="registration">
+            <div class="registration-form">
+                <form action="" method="get">
+                    <label for="name">Je naam</label>
+                    <input type="text" id="name" name="name" placeholder="Vul je naam in" minlength="2" required>
+                    <label for="birthday">JE geboortedatum</label>
+                    <input type="date" id="birthday" name="birthday" required>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="quiz-container">
+        <div class="quiz-question-container">
+            <div class="question-top">
+                <p>1/5</p>
+                <p id="timer">5</p>
+            </div>
+            <div class="quiz-question">
+                <p>Wat weet je over de oren van een dolfijn?</p>
+            </div>
+            <div class="question-img">
+                <img src="/images/dolfijn1.jpg" alt="">
+            </div>
+            <div class="question-answers">
+                <div class="answer-option">
+                    <button class="question-answer">Een dolfijn heeft geen oren.</button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">Een dolfijn heeft wel oren maar geen uitwendige oorschelpen</button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">Een dolfijn heeft wel oren en uitwendige oorschelpen. </button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">hier weet ik niets over.</button>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-question-container">
+            <div class="question-top">
+                <p>2/5</p>
+                <p id="timer">5</p>
+            </div>
+            <div class="quiz-question">
+                <p>Wat is sonar?</p>
+            </div>
+            <div class="question-img">
+                <img src="/images/dolfijn2.jpg" alt="">
+            </div>
+            <div class="question-answers">
+                <div class="answer-option">
+                    <button class="question-answer">lichtstralen zeer gevoelig kunnen oppikken zodat ze heel goed kunnen
+                        zien in donker water</button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">bepaalde frequenties in geluidsgolven horen dat mensen niet kunnen
+                        horen</button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">geluidjes uitsturen die botsen op een prooi en terugkomen zodat een
+                        dolfijn kan zien zonder geluid. </button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">dat weet ik niet</button>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-question-container">
+            <div class="question-top">
+                <p>3/5</p>
+                <p id="timer">5</p>
+            </div>
+            <div class="quiz-question">
+                <p>Is een dolfijn een solidair dier?</p>
+            </div>
+            <div class="question-img">
+                <img src="/images/dolfijn3.jpg" alt="">
+            </div>
+            <div class="question-answers">
+                <div class="answer-option">
+                    <button class="question-answer">Ja, ze is graag alleen </button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">Ze is liever in een kleine groep </button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">Neen, ze leeft in groepen</button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">Dat weet ik niet. </button>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-question-container">
+            <div class="question-top">
+                <p>4/5</p>
+                <p id="timer">5</p>
+            </div>
+            <div class="quiz-question">
+                <p>Zitten er botten in de finnen van een dolfijn?</p>
+            </div>
+            <div class="question-img">
+                <img src="/images/dolfijn4.jpg" alt="">
+            </div>
+            <div class="question-answers">
+                <div class="answer-option">
+                    <button class="question-answer">ja, zowel in de borstvinnen, rugvin als staartvin. </button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">enkel in de staartvin </button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">enkel in de rugvin</button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">enkel in de borstvinnen</button>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-question-container">
+            <div class="question-top">
+                <p>5/5</p>
+                <p id="timer">5</p>
+            </div>
+            <div class="quiz-question">
+                <p>Hoe weet je of de dolfijn een mannetje of een vrouwtje is?</p>
+            </div>
+            <div class="question-img">
+                <img src="/images/dolfijn5.jpg" alt="">
+            </div>
+            <div class="question-answers">
+                <div class="answer-option">
+                    <button class="question-answer">De mannetjes hebben langere sierlijkere vinnen dan de vrouwtjes
+                    </button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">De mannetjes hebben een donkerdere kleur dan de vrouwtjes </button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">De mannetjes hebben 2 spleetjes op de buik, de vrouwtjes maar 1.
+                    </button>
+                </div>
+                <div class="answer-option">
+                    <button class="question-answer">De mannetjes hebben 1 spleetje op de buik, de vrouwtjes 2. </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/scripts/main.js"></script>
+</body>
+
+</html>
