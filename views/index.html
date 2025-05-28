@@ -49,8 +49,11 @@
                 <form action="" method="get">
                     <label for="name">Je naam</label>
                     <input type="text" id="name" name="name" placeholder="Vul je naam in" minlength="2" required>
-                    <label for="day">Je geboortedatum</label>
-                    <select name="day" id="day" required>
+                    <form action="/your-submit-script" method="post">
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="dob" name="dob" required />
+                        <input type="submit" value="Doorgaan" />
+                    </form>
                     </select>
 
                 </form>
@@ -61,7 +64,7 @@
         <div class="quiz-question-container">
             <div class="question-top">
                 <p>1/5</p>
-                <p id="timer">5</p>
+                <p id="timer">30</p>
             </div>
             <div class="quiz-question">
                 <p>Wat weet je over de oren van een dolfijn?</p>
@@ -92,7 +95,7 @@
         <div class="quiz-question-container">
             <div class="question-top">
                 <p>2/5</p>
-                <p id="timer">5</p>
+                <p id="timer">30</p>
             </div>
             <div class="quiz-question">
                 <p>Wat is sonar?</p>
@@ -128,7 +131,7 @@
         <div class="quiz-question-container">
             <div class="question-top">
                 <p>3/5</p>
-                <p id="timer">5</p>
+                <p id="timer">30</p>
             </div>
             <div class="quiz-question">
                 <p>Is een dolfijn een solidair dier?</p>
@@ -159,7 +162,7 @@
         <div class="quiz-question-container">
             <div class="question-top">
                 <p>4/5</p>
-                <p id="timer">5</p>
+                <p id="timer">30</p>
             </div>
             <div class="quiz-question">
                 <p>Zitten er botten in de finnen van een dolfijn?</p>
@@ -189,7 +192,7 @@
         <div class="quiz-question-container">
             <div class="question-top">
                 <p>5/5</p>
-                <p id="timer">5</p>
+                <p id="timer">30</p>
             </div>
             <div class="quiz-question">
                 <p>Hoe weet je of de dolfijn een mannetje of een vrouwtje is?</p>
