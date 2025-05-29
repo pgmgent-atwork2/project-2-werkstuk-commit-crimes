@@ -28,40 +28,91 @@
         </div>
         <div class="setup-container__bottom">
             <div class="language-option" id="nl">
-                <a href="/views/index.html"><button class="language-btn">NL Nederlands</button></a>
+                <a href="/views/index.html"><button class="language-btn">NL | Nederlands</button></a>
             </div>
             <div class="language-option" id="fr">
-                <a href="/views/index-french.html"><button class="language-btn">FR Français</button></a>
+                <a href="/views/index-french.html"><button class="language-btn">FR | Français</button></a>
             </div>
             <div class="language-option" id="en">
-                <a href="/views/index-english.html"><button class="language-btn">GB English</button></a>
+                <a href="/views/index-english.html"><button class="language-btn">GB | English</button></a>
             </div>
         </div>
         <div class="btm-text">
             <p>Rencontrer. Amour. Protéger</p>
         </div>
     </div>
-
     <div class="registration-container">
         <div class="registration__top">
             <h1>Aujourd'hui, vous rencontrerez les dauphins !</h1>
             <p>Répondez à nos questions et apprenez-en plus sur ces animaux spéciaux !</p>
         </div>
+
         <div class="registration">
+            <p>Votre date de naissance :</p>
             <div class="registration-form">
-                <form action="" method="get">
-                    <label for="name">Votre nom</label>
-                    <input type="text" id="name" name="name" placeholder="Entrez votre nom." minlength="2" required>
-                    <form action="/your-submit-script" method="post">
-                        <label for="dob">Date de naissance:</label>
-                        <input type="date" id="dob" name="dob" required />
-                        <input type="submit" value="Continuer" />
-                    </form>
+                <form action="/your-submit-script" method="get">
+                    <select id="day-select" name="day">
+                        <option value="">Jour</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
                     </select>
 
+                    <label for="month-select"></label>
+                    <select id="month-select" name="month">
+                        <option value="">mois</option>
+                        <option value="1">Janvier</option>
+                        <option value="2">Février</option>
+                        <option value="3">Mars</option>
+                        <option value="4">Avril</option>
+                        <option value="5">Mai</option>
+                        <option value="6">Juin</option>
+                        <option value="7">Juillet</option>
+                        <option value="8">Août</option>
+                        <option value="9">Septembre</option>
+                        <option value="10">Octobre</option>
+                        <option value="11">Novembre</option>
+                        <option value="12">Décembre</option>
+                    </select>
+
+                    <label for="year-select"></label>
+                    <select id="year-select" name="year">
+                        <option value="jaar">Année</option>
+                    </select>
+                    <input type="submit" value="Continuer" />
                 </form>
             </div>
+
         </div>
+
     </div>
     <div class="quiz-container">
         <div class="quiz-question-container">
@@ -73,7 +124,7 @@
                 <p>Que savez-vous des oreilles d’un dauphin ?</p>
             </div>
             <div class="question-img">
-                <img src="/images/dolfijn1.jpg" alt="">
+                <img src="/images/dolphin-ear.jpg" alt="">
             </div>
             <div class="question-answers">
                 <div class="answers-left">
@@ -104,7 +155,7 @@
                 <p>Qu'est-ce que le sonar ?</p>
             </div>
             <div class="question-img">
-                <img src="/images/dolfijn2.jpg" alt="">
+                <img src="/images/sonar.jpg" alt="">
             </div>
             <div class="question-answers">
                 <div class="answers-left">
@@ -273,7 +324,7 @@
     </div>
 
     <script src="/scripts/main.js"></script>
-
+    <script src="/scripts/dateSelector.js"></script>
     <script src="/scripts/rating.js"></script>
 </body>
 
