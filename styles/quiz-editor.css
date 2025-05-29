@@ -130,8 +130,12 @@ body {
   min-width: 20rem;
 }
 
+.quiz-item {
+  display: flex;
+}
+
 .quiz-item__card {
-    display: flex;
+  display: flex;
   gap: 30rem;
   background-color: #D9D9D9;
   padding-left: 1rem;
@@ -167,4 +171,49 @@ body {
 
 .quiz-item__form {
   display: none;
+  background-color: #D9D9D9;
+  justify-content: center;
+}
+
+.quiz-item__form-edit {
+  display: flex;
+}
+
+.quiz-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.quiz-item__form-edit { 
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+
+  & input {
+    padding-block: 0.5rem;
+    width: 20rem;
+    border: none;
+  }
+
+  & button {
+    padding-block: 0.5rem;
+    border: none;
+    padding-inline: 0.2rem;
+    cursor: pointer;
+    color: #9333ea;
+    background-color: white;
+  }
+} 
+
+.quiz-item__questions {
+  background-color: #D9D9D9;
+  padding-left: 1rem;
+}
+
+.quiz-questions-title {
+  display: none;
+  font-weight: 300;
+  background-color: #D9D9D9;
+  padding-left: 1rem;
 }

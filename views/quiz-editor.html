@@ -20,33 +20,40 @@
         </nav>
     </header>
     <main class="editor__main">
-        <div id="quiz-list"></div>
-        <template id="quiz-template" class="quiz-item">
-            <div>
-                <article class="quiz-item__card">
-                <div class="quiz-item__info">
-                    <h2 class="quiz-title"></h2>
+        <section id="quiz-list" class="quiz-list">
+            <template id="quiz-template" class="quiz-item">
+                <div>
+                    <article class="quiz-item__card">
+                        <div class="quiz-item__info">
+                            <h2 class="quiz-title"></h2>
+                        </div>
+                        <div class="quiz-item__actions">
+                            <button class="delete__btn">
+                                <img src="/images/delete-icon.svg" alt="delete button">
+                            </button>
+                            <button class="quiz-item__dropdown-btn">
+                                <img src="/images/keyboard-arrow-down.svg" alt="dropdown button">
+                            </button>
+                        </div>
+                    </article>
+                    <form class="quiz-item__form">
+                        <article class="quiz-item__form-edit">
+                            <div>
+                                <input type="text" placeholder="Verander quiz titel">
+                            </div>
+                            <div>
+                                <button type="submit">Opslaan</button>
+                            </div>
+                        </article>
+                    </form>
+                    <div>
+                        <h3 class="quiz-questions-title">Vragen:</h3>
+                        <div class="quiz-item__questions"></div>
+                    </div>
                 </div>
-                <div class="quiz-item__actions">
-                    <button class="delete__btn">
-                        <img src="/images/delete-icon.svg" alt="delete button">
-                    </button>
-                    <button class="edit__btn">
-                        <img src="/images/edit-icon.svg" alt="edit button">
-                    </button>
-                    <button class="quiz-item__dropdown-btn">
-                        <img src="/images/keyboard-arrow-down.svg" alt="dropdown button">
-                    </button>
-                </div>
-                </article>
-                <form class="quiz-item__form">
-                    <!-- jouw form velden hier -->
-                    <input type="text" placeholder="Edit quiz title">
-                    <button type="submit">Opslaan</button>
-                </form>
-            </div>
-        </template>
+            </template>
 
+        </section>
         <section class="editor__quizzes">
             <button class="editor__quizzes--btn" id="questionFormBtn">Voeg een quiz toe <img src="/images/add-icon.svg"
                     alt="add icon" class="icon"></button>
