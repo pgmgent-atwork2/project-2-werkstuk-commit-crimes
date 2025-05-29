@@ -22,9 +22,9 @@ class AnswerItem extends Model {
       required: ["answer_text", "is_correct", "question_id"],
       properties: {
         id: { type: "integer" },
+        question_id: { type: "integer" },
         answer_text: { type: "string", minLength: 1, maxLength: 255 },
         is_correct: { type: "boolean" },
-        question_id: { type: "integer" },
       },
     };
   }

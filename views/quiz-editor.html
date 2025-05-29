@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz-editor | Boudewijn Seapark</title>
+    <link rel="stylesheet" href="/styles/quiz-editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="editor-header">
+        <nav class="editor-nav">
+            <a href="admin.html" class="first-link">Admin panel</a>
+            <a href="quiz-editor.html" class="second-link">Quiz editor</a>
+        </nav>
+    </header>
+    <main class="editor__main">
+        <section id="quiz-list" class="quiz-list">
+            <template id="quiz-template" class="quiz-item">
+                <div>
+                    <article class="quiz-item__card">
+                        <div class="quiz-item__info">
+                            <h2 class="quiz-title"></h2>
+                        </div>
+                        <div class="quiz-item__actions">
+                            <button class="delete__btn">
+                                <img src="/images/delete-icon.svg" alt="delete button">
+                            </button>
+                            <button class="quiz-item__dropdown-btn">
+                                <img src="/images/keyboard-arrow-down.svg" alt="dropdown button">
+                            </button>
+                        </div>
+                    </article>
+                    <form class="quiz-item__form">
+                        <article class="quiz-item__form-edit">
+                            <div>
+                                <input type="text" placeholder="Verander quiz titel">
+                            </div>
+                            <div>
+                                <button type="submit">Opslaan</button>
+                            </div>
+                        </article>
+                    </form>
+                    <div>
+                        <h3 class="quiz-questions-title">Vragen:</h3>
+                        <div class="quiz-item__questions"></div>
+                    </div>
+                </div>
+            </template>
+
+        </section>
+        <section class="editor__quizzes">
+            <button class="editor__quizzes--btn" id="questionFormBtn">Voeg een quiz toe <img src="/images/add-icon.svg"
+                    alt="add icon" class="icon"></button>
+        </section>
+        <form action="POST" class="form-editor" id="questionForm">
+            <section class="form-editor__section">
+                <article class="new-title">
+                    <div>
+                        <label for="title">Quiz titel:</label>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="type je titel" class="input-questions">
+                    </div>
+                </article>
+                <article class="new-question__title">
+                    <div>
+                        <label for="question">Quiz vraag:</label>
+                    </div>
+                    <div>
+                        <input id="question" type="text" placeholder="Type je vraag" class="input-questions"></input>
+                    </div>
+                </article>
+            </section>
+            <article class="new-image">
+                <input type="file" id="myFile" name="filename" accept="image/*">
+                <img id="previewImage" class="preview-image" alt="">
+            </article>
+            <section class="new-questions">
+                <article class="new-question">
+                    <textarea type="text" placeholder="Antwoord 1"></textarea>
+                </article>
+                <article class="new-question">
+                    <textarea type="text" placeholder="Antwoord 2"></textarea>
+                </article>
+                <article class="new-question">
+                    <textarea type="text" placeholder="Antwoord 3"></textarea>
+                </article>
+                <article class="new-question">
+                    <textarea type="text" placeholder="Antwoord 4"></textarea>
+                </article>
+            </section>
+            <article class="dropdown">
+                <div>
+                    <label for="correct-answer">Kies het juiste antwoord:</label>
+                </div>
+                <div>
+                    <select name="correct-answer" id="correct-answer" class="dropdown_selector">
+                        <option value="1">Antwoord 1</option>
+                        <option value="2">Antwoord 2</option>
+                        <option value="3">Antwoord 3</option>
+                        <option value="4">Antwoord 4</option>
+                    </select>
+                </div>
+            </article>
+            <article>
+                <input type="submit" name="submit" id="submit" value="Voeg toe" class="editor_submit_btn">
+            </article>
+        </form>
+
+    </main>
+
+    <script type="module" src="/scripts/main.js"></script>
+</body>
+
+</html>
