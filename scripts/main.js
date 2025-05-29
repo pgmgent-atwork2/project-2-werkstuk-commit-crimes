@@ -1,7 +1,5 @@
-import formDropdown from "./questions.js"
-import { showNewImage  } from "./questions.js"
+import showQuizzes from "./quizCreator.js"
 
-document.addEventListener('DOMContentLoaded',() => {
-    formDropdown()
-    showNewImage()
+document.addEventListener('DOMContentLoaded',() => {    
+    showQuizzes()
 })

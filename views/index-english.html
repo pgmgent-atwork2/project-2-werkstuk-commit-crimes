@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz | Boudewijn Seapark</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <video autoplay muted loop>
+        <source src="/videos/background-video.mp4" type="video/mp4">
+    </video>
+    <div class="setup-container">
+        <div class="setup-container__top">
+            <h1>Boudewijn Seapark Quiz</h1>
+            <p>Selecteer uw taal | Choissisez votre langue | Choose your language</p>
+        </div>
+        <div class="setup-container__bottom">
+            <div class="language-option" id="nl">
+                <a href="/views/index.html"><button class="language-btn">NL Nederlands</button></a>
+            </div>
+            <div class="language-option" id="fr">
+                <a href="/views/index-french.html"><button class="language-btn">FR Français</button></a>
+            </div>
+            <div class="language-option" id="en">
+                <button class="language-btn" href="/views/index-english.html">GB English</button>
+            </div>
+        </div>
+        <div class="btm-text">
+            <p>Meet. love. Protect</p>
+        </div>
+    </div>
+
+    <div class="registration-container">
+        <div class="registration__top">
+            <h1>Today you'll meet the dolphins!</h1>
+            <p>
+                Answer our questions and discover more
+                about our wonderful animals!
+            </p>
+        </div>
+        <div class="registration">
+            <div class="registration-form">
+                <form action="" method="get">
+                    <label for="name">Your name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" minlength="2" required>
+                    <form action="/your-submit-script" method="post">
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="dob" name="dob" required />
+                        <input type="submit" value="Continue" />
+                    </form>
+                    </select>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="quiz-container">
+        <div class="quiz-question-container">
+            <div class="question-top">
+                <p>1/5</p>
+                <p id="timer">30</p>
+            </div>
+            <div class="quiz-question">
+                <p>What do you know about dolphin ears?</p>
+            </div>
+            <div class="question-img">
+                <img src="/images/dolfijn1.jpg" alt="">
+            </div>
+            <div class="question-answers">
+                <div class="answers-left">
+                    <div class="answer-option">
+                        <button class="question-answer">A dolphin doesn't have any ears.</button>
+                    </div>
+                    <div class="answer-option">
+                        <button class="question-answer">A dolphin does have ears, but no external auricles.</button>
+                    </div>
+                </div>
+                <div class="answers-right">
+                    <div class="answer-option">
+                        <button class="question-answer">
+                            A dolphin
+                            does have ears and external auricles.
+                        </button>
+                    </div>
+                    <div class="answer-option">
+                        <button class="question-answer">
+                            I don't know anything about this.
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-question-container">
+            <div class="question-top">
+                <p>2/5</p>
+                <p id="timer">30</p>
+            </div>
+            <div class="quiz-question">
+                <p>What is sonar?</p>
+            </div>
+            <div class="question-img">
+                <img src="/images/dolfijn2.jpg" alt="">
+            </div>
+            <div class="question-answers">
+                <div class="answers-left">
+                    <div class="answer-option">
+                        <button class="question-answer">
+                            Can pick up light rays very sensitively so they can see very
+                            well in dark water.
+                        </button>
+                    </div>
+                    <div class="answer-option">
+                        <button class="question-answer">
+                            Hearing certain frequencies in sound waves that humans can't hear.
+                        </button>
+                    </div>
+                </div>
+                <div class="answers-right">
+                    <div class="answer-option">
+                        <button class="question-answer">Sending out sounds that bounce off prey and return so that a
+                            dolphin can see without light. </button>
+                    </div>
+                    <div class="answer-option">
+                        <button class="question-answer">I don't know.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-question-container">
+            <div class="question-top">
+                <p>3/5</p>
+                <p id="timer">30</p>
+            </div>
+            <div class="quiz-question">
+                <p>Is a dolphin a solitairy animal?</p>
+            </div>
+            <div class="question-img">
+                <img src="/images/dolfijn3.jpg" alt="">
+            </div>
+            <div class="question-answers">
+                <div class="answers-left">
+                    <div class="answer-option">
+                        <button class="question-answer">Yes, she likes being alone. </button>
+                    </div>
+                    <div class="answer-option">
+                        <button class="question-answer">No, she prefers being in a small group. </button>
+                    </div>
+                </div>
+                <div class="answers-right">
+                    <div class="answer-option">
+                        <button class="question-answer">No, she lives in a big group.</button>
+                    </div>
+                    <div class="answer-option">
+                        <button class="question-answer">I don't know this.</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="quiz-question-container">
+            <div class="question-top">
+                <p>4/5</p>
+                <p id="timer">30</p>
+            </div>
+            <div class="quiz-question">
+                <p>Are there any bones in a dolphin's fins?</p>
+            </div>
+            <div class="question-img">
+                <img src="/images/dolfijn4.jpg" alt="">
+            </div>
+            <div class="question-answers">
+                <div class="answers-left">
+                    <div class="answer-option">
+                        <button class="question-answer">Yes, in the pectoral and caudal fins.</button>
+                    </div>
+                    <div class="answer-option">
+                        <button class="question-answer">Only in the tail fin. </button>
+                    </div>
+                </div>
+                <div class="answers-right">
+                    <div class="answer-option">
+                        <button class="question-answer">Only in the dorsal fin.</button>
+                    </div>
+                    <div class="answer-option">
+                        <button class="question-answer">Only in the pectoral fins.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-question-container">
+            <div class="question-top">
+                <p>5/5</p>
+                <p id="timer">30</p>
+            </div>
+            <div class="quiz-question">
+                <p>
+                    How do you know if the dolphin is male or female?
+                </p>
+            </div>
+            <div class="question-img">
+                <img src="/images/dolfijn5.jpg" alt="">
+            </div>
+            <div class="question-answers">
+                <div class="answers-left">
+                    <div class="answer-option">
+                        <button class="question-answer">The males have longer, more graceful fins than the females.
+                        </button>
+                    </div>
+                    <div class="answer-option">
+                        <button class="question-answer">The males have a darker color than the females.
+                        </button>
+                    </div>
+                </div>
+                <div class="answers-right">
+                    <div class="answer-option">
+                        <button class="question-answer">Males have 2 slits on their abdomen, females only 1.
+                        </button>
+                    </div>
+                    <div class="answer-option">
+                        <button class="question-answer">Males have 1 slit on their abdomen, females have 2.
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rating-container">
+        <div class="rating-question">
+            <h3>Did you find the quiz informative?</h3>
+            <div class="stars" data-question="1">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+        </div>
+
+        <div class="rating-question">
+            <h3>Were the questions clear?</h3>
+            <div class="stars" data-question="2">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+        </div>
+        <div class="rating-question">
+            <h3>Did you have enough time?</h3>
+            <div class="stars" data-question="3">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+        </div>
+        <div class="rating-question">
+            <h3>How was your general experience?</h3>
+            <div class="stars" data-question="4">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/main.js"></script>
+
+    <script src="/scripts/rating.js"></script>
+</body>
+
+</html>
