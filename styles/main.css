@@ -4,6 +4,7 @@
 @import url("./admin.css");
 @import url("./registration.css");
 @import url("./rating.css");
+@import url("./background.css");
 * {
   margin: 0;
   padding: 0;
