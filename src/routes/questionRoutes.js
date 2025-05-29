@@ -5,4 +5,8 @@ import * as questionController from '../controllers/QuestionsController.js';
 router.get('/', questionController.getAllQuestions);
 router.post('/', questionController.postQuestion);
 
+
+const show = async (req, res) => {
+    
+}
 export default router;
