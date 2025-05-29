@@ -1,5 +1,4 @@
 body {
-  background-image: url("/images/dolphin-pattern.png");
   background: no-repeat;
   background-size: cover;
   background-color: #539cc5;
@@ -31,7 +30,7 @@ body {
   gap: 20px;
   width: 600px;
   height: 100px;
-  background: #1c4f6d;
+  background: linear-gradient(144deg, #2aabea, #2aa);
 }
 
 .language-btn {

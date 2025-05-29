@@ -11,10 +11,6 @@
   box-sizing: border-box;
 }
 
-body {
-  background-image: url("/images/dolphin-pattern.png");
-}
-
 :root {
   --color-primary: #f0f0f0;
   --color-secondary: #000000;
@@ -22,4 +18,13 @@ body {
   --background-secondary: #000000;
 
   --h1-font-family: "Ancizar Serif", serif;
+}
+
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -100;
 }
