@@ -64,6 +64,8 @@
   background: transparent;
   border: 0.1rem solid black;
   border-radius: 5px;
+  padding: 0px 10px 0px 10px;
+  text-align: center;
 }
 
 .question-answer:hover {

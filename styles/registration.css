@@ -6,9 +6,42 @@
   height: 100vh;
 }
 
+.registration {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.registration select {
+  width: 10rem;
+  height: auto;
+  background-color: #5ec4fc;
+  border: solid 1px #4ea0cc;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+select::-webkit-scrollbar {
+  display: none;
+}
+
+.registration p {
+  text-align: center;
+}
+
 .registration-form {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 20px;
+}
+
+.registration-submit__btn {
+  background-color: #5ec4fc;
+  border: solid 1px #4ea0cc;
+  border-radius: 10px;
+  height: 30.83px;
+  width: 90px;
 }
