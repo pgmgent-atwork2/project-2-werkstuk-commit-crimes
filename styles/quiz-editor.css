@@ -7,9 +7,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Ancizar Serif", serif;
 }
 .form-editor {
-  display: none;
+  display: flex;
   flex-direction: column;
   padding: 20px;
   margin: 0px 50px 50px 50px;
@@ -127,4 +128,43 @@ body {
   display: none;
   max-width: 30rem;
   min-width: 20rem;
+}
+
+.quiz-item__card {
+    display: flex;
+  gap: 30rem;
+  background-color: #D9D9D9;
+  padding-left: 1rem;
+  & img {
+    width: 2rem;
+  }
+  & h2 {
+    font-weight: 300;
+  }
+}
+
+.quiz-list {
+  padding: 2rem;
+}
+
+.delete__btn {
+  background-color: rgb(239, 68, 68);
+  border: 1px solid rgb(239, 68, 68);
+  cursor: pointer;
+}
+
+.edit__btn {
+  background-color: #9333ea;
+  border: 1px solid #9333ea;
+  cursor: pointer;
+}
+
+.quiz-item__dropdown-btn {
+  border: none;
+  background-color: #D9D9D9;
+  cursor: pointer;
+}
+
+.quiz-item__form {
+  display: none;
 }
