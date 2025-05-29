@@ -67,7 +67,7 @@
 }
 
 .question-answer:hover {
-  background: rgb(221, 221, 221);
+  background: transparent;
   cursor: pointer;
 }
 
