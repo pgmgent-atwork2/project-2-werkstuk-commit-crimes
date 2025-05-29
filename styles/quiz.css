@@ -72,5 +72,5 @@
 }
 
 .question-answer:active {
-  background: #f0f0f0;
+  background: linear-gradient(230deg, #1e90ff, #87ceeb, #87cefa);
 }
