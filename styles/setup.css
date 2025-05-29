@@ -30,11 +30,11 @@ body {
   gap: 20px;
   width: 600px;
   height: 100px;
-  background: linear-gradient(144deg, #2aabea, #2aa);
+  background: transparent;
 }
 
 .language-btn {
-  width: 100%;
+  width: 120px;
   height: 40px;
   border-radius: 10px;
   border-color: transparent;
@@ -45,7 +45,7 @@ body {
 }
 
 .language-btn:active {
-  background-color: grey;
+  background-color: transparent;
   color: #fff;
 }
 
