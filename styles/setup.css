@@ -1,5 +1,4 @@
 body {
-  background-image: url("/images/dolphin-pattern.png");
   background: no-repeat;
   background-size: cover;
   background-color: #539cc5;
@@ -28,14 +27,14 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  gap: 10px;
+  gap: 20px;
   width: 600px;
   height: 100px;
-  background: #1c4f6d;
+  background: transparent;
 }
 
 .language-btn {
-  width: 100px;
+  width: 120px;
   height: 40px;
   border-radius: 10px;
   border-color: transparent;
@@ -46,7 +45,7 @@ body {
 }
 
 .language-btn:active {
-  background-color: grey;
+  background-color: transparent;
   color: #fff;
 }
 

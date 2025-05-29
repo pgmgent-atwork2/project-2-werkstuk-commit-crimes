@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
     <meta charset="UTF-8">
@@ -10,9 +10,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
+    <video autoplay muted loop>
+        <source src="/videos/background-video.mp4" type="video/mp4">
+    </video>
     <div class="setup-container">
         <div class="setup-container__top">
             <h1>Boudewijn Seapark Quiz</h1>
@@ -20,13 +28,13 @@
         </div>
         <div class="setup-container__bottom">
             <div class="language-option" id="nl">
-                <button class="language-btn">NL Nederlands</button>
+                <a href="/views/index.html"><button class="language-btn">NL | Nederlands</button></a>
             </div>
             <div class="language-option" id="fr">
-                <button class="language-btn">FR Français</button>
+                <a href="/views/index-french.html"><button class="language-btn">FR | Français</button></a>
             </div>
             <div class="language-option" id="en">
-                <button class="language-btn">GB English</button>
+                <a href="/views/index-english.html"><button class="language-btn">GB | English</button></a>
             </div>
         </div>
         <div class="btm-text">
@@ -39,28 +47,85 @@
             <h1>Vandaag ontmoet je de dolfijnen!</h1>
             <p>Beantwoord onze vragen en ontdek meer over deze bijzondere dieren!</p>
         </div>
+
         <div class="registration">
+            <p>Je geboortedatum</p>
             <div class="registration-form">
-                <form action="" method="get">
-                    <label for="name">Je naam</label>
-                    <input type="text" id="name" name="name" placeholder="Vul je naam in" minlength="2" required>
-                    <label for="birthday">JE geboortedatum</label>
-                    <input type="date" id="birthday" name="birthday" required>
+                <form action="/your-submit-script" method="get">
+                    <select id="day-select" name="day">
+                        <option value="">Dag</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+
+                    <label for="month-select"></label>
+                    <select id="month-select" name="month">
+                        <option value="">Maand</option>
+                        <option value="1">januari</option>
+                        <option value="2">februari</option>
+                        <option value="3">Maart</option>
+                        <option value="4">april</option>
+                        <option value="5">mei</option>
+                        <option value="6">juni</option>
+                        <option value="7">juli</option>
+                        <option value="8">augustus</option>
+                        <option value="9">september</option>
+                        <option value="10">oktober</option>
+                        <option value="11">november</option>
+                        <option value="12">december</option>
+                    </select>
+
+                    <label for="year-select"></label>
+                    <select id="year-select" name="year">
+                        <option value="jaar">Jaar</option>
+                    </select>
+                    <input type="submit" value="Doorgaan" />
                 </form>
             </div>
+
         </div>
+
     </div>
     <div class="quiz-container">
         <div class="quiz-question-container">
             <div class="question-top">
                 <p>1/5</p>
-                <p id="timer">5</p>
+                <p id="timer">30</p>
             </div>
             <div class="quiz-question">
                 <p>Wat weet je over de oren van een dolfijn?</p>
             </div>
             <div class="question-img">
-                <img src="/images/dolfijn1.jpg" alt="">
+                <img src="/images/dolphin-ear.jpg" alt="">
             </div>
             <div class="question-answers">
                 <div class="answers-left">
@@ -85,13 +150,13 @@
         <div class="quiz-question-container">
             <div class="question-top">
                 <p>2/5</p>
-                <p id="timer">5</p>
+                <p id="timer">30</p>
             </div>
             <div class="quiz-question">
                 <p>Wat is sonar?</p>
             </div>
             <div class="question-img">
-                <img src="/images/dolfijn2.jpg" alt="">
+                <img src="/images/sonar.jpg" alt="">
             </div>
             <div class="question-answers">
                 <div class="answers-left">
@@ -121,10 +186,10 @@
         <div class="quiz-question-container">
             <div class="question-top">
                 <p>3/5</p>
-                <p id="timer">5</p>
+                <p id="timer">30</p>
             </div>
             <div class="quiz-question">
-                <p>Is een dolfijn een solidair dier?</p>
+                <p>Is een dolfijn een solitair dier?</p>
             </div>
             <div class="question-img">
                 <img src="/images/dolfijn3.jpg" alt="">
@@ -152,7 +217,7 @@
         <div class="quiz-question-container">
             <div class="question-top">
                 <p>4/5</p>
-                <p id="timer">5</p>
+                <p id="timer">30</p>
             </div>
             <div class="quiz-question">
                 <p>Zitten er botten in de finnen van een dolfijn?</p>
@@ -163,7 +228,7 @@
             <div class="question-answers">
                 <div class="answers-left">
                     <div class="answer-option">
-                        <button class="question-answer">Ja, zowel in de borstvinnen, rugvin als staartvin. </button>
+                        <button class="question-answer">Ja, in de borstvinnen en staartvin. </button>
                     </div>
                     <div class="answer-option">
                         <button class="question-answer">Enkel in de staartvin. </button>
@@ -182,7 +247,7 @@
         <div class="quiz-question-container">
             <div class="question-top">
                 <p>5/5</p>
-                <p id="timer">5</p>
+                <p id="timer">30</p>
             </div>
             <div class="quiz-question">
                 <p>Hoe weet je of de dolfijn een mannetje of een vrouwtje is?</p>
@@ -211,13 +276,59 @@
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="rating-container">
+        <div class="rating-question">
+            <h3>Vond je de quiz informatief?</h3>
+            <div class="stars" data-question="1">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+        </div>
+
+        <div class="rating-question">
+            <h3>Waren de vragen duidelijk?</h3>
+            <div class="stars" data-question="2">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+        </div>
+        <div class="rating-question">
+            <h3>Had je voldoende tijd?</h3>
+            <div class="stars" data-question="3">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+        </div>
+        <div class="rating-question">
+            <h3>Hoe was jouw algemene ervaring?</h3>
+            <div class="stars" data-question="4">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
             </div>
         </div>
     </div>
 
 
     <script src="/scripts/main.js"></script>
+    <script src="/scripts/dateSelector.js"></script>
+
+    <script src="/scripts/rating.js"></script>
 </body>
 
 </html>
