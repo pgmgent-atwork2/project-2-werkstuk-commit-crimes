@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
     <meta charset="UTF-8">
@@ -20,8 +20,43 @@
         </nav>
     </header>
     <main class="editor__main">
+        <section id="quiz-list" class="quiz-list">
+            <template id="quiz-template" class="quiz-item">
+                <div>
+                    <article class="quiz-item__card">
+                        <div class="quiz-item__info">
+                            <h2 class="quiz-title"></h2>
+                        </div>
+                        <div class="quiz-item__actions">
+                            <button class="delete__btn">
+                                <img src="/images/delete-icon.svg" alt="delete button">
+                            </button>
+                            <button class="quiz-item__dropdown-btn">
+                                <img src="/images/keyboard-arrow-down.svg" alt="dropdown button">
+                            </button>
+                        </div>
+                    </article>
+                    <form class="quiz-item__form">
+                        <article class="quiz-item__form-edit">
+                            <div>
+                                <input type="text" placeholder="Verander quiz titel">
+                            </div>
+                            <div>
+                                <button type="submit">Opslaan</button>
+                            </div>
+                        </article>
+                    </form>
+                    <div>
+                        <h3 class="quiz-questions-title">Vragen:</h3>
+                        <div class="quiz-item__questions"></div>
+                    </div>
+                </div>
+            </template>
+
+        </section>
         <section class="editor__quizzes">
-            <button class="editor__quizzes--btn" id="questionFormBtn">Voeg een quiz toe <img src="/images/add-icon.svg" alt="add icon" class="icon"></button>
+            <button class="editor__quizzes--btn" id="questionFormBtn">Voeg een quiz toe <img src="/images/add-icon.svg"
+                    alt="add icon" class="icon"></button>
         </section>
         <form action="POST" class="form-editor" id="questionForm">
             <section class="form-editor__section">
@@ -44,7 +79,7 @@
             </section>
             <article class="new-image">
                 <input type="file" id="myFile" name="filename" accept="image/*">
-                            <img id="previewImage" class="preview-image" alt="">
+                <img id="previewImage" class="preview-image" alt="">
             </article>
             <section class="new-questions">
                 <article class="new-question">
@@ -74,7 +109,7 @@
                 </div>
             </article>
             <article>
-                <input type="submit" name="submit" id="" value="Voeg toe" class="editor_submit_btn">
+                <input type="submit" name="submit" id="submit" value="Voeg toe" class="editor_submit_btn">
             </article>
         </form>
 
