@@ -1,5 +1,5 @@
 import QuestionItem from "../lib/models/QuestionItem.js";
- 
+
 export const index = (req, res) => {
     res.render('layout', {
         title: "Make It Happen",
@@ -21,7 +21,7 @@ export const getAllQuestions = async (req, res) => {
 export const postQuestion = async (req, res) => {
     try {
         const newQuestion = await QuestionItem.query().insert({
-          question: req.body.question,
+          question_text: req.body.question_text,
           image: req.body.image
         });
         res.json(newQuestion);
@@ -30,3 +30,27 @@ export const postQuestion = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+export const updateQuestion = async (req, res) => {
+  try {
+    const updated = await QuestionItem.query()
+      .patchAndFetchById(req.params.id, {
+        question_text: req.body.question_text,
+        image: req.body.image
+      });
+    res.json(updated);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+export const deleteQuestion = async (req, res) => {
+  try {
+    await QuestionItem.query().deleteById(req.params.id);
+    res.json({ success: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};

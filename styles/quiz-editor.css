@@ -117,7 +117,6 @@ body {
   gap: 1rem;
 }
 
-
 .input-questions {
   padding-left: 1rem;
   padding-right: 6rem;
@@ -137,7 +136,7 @@ body {
 .quiz-item__card {
   display: flex;
   gap: 30rem;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   padding-left: 1rem;
   & img {
     width: 2rem;
@@ -165,13 +164,13 @@ body {
 
 .quiz-item__dropdown-btn {
   border: none;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   cursor: pointer;
 }
 
 .quiz-item__form {
   display: none;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   justify-content: center;
 }
 
@@ -185,7 +184,7 @@ body {
   gap: 1rem;
 }
 
-.quiz-item__form-edit { 
+.quiz-item__form-edit {
   align-items: center;
   padding: 1rem;
   gap: 1rem;
@@ -204,16 +203,46 @@ body {
     color: #9333ea;
     background-color: white;
   }
-} 
+}
 
 .quiz-item__questions {
-  background-color: #D9D9D9;
+  display: none;
+  background-color: #d9d9d9;
   padding-left: 1rem;
 }
 
 .quiz-questions-title {
   display: none;
   font-weight: 300;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   padding-left: 1rem;
+}
+
+.edit-question-btn {
+  background-color: #9333ea;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-question-btn {
+  background-color: rgb(239, 68, 68);
+  border: none;
+  cursor: pointer;
+}
+
+.save-question-btn {
+  display: none;
+  padding-block: 0.5rem;
+  border: none;
+  padding-inline: 0.2rem;
+  cursor: pointer;
+  color: #9333ea;
+  background-color: white;
+}
+
+.edit-question-input {
+  display: none;
+  width: 15rem;
+  padding-block: 0.3rem;
+  border: none;
 }

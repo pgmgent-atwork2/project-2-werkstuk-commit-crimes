@@ -6,7 +6,7 @@ router.get('/', questionController.getAllQuestions);
 router.post('/', questionController.postQuestion);
 
 
-const show = async (req, res) => {
-    
-}
+router.patch('/:id', questionController.updateQuestion);
+router.delete('/:id', questionController.deleteQuestion);
+
 export default router;
