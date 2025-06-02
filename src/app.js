@@ -13,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/images', express.static('public/images'))
 app.use('/api/answers', answerRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/users', userRoutes);
