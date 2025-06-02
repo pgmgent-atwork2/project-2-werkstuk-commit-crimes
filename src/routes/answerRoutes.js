@@ -1,11 +1,13 @@
-import express from 'express';
+import express from "express";
 const router = express.Router();
-import * as answerController from '../controllers/AnswerController.js';
+import * as answerController from "../controllers/AnswerController.js";
 
-router.get('/', answerController.getAllAnswers);
+router.get("/", answerController.getAllAnswers);
 
-export const show = async (req, res) => {
-    
-}
+router.post("/", answerController.postAnswer);
+
+router.patch("/:id", answerController.updateAnswer);
+
+router.delete("/:id", answerController.deleteAnswer);
 
 export default router;

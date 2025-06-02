@@ -7,7 +7,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Ancizar Serif", serif;
 }
 .form-editor {
   display: flex;
@@ -245,4 +244,79 @@ body {
   width: 15rem;
   padding-block: 0.3rem;
   border: none;
+  font-size: 1rem;
+}
+
+.question-dropdown-btn {
+  background-color: #d9d9d9;
+  border: none;
+  cursor: pointer;
+}
+
+.save-answer-btn {
+  display: none;
+  padding-block: 0.5rem;
+  border: none;
+  padding-inline: 0.2rem;
+  cursor: pointer;
+  color: #9333ea;
+  background-color: white;
+}
+
+.edit-answer-btn {
+  background-color: #9333ea;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-answer-btn {
+  background-color: rgb(239, 68, 68);
+  border: none;
+  cursor: pointer;
+}
+
+.edit-answer-input {
+  background-color: #d9d9d9;
+  border: none;
+  font-size: 1rem;
+}
+
+.answer-item {
+  padding-top: 1rem;
+}
+
+.editor__main {
+  font-family: "Roboto", sans-serif;
+}
+
+.correct-answer {
+  background-color: #e6ffe6;
+  border-left: 5px solid #22c55e;
+  color: #15803d;
+}
+
+.wrong-answer {
+  background-color: #ffeaea;
+  border-left: 5px solid #ef4444;
+  color: #b91c1c;
+}
+
+.add-answers {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.add-answer-btn {
+  border: none;
+  background-color: #4ade80;
+  cursor: pointer;
+}
+
+.add-answer-input {
+  border: none;
+  padding-block: 0.3rem;
+}
+
+.add-correct-answer {
+  padding-top: 0.5rem;
 }

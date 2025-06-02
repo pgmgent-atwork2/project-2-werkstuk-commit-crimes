@@ -1,5 +1,5 @@
-import showQuizzes from "./quizCreator.js"
+import initQuizzes from "./quizCreator.js"
 
 document.addEventListener('DOMContentLoaded',() => {    
-    showQuizzes()
+    initQuizzes()
 })
