@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/styles/quiz-editor.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 </head>
 
@@ -51,6 +51,18 @@
                     <div>
                         <h3 class="quiz-questions-title">Vragen:</h3>
                         <div class="quiz-item__questions">
+
+                        </div>
+                        <div class="add-question-section" style="display:none;">
+                            <h4>Voeg een vraag toe:</h4>
+                            <form class="add-question-form">
+                                <input type="text" class="add-question-input" name="question" required>
+                                <label for="imageUpload"></label>
+                                <input type="file" id="imageUpload" name="image" accept="image/*">
+                                <button type="submit" class="add-question-btn">
+                                    <img src="/images/add-icon.svg" alt="add icon">
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -58,21 +70,69 @@
 
             <template id="question-template">
                 <div class="quiz-question">
-                    <span class="question-text"></span>
+                    <div>
+                        <span class="question-text"></span>
 
-                    <input type="text" class="edit-question-input"/>
-                    <button class="save-question-btn">Opslaan</button>
+                        <input type="text" class="edit-question-input" />
+                        <button class="save-question-btn">Opslaan</button>
 
-                    <button class="edit-question-btn">
-                        <img src="/images/edit-econ.svg" alt="edit icon" />
+                        <button class="edit-question-btn">
+                            <img src="/images/edit-icon.svg" alt="edit icon" />
+                        </button>
+
+                        <button class="delete-question-btn">
+                            <img src="/images/delete-icon.svg" alt="delete icon" />
+                        </button>
+
+                        <button class="question-dropdown-btn">
+                            <img src="/images/keyboard-arrow-down.svg" alt="dropdown button">
+                        </button>
+                    </div>
+                    <div>
+                        <article class="add-answers" style="display:none;">
+                            <div class="add-wrong-answer">
+                                <h4>Fout antwoord:</h4>
+                                <input type="text" placeholder="Voeg een nieuw antwoord toe" class="add-answer-input">
+                                <button class="add-answer-btn" data-correct="false"><img src="/images/add-icon.svg"
+                                        alt="add icon"></button>
+                            </div>
+                            <div class="add-correct-answer">
+                                <h4>Juist antwoord:</h4>
+                                <input type="text" placeholder="Voeg een nieuw antwoord toe" class="add-answer-input">
+                                <button class="add-answer-btn" data-correct="true"><img src="/images/add-icon.svg"
+                                        alt="add icon"></button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="add-question-section" style="display:none;">
+                        <h4>Voeg een vraag toe:</h4>
+                        <form class="add-question-form">
+                            <input type="text" class="add-question-input" name="question" required>
+                            <label for="imageUpload"></label>
+                            <input type="file" id="imageUpload" name="image" accept="image/*">
+                            <button type="submit" class="add-question-btn">
+                                <img src="/images/add-icon.svg" alt="add icon">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </template>
+            <template id="answer-template">
+                <div class="answer-item">
+                    <span class="answer-text"></span>
+                    <input type="text" class="edit-answer-input" />
+
+                    <button class="save-answer-btn">Opslaan</button>
+
+                    <button class="edit-answer-btn">
+                        <img src="/images/edit-icon.svg" alt="edit icon" />
                     </button>
 
-                    <button class="delete-question-btn">
+                    <button class="delete-answer-btn">
                         <img src="/images/delete-icon.svg" alt="delete icon" />
                     </button>
                 </div>
             </template>
-
 
 
         </section>
