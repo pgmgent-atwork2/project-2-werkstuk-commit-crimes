@@ -122,32 +122,30 @@
                 <p>1/5</p>
                 <p id="timer">30</p>
             </div>
-            <div class="quiz-question">
-                <p>Wat weet je over de oren van een dolfijn?</p>
+            <div class="quizquestion" id="quiz-question">
+                <p id="question-text"></p>
             </div>
-            <div class="question-img">
-                <img src="/images/dolphin-ear.jpg" alt="">
+            <div class="question-img" id="image-container">
+                
             </div>
-            <div class="question-answers">
+            <div class="question-answers" id="question-answers">
                 <div class="answers-left">
                     <div class="answer-option">
-                        <button class="question-answer">Een dolfijn heeft geen oren.</button>
+                        <button class="question-answer" id="answer-1"></button>
                     </div>
                     <div class="answer-option">
-                        <button class="question-answer">Een dolfijn heeft wel oren maar geen uitwendige
-                            oorschelpen.</button>
+                        <button class="question-answer" id="answer-2"></button>
                     </div>
                 </div>
                 <div class="answers-right">
                     <div class="answer-option">
-                        <button class="question-answer">Een dolfijn heeft wel oren en uitwendige oorschelpen. </button>
+                        <button class="question-answer" id="answer-3"></button>
                     </div>
                     <div class="answer-option">
-                        <button class="question-answer">Hier weet ik niets over.</button>
+                        <button class="question-answer" id="answer-4"></button>
                     </div>
                 </div>
             </div>
-        </div>
         <div class="quiz-question-container">
             <div class="question-top">
                 <p>2/5</p>
@@ -328,7 +326,7 @@
 
     <script src="/scripts/main.js"></script>
     <script src="/scripts/dateSelector.js"></script>
-
+    <script src="../scripts/questions.js"></script>
     <script src="/scripts/rating.js"></script>
 </body>
 

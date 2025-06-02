@@ -29,36 +29,58 @@
                         </div>
                         <div class="quiz-item__actions">
                             <button class="delete__btn">
-                                <img src="/images/delete-icon.svg" alt="delete button">
+                                <img src="/images/delete-icon.svg" alt="delete button" />
                             </button>
                             <button class="quiz-item__dropdown-btn">
-                                <img src="/images/keyboard-arrow-down.svg" alt="dropdown button">
+                                <img src="/images/keyboard-arrow-down.svg" alt="dropdown button" />
                             </button>
                         </div>
                     </article>
+
                     <form class="quiz-item__form">
                         <article class="quiz-item__form-edit">
                             <div>
-                                <input type="text" placeholder="Verander quiz titel">
+                                <input type="text" placeholder="Verander quiz titel" />
                             </div>
                             <div>
                                 <button type="submit">Opslaan</button>
                             </div>
                         </article>
                     </form>
+
                     <div>
                         <h3 class="quiz-questions-title">Vragen:</h3>
-                        <div class="quiz-item__questions"></div>
+                        <div class="quiz-item__questions">
+                        </div>
                     </div>
                 </div>
             </template>
+
+            <template id="question-template">
+                <div class="quiz-question">
+                    <span class="question-text"></span>
+
+                    <input type="text" class="edit-question-input"/>
+                    <button class="save-question-btn">Opslaan</button>
+
+                    <button class="edit-question-btn">
+                        <img src="/images/edit-econ.svg" alt="edit icon" />
+                    </button>
+
+                    <button class="delete-question-btn">
+                        <img src="/images/delete-icon.svg" alt="delete icon" />
+                    </button>
+                </div>
+            </template>
+
+
 
         </section>
         <section class="editor__quizzes">
             <button class="editor__quizzes--btn" id="questionFormBtn">Voeg een quiz toe <img src="/images/add-icon.svg"
                     alt="add icon" class="icon"></button>
         </section>
-        <form action="POST" class="form-editor" id="questionForm">
+        <form class="form-editor" id="questionForm">
             <section class="form-editor__section">
                 <article class="new-title">
                     <div>

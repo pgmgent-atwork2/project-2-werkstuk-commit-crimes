@@ -17,3 +17,19 @@ export const getAllQuizes = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+
+export async function updateQuiz(req, res) {
+  try {
+    const { id } = req.params;
+    const { title } = req.body;
+
+    const updatedQuiz = await QuizItem.query()
+      .patchAndFetchById(id, { title });
+
+    res.status(200).json(updatedQuiz);
+  } catch (err) {
+    console.error("Fout bij updaten quiz:", err);
+    res.status(500).json({ error: "Interne serverfout" });
+  }
+}
