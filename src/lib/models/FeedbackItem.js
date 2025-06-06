@@ -38,14 +38,6 @@ class FeedbackItem extends Model {
           to: "user_items.id",
         },
       },
-      session: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: SessionItem,
-        join: {
-          from: "feedback_items.session_id",
-          to: "session.id",
-        },
-      },
     };
   }
 }
