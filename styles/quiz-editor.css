@@ -166,7 +166,7 @@ body {
 
 .edit__btn {
   background-color: #9333ea;
-  border: 1px solid #9333ea;
+  border: 0.0625rem solid #9333ea;
   cursor: pointer;
 }
 
@@ -315,13 +315,13 @@ body {
 
 .correct-answer {
   background-color: #e6ffe6;
-  border-left: 0, 3125rem solid #22c55e;
+  border-left: 0.3125rem solid #22c55e;
   color: #15803d;
 }
 
 .wrong-answer {
   background-color: #ffeaea;
-  border-left: 0, 3125rem solid #ef4444;
+  border-left: 0.3125rem solid #ef4444;
   color: #b91c1c;
 }
 
@@ -340,7 +340,7 @@ body {
 .add-answer-input {
   border: none;
   padding-block: 0.3rem;
-  width: 11, 25rem;
+  width: 11.25rem;
 }
 
 .add-correct-answer {
@@ -355,8 +355,8 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0, 625rem;
-  padding: 0, 625rem;
+  gap: 0.625rem;
+  padding: 0.625rem;
 }
 
 .question-container {
@@ -369,8 +369,8 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: end;
-  width: 63, 125rem;
-  gap: 0, 3125rem;
+  width: 63.125rem;
+  gap: 0.3125rem;
 }
 
 .question-text {
@@ -380,13 +380,13 @@ body {
 .add-wrong-answer__btns {
   display: flex;
   flex-direction: row;
-  gap: 0, 3125rem;
+  gap: 0.3125rem;
 }
 
 .add-correct-answer__btns {
   display: flex;
   flex-direction: row;
-  gap: 0, 3125rem;
+  gap: 0.3125rem;
 }
 
 .quiz-questions-title {
