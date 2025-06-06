@@ -9,9 +9,14 @@ export const index = (req, res) => {
 
 export const getAllAnswers = async (req, res) => {
   try {
-    const answers = await AnswerItem.query().withGraphFetched("question");
-    console.log(answers);
-    res.json(answers);
+    if (req.query.question_id) {
+      const answers = await AnswerItem.query()
+        .where("question_id", req.query.question_id)
+        .withGraphFetched("question");
+      return res.json(answers);
+    }
+    const allAnswers = await AnswerItem.query().withGraphFetched("question");
+    res.json(allAnswers);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
