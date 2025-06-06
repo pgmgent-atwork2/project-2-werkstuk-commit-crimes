@@ -1,0 +1,64 @@
+.admin-login__main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f0fdfa 100%);
+}
+
+.admin-login__form__title {
+  padding-bottom: 3rem;
+  font-size: 2.2rem;
+  color: #3b3b3b;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.admin-login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 4rem 3rem;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(60, 60, 120, 0.15);
+  min-width: 350px;
+}
+
+.admin-login__form__password {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.admin-login__form__password__input {
+  background-color: #f1f5f9;
+  border: 1.5px solid #a5b4fc;
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  font-size: 1.1rem;
+  color: #22223b;
+  width: 27rem;
+}
+.admin-login__form__password__input:focus {
+  border-color: #6366f1;
+  outline: none;
+}
+
+.admin-login__form__password__button {
+  width: 100%;
+  padding: 0.7rem 0;
+  background: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+}
+.admin-login__form__password__button:hover {
+  background: linear-gradient(90deg, #38bdf8 0%, #6366f1 100%);
+}
