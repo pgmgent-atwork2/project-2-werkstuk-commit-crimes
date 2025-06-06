@@ -55,7 +55,7 @@
                         </div>
                         <div class="add-question-section" style="display:none;">
                             <h4>Voeg een vraag toe:</h4>
-                            <form class="add-question-form">
+                            <form class="add-question-form" method="POST" enctype="multipart/form-data" action="/upload">
                                 <input type="text" class="add-question-input" name="question" required>
                                 <label for="imageUpload"></label>
                                 <input type="file" id="imageUpload" name="image" accept="image/*">

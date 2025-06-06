@@ -27,13 +27,13 @@
   min-width: 350px;
 }
 
-.admin-login__form__password {
+.admin-login__form__item {
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
 }
 
-.admin-login__form__password__input {
+.admin-login__form__input {
   background-color: #f1f5f9;
   border: 1.5px solid #a5b4fc;
   border-radius: 6px;
