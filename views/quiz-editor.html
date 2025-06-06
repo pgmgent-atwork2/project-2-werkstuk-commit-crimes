@@ -22,7 +22,7 @@
     <main class="editor__main">
         <section id="quiz-list" class="quiz-list">
             <template id="quiz-template" class="quiz-item">
-                <div>
+                <div class="quiz-item__container">
                     <article class="quiz-item__card">
                         <div class="quiz-item__info">
                             <h2 class="quiz-title"></h2>
@@ -70,37 +70,46 @@
 
             <template id="question-template">
                 <div class="quiz-question">
-                    <div>
+                    <div class="question-container">
                         <span class="question-text"></span>
 
                         <input type="text" class="edit-question-input" />
                         <button class="save-question-btn">Opslaan</button>
+                        <div class="question-btns">
+                            <button class="edit-question-btn right">
+                                <img src="/images/edit-icon.svg" alt="edit icon" />
+                            </button>
 
-                        <button class="edit-question-btn">
-                            <img src="/images/edit-icon.svg" alt="edit icon" />
-                        </button>
+                            <button class="delete-question-btn right">
+                                <img src="/images/delete-icon.svg" alt="delete icon" />
+                            </button>
 
-                        <button class="delete-question-btn">
-                            <img src="/images/delete-icon.svg" alt="delete icon" />
-                        </button>
+                            <button class="question-dropdown-btn right">
+                                <img src="/images/keyboard-arrow-down.svg" alt="dropdown button">
+                            </button>
+                        </div>
 
-                        <button class="question-dropdown-btn">
-                            <img src="/images/keyboard-arrow-down.svg" alt="dropdown button">
-                        </button>
                     </div>
                     <div>
                         <article class="add-answers" style="display:none;">
                             <div class="add-wrong-answer">
                                 <h4>Fout antwoord:</h4>
-                                <input type="text" placeholder="Voeg een nieuw antwoord toe" class="add-answer-input">
-                                <button class="add-answer-btn" data-correct="false"><img src="/images/add-icon.svg"
-                                        alt="add icon"></button>
+                                <div class="add-wrong-answer__btns">
+                                    <input type="text" placeholder="Voeg een nieuw antwoord toe"
+                                        class="add-answer-input">
+                                    <button class="add-answer-btn" data-correct="false"><img src="/images/add-icon.svg"
+                                            alt="add icon"></button>
+                                </div>
                             </div>
                             <div class="add-correct-answer">
                                 <h4>Juist antwoord:</h4>
-                                <input type="text" placeholder="Voeg een nieuw antwoord toe" class="add-answer-input">
-                                <button class="add-answer-btn" data-correct="true"><img src="/images/add-icon.svg"
-                                        alt="add icon"></button>
+                                <div class="add-correct-answer__btns">
+                                    <input type="text" placeholder="Voeg een nieuw antwoord toe"
+                                        class="add-answer-input">
+                                    <button class="add-answer-btn" data-correct="true"><img src="/images/add-icon.svg"
+                                            alt="add icon"></button>
+                                </div>
+
                             </div>
                         </article>
                     </div>
@@ -137,8 +146,7 @@
 
 
         <section class="add-quizzes">
-            <button class="editor__quizzes--btn" id="questionFormBtn">Voeg een quiz toe <img src="/images/add-icon.svg"
-                    alt="add icon" class="icon"></button>
+            <h2 class="add-quizzes__title">Voeg hier een quiz toe!</h2>
 
             <form>
                 <input type="text" placeholder="Voeg de quiz titel hier toe" required>
