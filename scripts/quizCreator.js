@@ -96,6 +96,23 @@ async function addAnswer($questionId, $answerText, $isCorrect) {
   return await $response.json();
 }
 
+async function addQuiz(title) {
+  const $response = await fetch("http://localhost:3000/api/quiz", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title, language: "nl" }),
+  });
+  if (!$response.ok) throw new Error("Fout bij toevoegen van quiz");
+  return await $response.json();
+}
+
+async function deleteQuizById(quizId) {
+  const $response = await fetch(`http://localhost:3000/api/quiz/${quizId}`, {
+    method: "DELETE",
+  });
+  if (!$response.ok) throw new Error("Fout bij verwijderen van quiz");
+  return await $response.json();
+}
 
 function renderQuiz($quiz, $index, $templates, $container) {
   const { quizTemplate: $quizTemplate } = $templates;
@@ -178,8 +195,6 @@ function renderQuiz($quiz, $index, $templates, $container) {
     }
   });
 
-
-
   $container.appendChild($clone);
 }
 
@@ -234,10 +249,8 @@ function renderQuestion($question, $templates, $container) {
     }
   });
 
-
   const $addAnswersSection = $questionDiv.querySelector(".add-answers");
   if ($addAnswersSection) $addAnswersSection.style.display = "none";
-
 
   const $addQuestionSection = $clone.querySelector(".add-question-section");
   if ($addQuestionSection) {
@@ -273,7 +286,6 @@ function renderQuestion($question, $templates, $container) {
         renderAnswer($answer, $answerTemplate, $answersContainer, $question.id);
       }
 
-
       if ($addAnswersSection) {
         const $addBtns = $addAnswersSection.querySelectorAll(".add-answer-btn");
         $addBtns.forEach(($btn) => {
@@ -306,7 +318,6 @@ function renderQuestion($question, $templates, $container) {
           });
         });
       }
-
 
       if ($addQuestionSection) {
         const $addQuestionBtn =
@@ -352,11 +363,9 @@ function renderQuestion($question, $templates, $container) {
   $container.appendChild($clone);
 }
 
-
 function renderAnswer($answer, $answerTemplate, $container) {
   const $clone = $answerTemplate.content.cloneNode(true);
   const $answerDiv = $clone.querySelector(".answer-item");
-
 
   let $answerTextSpan = $clone.querySelector(".answer-text");
   if (!$answerTextSpan) {
@@ -435,6 +444,26 @@ function initQuizzes() {
     .catch(($error) => {
       console.error("Fout bij laden van quizzes:", $error);
     });
+
+  const $addQuizForm = document.querySelector(".add-quizzes form");
+  if ($addQuizForm) {
+    $addQuizForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const $input = $addQuizForm.querySelector("input[type='text']");
+      const title = $input.value.trim();
+      if (!title) return alert("Titel mag niet leeg zijn");
+      try {
+        const $newQuiz = await addQuiz(title);
+
+        const $quizCount = $quizList.querySelectorAll("template").length;
+        renderQuiz($newQuiz, $quizCount, $templates, $quizList);
+        $input.value = "";
+      } catch (err) {
+        alert("Fout bij toevoegen van quiz");
+        console.error(err);
+      }
+    });
+  }
 }
 
 export default initQuizzes;
