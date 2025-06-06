@@ -24,7 +24,7 @@ class FeedbackItem extends Model {
         user_id: { type: "integer" },
         quiz_id: { type: "integer" },
         feedback: { type: "string", minLength: 1, maxLength: 255 },
-        rating: { type: "integer" }
+        rating: { type: "integer" },
       },
     };
   }
