@@ -333,3 +333,56 @@ body {
 .feedback-editor__container {
   margin: 1.25rem;
 }
+
+.add-question-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.625rem;
+}
+
+.question-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.question-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  width: 63.125rem;
+  gap: 0.3125rem;
+}
+
+.question-text {
+  text-align: center;
+}
+
+.add-wrong-answer__btns {
+  display: flex;
+  flex-direction: row;
+  gap: 0.3125rem;
+}
+
+.add-correct-answer__btns {
+  display: flex;
+  flex-direction: row;
+  gap: 0.3125rem;
+}
+
+.quiz-questions-title {
+  font-weight: bold;
+}
+
+.add-quizzes {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 1rem;
+}
+
+.add-quizzes__title {
+  padding: 1rem;
+}
