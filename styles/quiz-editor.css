@@ -320,3 +320,7 @@ body {
 .add-correct-answer {
   padding-top: 0.5rem;
 }
+
+.feedback-editor__container {
+  margin: 20px;
+}

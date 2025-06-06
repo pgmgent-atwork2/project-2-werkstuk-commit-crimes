@@ -18,7 +18,7 @@ class QuestionItem extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["question_text", "quiz_id", "image_path"],
+      required: ["question_text", "quiz_id"],
       properties: {
         id: { type: "integer" },
         quiz_id: { type: "integer" },
