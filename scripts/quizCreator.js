@@ -193,7 +193,7 @@ function renderQuiz($quiz, $index, $templates, $container) {
 
   $addQuestionSection.style.display = "block";
   $questionsContainer.appendChild($addQuestionSection);
-}
+  }
 
   $dropdownBtn.addEventListener("click", async () => {
     $form.style.display = $form.style.display === "none" ? "flex" : "none";

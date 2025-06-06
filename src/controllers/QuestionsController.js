@@ -9,14 +9,20 @@ export const index = (req, res) => {
 
 export const getAllQuestions = async (req, res) => {
   try {
-    const questions = await QuestionItem.query().withGraphFetched("answers");
-    console.log(questions);
-    res.json(questions);
+    if (req.query.quiz_id) {
+      const questions = await QuestionItem.query()
+        .where("quiz_id", req.query.quiz_id)
+        .withGraphFetched("answers");
+      return res.json(questions);
+    }
+
+    const allQuestions = await QuestionItem.query().withGraphFetched("answers");
+    res.json(allQuestions);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
-}
+};
 
 export const postQuestion = async (req, res) => {
   try {
