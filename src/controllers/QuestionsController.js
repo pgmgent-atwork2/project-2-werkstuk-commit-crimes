@@ -19,24 +19,24 @@ export const getAllQuestions = async (req, res) => {
 }
 
 export const postQuestion = async (req, res) => {
-    try {
-        const newQuestion = await QuestionItem.query().insert({
-          question_text: req.body.question_text,
-          image: req.body.image
-        });
-        res.json(newQuestion);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-}
+  try {
+    const newQuestion = await QuestionItem.query().insert({
+      question_text: req.body.question_text,
+      quiz_id: req.body.quiz_id,
+    });
+    res.json(newQuestion);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 
 export const updateQuestion = async (req, res) => {
   try {
     const updated = await QuestionItem.query()
       .patchAndFetchById(req.params.id, {
         question_text: req.body.question_text,
-        image: req.body.image
+        image: req.body.image_path
       });
     res.json(updated);
   } catch (error) {
