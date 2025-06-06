@@ -12,12 +12,12 @@ body {
 .form-editor {
   display: flex;
   flex-direction: column;
-  padding: 1, 25rem;
-  margin: 0rem 3, 125rem 3, 125rem 3, 125rem;
+  padding: 1.25rem;
+  margin: 0rem 3.125rem 3.125rem 3.125rem;
   width: 77rem;
-  height: 50, 885625rem;
+  height: 50.885625rem;
   gap: 1.25rem;
-  border-radius: 0, 625rem;
+  border-radius: 0.625rem;
 }
 
 .new-question__title {
@@ -28,16 +28,16 @@ body {
 }
 
 .new-title textarea {
-  width: 33, 125rem;
-  height: 12, 5rem;
+  width: 33.125rem;
+  height: 12.5rem;
   height: auto;
 }
 
 .editor-nav {
   display: flex;
   flex-direction: row;
-  padding: 0, 625rem;
-  gap: 0, 625rem;
+  padding: 0.625rem;
+  gap: 0.625rem;
 }
 
 .editor-nav a {
@@ -62,7 +62,7 @@ body {
 
 .new-question textarea {
   width: 100%;
-  height: 3, 125rem;
+  height: 3.125rem;
 }
 
 .add-btn {
