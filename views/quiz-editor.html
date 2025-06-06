@@ -58,7 +58,7 @@
                             <form class="add-question-form">
                                 <input type="text" class="add-question-input" name="question" required>
                                 <label for="imageUpload"></label>
-                                <input type="file" id="imageUpload" name="image" accept="image/*">
+                                <input type="file" id="imageUpload" name="image" accept="image/*" required>
                                 <button type="submit" class="add-question-btn">
                                     <img src="/images/add-icon.svg" alt="add icon">
                                 </button>
@@ -115,10 +115,10 @@
                     </div>
                     <div class="add-question-section" style="display:none;">
                         <h4>Voeg een vraag toe:</h4>
-                        <form class="add-question-form">
+                        <form class="add-question-form" enctype="multipart/form-data">
                             <input type="text" class="add-question-input" name="question" required>
                             <label for="imageUpload"></label>
-                            <input type="file" id="imageUpload" name="image" accept="image/*">
+                            <input type="file" name="image" accept="image/*">
                             <button type="submit" class="add-question-btn">
                                 <img src="/images/add-icon.svg" alt="add icon">
                             </button>

@@ -29,6 +29,7 @@ export const postQuestion = async (req, res) => {
     const newQuestion = await QuestionItem.query().insert({
       question_text: req.body.question_text,
       quiz_id: req.body.quiz_id,
+      image_path: req.body.image_path,
     });
     res.json(newQuestion);
   } catch (error) {
@@ -42,7 +43,7 @@ export const updateQuestion = async (req, res) => {
     const updated = await QuestionItem.query()
       .patchAndFetchById(req.params.id, {
         question_text: req.body.question_text,
-        image: req.body.image_path
+        image_path: req.body.image_path
       });
     res.json(updated);
   } catch (error) {
