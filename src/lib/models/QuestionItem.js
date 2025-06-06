@@ -3,7 +3,6 @@ import { Model } from "objection";
 
 import AnswerItem from "./AnswerItem.js";
  
-// instantiate the model
 Model.knex(Knex);
  
 class QuestionItem extends Model {
