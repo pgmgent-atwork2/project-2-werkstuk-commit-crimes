@@ -33,6 +33,10 @@ body {
   background: transparent;
 }
 
+.language-selected {
+  background-color: #00e5ff;
+}
+
 .language-btn {
   width: 120px;
   height: 40px;

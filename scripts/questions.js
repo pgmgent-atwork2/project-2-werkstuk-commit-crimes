@@ -1,4 +1,3 @@
-// Select DOM elements
 const questionText = document.getElementById("question-text");
 const answer1 = document.getElementById("answer-1")
 const answer2 = document.getElementById("answer-2")
@@ -6,14 +5,12 @@ const answer3 = document.getElementById("answer-3")
 const answer4 = document.getElementById("answer-4")
 const imageContainer = document.getElementById("image-container");
 
-// Fetch question from API
 fetch("http://localhost:3000/api/questions")
   .then(response => response.json())
   .then(data => {
-    const question = data[0]; // Assuming you want the first question
+    const question = data[0]; 
     questionText.textContent = question.question_text;
 
-    // Display image if exists
     if (question.image_path) {
       const img = document.createElement("img");
       img.src = question.image_path;
@@ -21,10 +18,9 @@ fetch("http://localhost:3000/api/questions")
       imageContainer.innerHTML = "";
       imageContainer.appendChild(img);
     } else {
-      imageContainer.innerHTML = ""; // Clear if no image
+      imageContainer.innerHTML = ""; 
     }
 
-    // Fill in answers (assuming up to 4)
     const answers = question.answers;
     answer1.textContent = answers[0] ? answers[0].answer_text : "";
     answer2.textContent = answers[1] ? answers[1].answer_text : "";

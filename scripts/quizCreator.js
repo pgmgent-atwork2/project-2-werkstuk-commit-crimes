@@ -159,9 +159,41 @@ function renderQuiz($quiz, $index, $templates, $container) {
 
   let $addQuestionSection = $clone.querySelector(".add-question-section");
   if ($addQuestionSection) {
-    $addQuestionSection.style.display = "none";
-    $addQuestionSection.remove();
+  const $form = $addQuestionSection.querySelector(".add-question-form");
+  const $input = $form.querySelector(".add-question-input");
+
+  $form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const questionText = $input.value.trim();
+    if (!questionText) return alert("Vraag mag niet leeg zijn");
+
+    try {
+  const response = await fetch("http://localhost:3000/api/questions", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      question_text: questionText,
+      quiz_id: $quiz.id,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.text(); // 🔍 log raw error
+    throw new Error(`HTTP ${response.status}: ${errorBody}`);
   }
+
+  const newQuestion = await response.json();
+  renderQuestion(newQuestion, $templates, $questionsContainer);
+  $input.value = "";
+} catch (err) {
+  console.error("Fout bij toevoegen van vraag:", err);
+  alert("Fout bij toevoegen van vraag");
+}
+  });
+
+  $addQuestionSection.style.display = "block";
+  $questionsContainer.appendChild($addQuestionSection);
+}
 
   $dropdownBtn.addEventListener("click", async () => {
     $form.style.display = $form.style.display === "none" ? "flex" : "none";
