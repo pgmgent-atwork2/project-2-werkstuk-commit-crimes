@@ -43,5 +43,26 @@ select::-webkit-scrollbar {
   border: solid 1px #4ea0cc;
   border-radius: 10px;
   height: 30.83px;
-  width: 90px;
+  width: 30.5rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #4ea0cc;
+  }
+}
+
+.registration__name {
+  padding-left: 8.5rem;
+}
+
+.registration__name__input {
+  background-color: #5ec4fc;
+  border: solid 1px #4ea0cc;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+}
+
+.submit__input__container {
+  padding-top: 1rem;
+  align-self: center;
 }
