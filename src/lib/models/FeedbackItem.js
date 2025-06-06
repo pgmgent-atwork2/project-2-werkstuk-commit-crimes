@@ -35,15 +35,7 @@ class FeedbackItem extends Model {
         modelClass: UserItem,
         join: {
           from: "feedback_items.user_id",
-          to: "users.id",
-        },
-      },
-      quiz: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: SessionItem,
-        join: {
-          from: "feedback_items.session_id",
-          to: "session.id",
+          to: "user_items.id",
         },
       },
     };
