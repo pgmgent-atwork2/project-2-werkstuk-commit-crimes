@@ -12,12 +12,12 @@ body {
 .form-editor {
   display: flex;
   flex-direction: column;
-  padding: 1, 25rem;
-  margin: 0rem 3, 125rem 3, 125rem 3, 125rem;
+  padding: 1.25rem;
+  margin: 0rem 3.125rem 3.125rem 3.125rem;
   width: 77rem;
-  height: 50, 885625rem;
+  height: 50.885625rem;
   gap: 1.25rem;
-  border-radius: 0, 625rem;
+  border-radius: 0.625rem;
 }
 
 .new-question__title {
@@ -28,16 +28,16 @@ body {
 }
 
 .new-title textarea {
-  width: 33, 125rem;
-  height: 12, 5rem;
+  width: 33.125rem;
+  height: 12.5rem;
   height: auto;
 }
 
 .editor-nav {
   display: flex;
   flex-direction: row;
-  padding: 0, 625rem;
-  gap: 0, 625rem;
+  padding: 0.625rem;
+  gap: 0.625rem;
 }
 
 .editor-nav a {
@@ -62,7 +62,7 @@ body {
 
 .new-question textarea {
   width: 100%;
-  height: 3, 125rem;
+  height: 3.125rem;
 }
 
 .add-btn {
@@ -315,13 +315,13 @@ body {
 
 .correct-answer {
   background-color: #e6ffe6;
-  border-left: 0, 3125rem solid #22c55e;
+  border-left: 0.3125rem solid #22c55e;
   color: #15803d;
 }
 
 .wrong-answer {
   background-color: #ffeaea;
-  border-left: 0, 3125rem solid #ef4444;
+  border-left: 0.3125rem solid #ef4444;
   color: #b91c1c;
 }
 
@@ -340,7 +340,7 @@ body {
 .add-answer-input {
   border: none;
   padding-block: 0.3rem;
-  width: 11, 25rem;
+  width: 11.25rem;
 }
 
 .add-correct-answer {
@@ -355,8 +355,8 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0, 625rem;
-  padding: 0, 625rem;
+  gap: 0.625rem;
+  padding: 0.625rem;
 }
 
 .question-container {
@@ -370,8 +370,7 @@ body {
   flex-direction: row;
   justify-content: end;
   gap: 0.625rem;
-  width: 63, 125rem;
-  gap: 0, 3125rem;
+  width: 63.125rem;
 }
 
 .question-text {
@@ -381,13 +380,13 @@ body {
 .add-wrong-answer__btns {
   display: flex;
   flex-direction: row;
-  gap: 0, 3125rem;
+  gap: 0.3125rem;
 }
 
 .add-correct-answer__btns {
   display: flex;
   flex-direction: row;
-  gap: 0, 3125rem;
+  gap: 0.3125rem;
 }
 
 .quiz-questions-title {
