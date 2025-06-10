@@ -20,12 +20,13 @@ class SessionItem extends Model {
   static get jsonSchema() {
     return {
       type: "object",
+      required: ["quiz_id", "password"],
       properties: {
         id: { type: "integer" },
         user_id: { type: "integer" },
         quiz_id: { type: "integer" },
         attempt_number: { type: "integer" },
-        score: { type: "integer" },
+        password: { type: "string" },
         created_at: {
           type: "string",
           format: "date-time"

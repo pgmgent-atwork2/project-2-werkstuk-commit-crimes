@@ -9,34 +9,41 @@ export const index = (req, res) => {
 
 export const getAllQuestions = async (req, res) => {
   try {
-    const questions = await QuestionItem.query().withGraphFetched("answers");
-    console.log(questions);
-    res.json(questions);
+    if (req.query.quiz_id) {
+      const questions = await QuestionItem.query()
+        .where("quiz_id", req.query.quiz_id)
+        .withGraphFetched("answers");
+      return res.json(questions);
+    }
+
+    const allQuestions = await QuestionItem.query().withGraphFetched("answers");
+    res.json(allQuestions);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const postQuestion = async (req, res) => {
+  try {
+    const newQuestion = await QuestionItem.query().insert({
+      question_text: req.body.question_text,
+      quiz_id: req.body.quiz_id,
+      image_path: req.body.image_path,
+    });
+    res.json(newQuestion);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-}
-
-export const postQuestion = async (req, res) => {
-    try {
-        const newQuestion = await QuestionItem.query().insert({
-          question_text: req.body.question_text,
-          image: req.body.image
-        });
-        res.json(newQuestion);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-}
+};
 
 export const updateQuestion = async (req, res) => {
   try {
     const updated = await QuestionItem.query()
       .patchAndFetchById(req.params.id, {
         question_text: req.body.question_text,
-        image: req.body.image
+        image_path: req.body.image_path
       });
     res.json(updated);
   } catch (error) {

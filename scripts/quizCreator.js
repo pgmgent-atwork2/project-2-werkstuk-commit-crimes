@@ -159,8 +159,45 @@ function renderQuiz($quiz, $index, $templates, $container) {
 
   let $addQuestionSection = $clone.querySelector(".add-question-section");
   if ($addQuestionSection) {
-    $addQuestionSection.style.display = "none";
-    $addQuestionSection.remove();
+  const $form = $addQuestionSection.querySelector(".add-question-form");
+  const $input = $form.querySelector(".add-question-input");
+  const $fileInput = $form.querySelector("input[type='file']");
+
+  $form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const questionText = $input.value.trim();
+    if (!questionText) return alert("Vraag mag niet leeg zijn");
+
+    const formData = new FormData();
+    formData.append("question_text", questionText);
+    formData.append("quiz_id", $quiz.id);
+    if ($fileInput && $fileInput.files.length > 0) {
+      formData.append("image", $fileInput.files[0]);
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/api/questions", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorBody = await response.text();
+        throw new Error(`HTTP ${response.status}: ${errorBody}`);
+      }
+
+      const newQuestion = await response.json();
+      renderQuestion(newQuestion, $templates, $questionsContainer);
+      $input.value = "";
+      if ($fileInput) $fileInput.value = "";
+    } catch (err) {
+      console.error("Fout bij toevoegen van vraag:", err);
+      alert("Fout bij toevoegen van vraag");
+    }
+  });
+
+  $addQuestionSection.style.display = "block";
+  $questionsContainer.appendChild($addQuestionSection);
   }
 
   $dropdownBtn.addEventListener("click", async () => {

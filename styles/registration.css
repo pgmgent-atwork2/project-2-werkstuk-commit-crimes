@@ -17,9 +17,9 @@
   width: 10rem;
   height: auto;
   background-color: #5ec4fc;
-  border: solid 1px #4ea0cc;
-  border-radius: 10px;
-  padding: 5px;
+  border: solid 0.0625rem #4ea0cc;
+  border-radius: 0.625rem;
+  padding: 0.3125rem;
 }
 
 select::-webkit-scrollbar {
@@ -35,13 +35,34 @@ select::-webkit-scrollbar {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 .registration-submit__btn {
   background-color: #5ec4fc;
-  border: solid 1px #4ea0cc;
-  border-radius: 10px;
-  height: 30.83px;
-  width: 90px;
+  border: solid 0.0625rem #4ea0cc;
+  border-radius: 0.625rem;
+  height: 1.926875rem;
+  width: 30.5rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #4ea0cc;
+  }
+}
+
+.registration__name {
+  padding-left: 8.5rem;
+}
+
+.registration__name__input {
+  background-color: #5ec4fc;
+  border: solid 0.0625rem #4ea0cc;
+  border-radius: 0.625rem;
+  padding: 0.5rem 1rem;
+}
+
+.submit__input__container {
+  padding-top: 1rem;
+  align-self: center;
 }
