@@ -400,6 +400,22 @@ body {
   gap: 1rem;
 }
 
+.quiz-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.quiz-add-txt {
+  width: 200px;
+}
+
+.quiz-add-submit {
+  width: 200px;
+  background-color: #efefef;
+}
 .add-quizzes__title {
   padding: 1rem;
 }
