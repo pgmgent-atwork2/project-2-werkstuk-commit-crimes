@@ -6,6 +6,7 @@
 @import url("./rating.css");
 @import url("./background.css");
 @import url( "./admin-login.css");
+@import url("./quiz-editor.css");
 
 * {
   margin: 0;
