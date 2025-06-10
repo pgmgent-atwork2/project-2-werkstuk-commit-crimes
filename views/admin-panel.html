@@ -14,18 +14,37 @@
 
 <body>
     <header>
-        <div>
+        <div class="admin__title">
             <h1>Admin panel</h1>
         </div>
     </header>
 
     <main>
-        <section>
-            <div>
-                <h2>Kies een quiz</h2>
+        <section class="admin__quiz">
+            <div class="admin__quiz__title">
+                <h2>Kies een quiz voor een sessie te starten:</h2>
             </div>
-            <div id="admin-quiz-list">
+            <div>
+                <button id="admin-quiz-list" class="admin__quiz__btn">
+                </button>
+            </div>
 
+            <article id="admin-password-popover" class="admin_popover">
+                <form id="password-form" class="admin_popover_password">
+                    <div>
+                        <button type="button" id="close-popover" class="admin-popover__close">X</button>
+                    </div>
+                    <div>
+                        <label class=".admin-popover__label" for="password-input">Wachtwoord voor de quiz:</label>
+                    </div>
+                    <div>
+                        <input class=".admin-popover__input" type="password" id="password-input" required />
+                    </div>
+                    <div>
+                        <button type="submit" class="admin-popover__submit">Start een sessie</button>
+                    </div>
+                </form>
+            </article>
             </div>
         </section>
     </main>
