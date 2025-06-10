@@ -6,17 +6,36 @@ function showQuizTitle($titleEl, $index, $quiz) {
 
 async function displayQuizzes() {
   try {
-    const quizzes = await fetchQuizzes();
+    const $quizzes = await fetchQuizzes();
 
-    const container = document.querySelector("#admin-quiz-list");
+    const $container = document.querySelector("#admin-quiz-list");
+    $container.innerHTML = "";
 
-    quizzes.forEach(($quiz, index) => {
-      const titleEl = document.createElement("h3");
-      showQuizTitle(titleEl, index, $quiz);
-      container.appendChild(titleEl);
+    $quizzes.forEach(($quiz, $index) => {
+      const $btn = document.createElement("button");
+      $btn.className = "admin__quiz__btn";
+      const $titleEl = document.createElement("h3");
+      showQuizTitle($titleEl, $index, $quiz);
+      $btn.appendChild($titleEl);
+
+      $btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const $popOver = document.querySelector("#admin-password-popover");
+        if ($popOver) $popOver.style.display = "flex";
+      });
+
+      $container.appendChild($btn);
     });
-  } catch (error) {
-    console.error("Fout bij ophalen of tonen van quizzes:", error);
+
+    const $popOver = document.querySelector("#admin-password-popover");
+    const $closeBtn = document.querySelector(".admin-popover__close");
+    if ($closeBtn && $popOver) {
+      $closeBtn.addEventListener("click", () => {
+        $popOver.style.display = "none";
+      });
+    }
+  } catch ($error) {
+    console.error("Fout bij ophalen of tonen van quizzes:", $error);
   }
 }
 
