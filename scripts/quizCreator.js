@@ -1,4 +1,4 @@
-async function fetchQuizzes() {
+export async function fetchQuizzes() {
   const $response = await fetch("http://localhost:3000/api/quiz");
   if (!$response.ok) throw new Error("Fout bij ophalen quizzes");
   return await $response.json();
@@ -114,7 +114,6 @@ async function deleteQuizById(quizId) {
   return await $response.json();
 }
 
-
 function showQuizTitle($titleEl, $index, $quiz) {
   $titleEl.textContent = `Quiz ${$index + 1}: ${$quiz.title}`;
 }
@@ -126,7 +125,6 @@ function showQuestionText($textSpan, $question) {
 function showAnswerText($answerTextSpan, $answer) {
   $answerTextSpan.textContent = $answer.answer_text;
 }
-
 
 function enableEditQuestion($editBtn, $editInput, $saveBtn, $textSpan) {
   $editBtn.addEventListener("click", () => {
@@ -195,7 +193,6 @@ function saveEditAnswer(
   });
 }
 
-
 function enableDeleteQuestion(
   $deleteBtn,
   $questionDiv,
@@ -222,7 +219,6 @@ function enableDeleteAnswer($deleteBtn, $answerDiv, $answer, deleteAnswerById) {
     }
   });
 }
-
 
 function renderQuiz($quiz, $index, $templates, $container) {
   const { quizTemplate: $quizTemplate } = $templates;
@@ -553,4 +549,5 @@ function initQuizzes() {
   }
 }
 
+export { showQuizTitle };
 export default initQuizzes;
