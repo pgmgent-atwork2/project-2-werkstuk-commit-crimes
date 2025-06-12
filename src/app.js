@@ -7,7 +7,9 @@ import userRoutes from "./routes/userRoutes.js";
 import sessionRoutes from "./routes/sessionRoutes.js";
 import quizRoutes from "./routes/quizRoutes.js";
 import feedbackRoutes from "./routes/feedbackRoutes.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
 const port = 3000;
 
@@ -28,10 +30,16 @@ app.use(
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
-  if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-    req.session.isAuthenticated = true;
-    return res.redirect("/admin-panel.html");
+  if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+  req.session.isAuthenticated = true;
+  return res.redirect("/admin-panel.html");
   }
+
+//for debugging
+console.log("Email:", email);
+console.log("Password:", password);
+console.log("Expected Email:", process.env.ADMIN_EMAIL);
+console.log("Expected Password:", process.env.ADMIN_PASSWORD);
 
   return res.status(401).send("Ongeldige login");
 });
