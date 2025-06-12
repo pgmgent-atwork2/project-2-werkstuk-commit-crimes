@@ -158,3 +158,49 @@ body {
 .admin-popover__close:hover {
   color: #d32f2f;
 }
+
+@media screen and (min-width: 375px) and (min-height: 667px) {
+  .admin__title {
+    width: 375px;
+    height: fit-content;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .admin__quiz__title {
+    width: 300px;
+    text-align: center;
+  }
+
+  #admin-quiz-list {
+    width: 300px;
+  }
+
+  #admin-quiz-list h3 {
+    width: 240px;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 1024px) and (min-height: 768px) {
+  .admin__title {
+    width: 1024px;
+    height: fit-content;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .admin__quiz__title {
+    width: 800px;
+    text-align: center;
+  }
+
+  #admin-quiz-list {
+    width: 410px;
+  }
+
+  #admin-quiz-list h3 {
+    width: 350px;
+    text-align: center;
+  }
+}
