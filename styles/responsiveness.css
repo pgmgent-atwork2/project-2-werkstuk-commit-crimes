@@ -34,6 +34,16 @@
     width: 100%;
     height: fit-content;
   }
+
+  .registration form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+    gap: 10px;
+  }
   .registration__top {
     text-align: center;
     padding: 1px;
@@ -86,6 +96,23 @@
     align-items: center;
     gap: 0;
   }
+
+  .question-answer {
+    width: 340px;
+    text-align: center;
+  }
+
+  .rating-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
+    height: 100vh;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    text-align: center;
+  }
 }
 
 @media screen and (min-width: 1024px) and (min-height: 768px) {
@@ -94,8 +121,7 @@
     min-height: 768px;
     background-color: #03a9f4;
   }
-  video {
-  }
+
   .setup-container {
     display: flex;
     flex-direction: column;
