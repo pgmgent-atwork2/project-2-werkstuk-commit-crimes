@@ -1,4 +1,4 @@
-async function fetchQuizzes() {
+export async function fetchQuizzes() {
   const $response = await fetch("http://localhost:3000/api/quiz");
   if (!$response.ok) throw new Error("Fout bij ophalen quizzes");
   return await $response.json();
@@ -114,12 +114,118 @@ async function deleteQuizById(quizId) {
   return await $response.json();
 }
 
+function showQuizTitle($titleEl, $index, $quiz) {
+  $titleEl.textContent = `Quiz ${$index + 1}: ${$quiz.title}`;
+}
+
+function showQuestionText($textSpan, $question) {
+  $textSpan.textContent = $question.question_text;
+}
+
+function showAnswerText($answerTextSpan, $answer) {
+  $answerTextSpan.textContent = $answer.answer_text;
+}
+
+function enableEditQuestion($editBtn, $editInput, $saveBtn, $textSpan) {
+  $editBtn.addEventListener("click", () => {
+    $textSpan.style.display = "none";
+    $editBtn.style.display = "none";
+    $editInput.style.display = "inline-block";
+    $saveBtn.style.display = "inline-block";
+  });
+}
+
+function saveEditQuestion(
+  $saveBtn,
+  $editInput,
+  $textSpan,
+  $editBtn,
+  $question,
+  updateQuestionText
+) {
+  $saveBtn.addEventListener("click", async () => {
+    const $newText = $editInput.value.trim();
+    if (!$newText) return alert("Vraagtekst mag niet leeg zijn");
+    try {
+      await updateQuestionText($question.id, $newText);
+      $textSpan.textContent = $newText;
+      $textSpan.style.display = "inline";
+      $editBtn.style.display = "inline-block";
+      $editInput.style.display = "none";
+      $saveBtn.style.display = "none";
+    } catch ($err) {
+      console.error("Fout bij bewerken van vraag:", $err);
+    }
+  });
+}
+
+function enableEditAnswer($editBtn, $editInput, $saveBtn, $answerTextSpan) {
+  $editBtn.addEventListener("click", () => {
+    $answerTextSpan.style.display = "none";
+    $editInput.style.display = "inline-block";
+    $saveBtn.style.display = "inline-block";
+    $editBtn.style.display = "none";
+    $editInput.focus();
+  });
+}
+
+function saveEditAnswer(
+  $saveBtn,
+  $editInput,
+  $answerTextSpan,
+  $editBtn,
+  $answer,
+  updateAnswer
+) {
+  $saveBtn.addEventListener("click", async () => {
+    const $newText = $editInput.value.trim();
+    if (!$newText) return alert("Antwoordtekst mag niet leeg zijn");
+    try {
+      await updateAnswer($answer.id, $newText);
+      $answerTextSpan.textContent = $newText;
+      $answerTextSpan.style.display = "inline";
+      $editInput.style.display = "none";
+      $saveBtn.style.display = "none";
+      $editBtn.style.display = "inline-block";
+    } catch ($err) {
+      console.error("Fout bij bewerken van antwoord:", $err);
+    }
+  });
+}
+
+function enableDeleteQuestion(
+  $deleteBtn,
+  $questionDiv,
+  $question,
+  deleteQuestionById
+) {
+  $deleteBtn.addEventListener("click", async () => {
+    try {
+      await deleteQuestionById($question.id);
+      $questionDiv.remove();
+    } catch ($err) {
+      console.error("Fout bij verwijderen van vraag:", $err);
+    }
+  });
+}
+
+function enableDeleteAnswer($deleteBtn, $answerDiv, $answer, deleteAnswerById) {
+  $deleteBtn.addEventListener("click", async () => {
+    try {
+      await deleteAnswerById($answer.id);
+      $answerDiv.remove();
+    } catch ($err) {
+      console.error("Fout bij verwijderen van antwoord:", $err);
+    }
+  });
+}
+
 function renderQuiz($quiz, $index, $templates, $container) {
   const { quizTemplate: $quizTemplate } = $templates;
   const $clone = $quizTemplate.content.cloneNode(true);
 
   const $titleEl = $clone.querySelector(".quiz-title");
-  $titleEl.textContent = `Quiz ${$index + 1}: ${$quiz.title}`;
+  showQuizTitle($titleEl, $index, $quiz);
 
   const $deleteBtn = $clone.querySelector(".delete__btn");
   $deleteBtn.addEventListener("click", async () => {
@@ -159,45 +265,40 @@ function renderQuiz($quiz, $index, $templates, $container) {
 
   let $addQuestionSection = $clone.querySelector(".add-question-section");
   if ($addQuestionSection) {
-  const $form = $addQuestionSection.querySelector(".add-question-form");
-  const $input = $form.querySelector(".add-question-input");
-  const $fileInput = $form.querySelector("input[type='file']");
+    const $form = $addQuestionSection.querySelector(".add-question-form");
+    const $input = $form.querySelector(".add-question-input");
 
-  $form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const questionText = $input.value.trim();
-    if (!questionText) return alert("Vraag mag niet leeg zijn");
+    $form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const questionText = $input.value.trim();
+      if (!questionText) return alert("Vraag mag niet leeg zijn");
 
-    const formData = new FormData();
-    formData.append("question_text", questionText);
-    formData.append("quiz_id", $quiz.id);
-    if ($fileInput && $fileInput.files.length > 0) {
-      formData.append("image", $fileInput.files[0]);
-    }
+      try {
+        const response = await fetch("http://localhost:3000/api/questions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            question_text: questionText,
+            quiz_id: $quiz.id,
+          }),
+        });
 
-    try {
-      const response = await fetch("http://localhost:3000/api/questions", {
-        method: "POST",
-        body: formData,
-      });
+        if (!response.ok) {
+          const errorBody = await response.text();
+          throw new Error(`HTTP ${response.status}: ${errorBody}`);
+        }
 
-      if (!response.ok) {
-        const errorBody = await response.text();
-        throw new Error(`HTTP ${response.status}: ${errorBody}`);
+        const newQuestion = await response.json();
+        renderQuestion(newQuestion, $templates, $questionsContainer);
+        $input.value = "";
+      } catch (err) {
+        console.error("Fout bij toevoegen van vraag:", err);
+        alert("Fout bij toevoegen van vraag");
       }
+    });
 
-      const newQuestion = await response.json();
-      renderQuestion(newQuestion, $templates, $questionsContainer);
-      $input.value = "";
-      if ($fileInput) $fileInput.value = "";
-    } catch (err) {
-      console.error("Fout bij toevoegen van vraag:", err);
-      alert("Fout bij toevoegen van vraag");
-    }
-  });
-
-  $addQuestionSection.style.display = "block";
-  $questionsContainer.appendChild($addQuestionSection);
+    $addQuestionSection.style.display = "block";
+    $questionsContainer.appendChild($addQuestionSection);
   }
 
   $dropdownBtn.addEventListener("click", async () => {
@@ -249,33 +350,17 @@ function renderQuestion($question, $templates, $container) {
   const $deleteBtn = $clone.querySelector(".delete-question-btn");
   const $dropdownBtn = $clone.querySelector(".question-dropdown-btn");
 
-  $textSpan.textContent = $question.question_text;
-  $editInput.value = $question.question_text;
-  $editInput.style.display = "none";
-  $saveBtn.style.display = "none";
-
-  $editBtn.addEventListener("click", () => {
-    $textSpan.style.display = "none";
-    $editBtn.style.display = "none";
-    $editInput.style.display = "inline-block";
-    $saveBtn.style.display = "inline-block";
-  });
-
-  $saveBtn.addEventListener("click", async () => {
-    const $newText = $editInput.value.trim();
-    if (!$newText) return alert("Vraagtekst mag niet leeg zijn");
-
-    try {
-      await updateQuestionText($question.id, $newText);
-      $textSpan.textContent = $newText;
-      $textSpan.style.display = "inline";
-      $editBtn.style.display = "inline-block";
-      $editInput.style.display = "none";
-      $saveBtn.style.display = "none";
-    } catch ($err) {
-      console.error("Fout bij bewerken van vraag:", $err);
-    }
-  });
+  showQuestionText($textSpan, $question);
+  enableEditQuestion($editBtn, $editInput, $saveBtn, $textSpan);
+  saveEditQuestion(
+    $saveBtn,
+    $editInput,
+    $textSpan,
+    $editBtn,
+    $question,
+    updateQuestionText
+  );
+  enableDeleteQuestion($deleteBtn, $questionDiv, $question, deleteQuestionById);
 
   $deleteBtn.addEventListener("click", async () => {
     try {
@@ -403,62 +488,23 @@ function renderQuestion($question, $templates, $container) {
 function renderAnswer($answer, $answerTemplate, $container) {
   const $clone = $answerTemplate.content.cloneNode(true);
   const $answerDiv = $clone.querySelector(".answer-item");
-
   let $answerTextSpan = $clone.querySelector(".answer-text");
-  if (!$answerTextSpan) {
-    $answerTextSpan = document.createElement("span");
-    $answerTextSpan.className = "answer-text";
-    $answerDiv.insertBefore($answerTextSpan, $answerDiv.firstChild);
-  }
-
   const $editInput = $clone.querySelector(".edit-answer-input");
   const $saveBtn = $clone.querySelector(".save-answer-btn");
   const $editBtn = $clone.querySelector(".edit-answer-btn");
   const $deleteBtn = $clone.querySelector(".delete-answer-btn");
 
-  $answerTextSpan.textContent = $answer.answer_text;
-  $editInput.value = $answer.answer_text;
-  $editInput.style.display = "none";
-  $saveBtn.style.display = "none";
-
-  if ($answer.is_correct) {
-    $answerDiv.classList.add("correct-answer");
-  } else {
-    $answerDiv.classList.add("wrong-answer");
-  }
-
-  $editBtn.addEventListener("click", () => {
-    $answerTextSpan.style.display = "none";
-    $editInput.style.display = "inline-block";
-    $saveBtn.style.display = "inline-block";
-    $editBtn.style.display = "none";
-    $editInput.focus();
-  });
-
-  $saveBtn.addEventListener("click", async () => {
-    const $newText = $editInput.value.trim();
-    if (!$newText) return alert("Antwoordtekst mag niet leeg zijn");
-
-    try {
-      await updateAnswer($answer.id, $newText);
-      $answerTextSpan.textContent = $newText;
-      $answerTextSpan.style.display = "inline";
-      $editInput.style.display = "none";
-      $saveBtn.style.display = "none";
-      $editBtn.style.display = "inline-block";
-    } catch ($err) {
-      console.error("Fout bij bewerken van antwoord:", $err);
-    }
-  });
-
-  $deleteBtn.addEventListener("click", async () => {
-    try {
-      await deleteAnswerById($answer.id);
-      $answerDiv.remove();
-    } catch ($err) {
-      console.error("Fout bij verwijderen van antwoord:", $err);
-    }
-  });
+  showAnswerText($answerTextSpan, $answer);
+  enableEditAnswer($editBtn, $editInput, $saveBtn, $answerTextSpan);
+  saveEditAnswer(
+    $saveBtn,
+    $editInput,
+    $answerTextSpan,
+    $editBtn,
+    $answer,
+    updateAnswer
+  );
+  enableDeleteAnswer($deleteBtn, $answerDiv, $answer, deleteAnswerById);
 
   $container.appendChild($clone);
 }
@@ -503,4 +549,5 @@ function initQuizzes() {
   }
 }
 
+export { showQuizTitle };
 export default initQuizzes;
