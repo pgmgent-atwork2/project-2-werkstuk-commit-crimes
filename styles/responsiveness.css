@@ -94,8 +94,7 @@
     min-height: 768px;
     background-color: #03a9f4;
   }
-  video {
-  }
+
   .setup-container {
     display: flex;
     flex-direction: column;
