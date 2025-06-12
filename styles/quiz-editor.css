@@ -66,7 +66,7 @@ body {
 }
 
 .add-btn {
-  width: 100px;
+  width: 6.25rem;
   height: auto;
   margin: 1.25rem 1.25rem 1.25rem 1.25rem;
 }
@@ -166,7 +166,7 @@ body {
 
 .edit__btn {
   background-color: #9333ea;
-  border: 1px solid #9333ea;
+  border: 0.0625rem solid #9333ea;
   cursor: pointer;
 }
 
