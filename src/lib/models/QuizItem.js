@@ -18,9 +18,10 @@ class QuizItem extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["language", "title"],
+      required: ["language", "title", "group_id"],
       properties: {
         id: { type: "integer" },
+        group_id: { type: "integer" },
         language: { type: "string", minLength: 1, maxLength: 255 },
         title: { type: "string", minLength: 1, maxLength: 255 },
         created_at: {
