@@ -34,6 +34,7 @@
   .registration-container {
     display: flex;
     width: 375px;
+    padding: 1.25rem;
   }
 
   .registration {
@@ -147,7 +148,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1024px;
+    width: 100%;
     padding: 1px;
   }
 
@@ -159,7 +160,7 @@
 
   .registration-container {
     display: flex;
-    width: 1024px;
+    width: 100%;
   }
 
   .registration {
