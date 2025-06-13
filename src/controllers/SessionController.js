@@ -1,4 +1,5 @@
 import SessionItem from "../lib/models/SessionItem.js";
+import QuizItem from "../lib/models/QuizItem.js";
 
 export const index = (req, res) => {
     res.render('layout', {
@@ -9,9 +10,27 @@ export const index = (req, res) => {
 
 export const getAllSessions = async (req, res) => {
   try {
-    const sessions = await SessionItem.query().withGraphFetched("user");
-    console.log(sessions);
-    res.json(sessions);
+    // Load sessions with their quiz
+    const sessions = await SessionItem.query().withGraphFetched("quiz");
+
+    // For each session, fetch all quizzes in the same group, including their questions
+    const sessionsWithGroupQuizzes = await Promise.all(
+      sessions.map(async (session) => {
+        if (!session.quiz) return session;
+
+        // Get all quizzes with the same group_id, including questions
+        const groupQuizzes = await QuizItem.query()
+          .where('group_id', session.quiz.group_id)
+          .withGraphFetched('questions');
+
+        return {
+          ...session,
+          groupQuizzes, // add all quizzes in the same group here
+        };
+      })
+    );
+
+    res.json(sessionsWithGroupQuizzes);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

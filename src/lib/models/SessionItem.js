@@ -20,17 +20,14 @@ class SessionItem extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["group_id", "password"],
+      required: ["quiz_id", "password"],
       properties: {
         id: { type: "integer" },
         user_id: { type: "integer" },
-        group_id: { type: "integer" },
+        quiz_id: { type: "integer" },
         attempt_number: { type: "integer" },
         password: { type: "string" },
-        created_at: {
-          type: "string",
-          format: "date-time"
-        }
+        created_at: { type: "string", format: "date-time" },
       },
     };
   }
@@ -46,16 +43,15 @@ class SessionItem extends Model {
         },
       },
       quiz: {
-        relation: Model.BelongsToOneRelation,
+        relation: Model.HasOneRelation,
         modelClass: QuizItem,
         join: {
-          from: "session.group_id",
+          from: "session.group",
           to: "quiz_items.group_id",
         },
       },
     };
   }
-  
 }
 
 export default SessionItem;
