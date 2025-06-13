@@ -42,7 +42,7 @@ async function loadSessions() {
         sessionQuizzes.forEach(quiz => {
           const quizBtn = document.createElement("button");
           quizBtn.className = "quiz-button";
-          quizBtn.textContent = extractBaseTitle(quiz.title);
+          quizBtn.textContent = (quiz.title);
           quizBtn.addEventListener("click", () => {
             window.location.href = `/quiz-nl.html?session_id=${session.id}&quiz_id=${quiz.id}`;
           });
