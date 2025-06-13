@@ -8,7 +8,7 @@ export function up(knex) {
     table.string("title").notNullable();
     table.timestamp("created_at").defaultTo(knex.fn.now());
 
-    table.index("group_id");
+    table.foreign("group_id").references("sessions.group").onDelete("CASCADE");
   });
 }
 
