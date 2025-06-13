@@ -7,6 +7,7 @@
 @import url("./background.css");
 @import url("./admin-login.css");
 @import url("./responsiveness.css");
+@import url("./quiz-nl.css");
 
 * {
   margin: 0;
@@ -28,7 +29,4 @@
   min-width: 100%;
   min-height: 100%;
   z-index: -100;
-}
-
-.phone-video {
 }
