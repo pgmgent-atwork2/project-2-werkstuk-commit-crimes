@@ -4,6 +4,19 @@
     min-height: 667px;
   }
 
+  .video {
+    visibility: none;
+  }
+
+  .phone-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
+  }
+
   .setup-container {
     display: flex;
     flex-direction: column;
