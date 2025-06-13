@@ -21,8 +21,8 @@ app.use(
     secret: "super-secret-key",
     resave: false,
     saveUninitialized: false,
-    cookie: { 
-      maxAge: 1000 * 60 * 5, 
+    cookie: {
+      maxAge: 1000 * 60 * 5,
     },
   })
 );
@@ -67,5 +67,5 @@ app.use("/api/quiz", quizRoutes);
 app.use("/api/feedback", feedbackRoutes);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening on port http://localhost:${port}/`);
 });
