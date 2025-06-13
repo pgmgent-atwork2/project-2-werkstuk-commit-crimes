@@ -3,8 +3,6 @@ import { Model } from "objection";
 
 Model.knex(Knex);
 
-import SessionItem from "./SessionItem.js";
-
 class UserItem extends Model {
   static get tableName() {
     return "user_items";
@@ -17,7 +15,7 @@ class UserItem extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["name", "age", "session_id"],
+      required: ["name", "age"],
       properties: {
         id: { type: "integer" },
         name: { type: "string", minLength: 1, maxLength: 255 },
@@ -25,19 +23,6 @@ class UserItem extends Model {
       },
     };
   }
-
-  static get relationMappings() {
-  return {
-    session: {
-      relation: Model.BelongsToOneRelation,
-      modelClass: SessionItem,
-      join: {
-        from: "user_items.session_id",
-        to: "session.id",
-      },
-    },
-  };
-}
 }
 
 export default UserItem;

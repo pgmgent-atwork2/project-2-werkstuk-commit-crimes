@@ -9,7 +9,7 @@ export const index = (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await UserItem.query().withGraphFetched("session");
+    const users = await UserItem.query();
     console.log(users);
     res.json(users);
   } catch (error) {
@@ -18,27 +18,27 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-
 export const registerUser = async (req, res) => {
-  const { name, day, month, year, session__id } = req.body;
+  console.log("Ontvangen data:", req.body);
+  const { name, day, month, year } = req.body;
 
-  if (!name || !day || !month || !year || !session__id) {
-    return res.status(400).json({error: "alle velden zijn verplicht"})
+  if (!name || !day || !month || !year) {
+    return res.status(400).json({ error: "alle velden zijn verplicht" });
   }
 
-  const birthdate = new Date(`${year}/${month}/${day}`)
-
+  const birthdate = new Date(`${year}/${month}/${day}`);
   const age = new Date().getFullYear() - birthdate.getFullYear();
 
   try {
-    const user  = await UserItem.query().insert({
+    console.log("Probeer gebruiker toe te voegen:", { name, age });
+    const user = await UserItem.query().insert({
       name,
       age,
-      session__id,
     });
-
-    res.redirect("/quiz.html")
-  } catch(error) {
-    res.status(500).json({ error: "gebruiker kon niet aangemaakt worden"})
+    console.log("Gebruiker toegevoegd:", user);
+    res.status(201).json({ success: true, user });
+  } catch (error) {
+    console.error("Fout bij het aanmaken van de gebruiker:", error);
+    res.status(500).json({ error: "gebruiker kon niet aangemaakt worden" });
   }
-}
+};
