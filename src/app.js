@@ -67,5 +67,5 @@ app.use("/api/quiz", quizRoutes);
 app.use("/api/feedback", feedbackRoutes);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening on port http://localhost:${port}/`);
 });
