@@ -34,11 +34,11 @@ export async function updateQuiz(req, res) {
 
 export async function createQuiz(req, res) {
   try {
-    const { title, language } = req.body;
-    if (!title || !language) {
+    const { title, language, group_id } = req.body;
+    if (!title || !language || typeof group_id !== "number") {
       return res.status(400).json();
     }
-    const newQuiz = await QuizItem.query().insert({ title, language });
+    const newQuiz = await QuizItem.query().insert({ title, language, group_id });
     res.status(201).json(newQuiz);
   } catch (error) {
     console.error("Fout bij aanmaken quiz:", error);

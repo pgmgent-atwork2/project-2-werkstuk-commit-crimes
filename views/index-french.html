@@ -18,9 +18,14 @@
 </head>
 
 <body>
-    <video autoplay muted loop>
+    <video autoplay muted loop class="video">
         <source src="/videos/background-video.mp4" type="video/mp4">
     </video>
+
+    <video autoplay muted loop class="phone-video">
+        <source src="/videos/phone-background.mp4" type="video/mp4">
+    </video>
+
     <div class="setup-container">
         <div class="setup-container__top">
             <h1>Boudewijn Seapark Quiz</h1>
@@ -47,7 +52,7 @@
             <p>Répondez à nos questions et apprenez-en plus sur ces animaux spéciaux !</p>
         </div>
 
-        <div class="registration">
+        <div class="registration-form">
             <p>Votre date de naissance :</p>
             <div class="registration-form">
                 <form action="/your-submit-script" method="get">
@@ -113,170 +118,6 @@
 
         </div>
 
-    </div>
-    <div class="quiz-container">
-        <div class="quiz-question-container">
-            <div class="question-top">
-                <p>1/5</p>
-                <p id="timer">30</p>
-            </div>
-            <div class="quiz-question">
-                <p>Que savez-vous des oreilles d’un dauphin ?</p>
-            </div>
-            <div class="question-img">
-                <img src="/images/dolphin-ear.jpg" alt="">
-            </div>
-            <div class="question-answers">
-                <div class="answers-left">
-                    <div class="answer-option">
-                        <button class="question-answer">Un dauphin n'a pas d'oreilles.</button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">Un dauphin a des oreilles mais pas d’oreillettes
-                            externes.</button>
-                    </div>
-                </div>
-                <div class="answers-right">
-                    <div class="answer-option">
-                        <button class="question-answer">Un dauphin a des oreilles et des oreillettes externes.</button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">Je ne sais rien à ce sujet.</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="quiz-question-container">
-            <div class="question-top">
-                <p>2/5</p>
-                <p id="timer">30</p>
-            </div>
-            <div class="quiz-question">
-                <p>Qu'est-ce que le sonar ?</p>
-            </div>
-            <div class="question-img">
-                <img src="/images/sonar.jpg" alt="">
-            </div>
-            <div class="question-answers">
-                <div class="answers-left">
-                    <div class="answer-option">
-                        <button class="question-answer">Ils peuvent capter les rayons lumineux avec une grande
-                            sensibilité, ce qui leur permet de très bien voir dans l'eau sombre.</button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">Certaines fréquences dans les ondes sonores sont entendues que
-                            les humains ne peuvent pas entendre.</button>
-                    </div>
-                </div>
-                <div class="answers-right">
-                    <div class="answer-option">
-                        <button class="question-answer">Émission de sons qui rebondissent sur la proie et reviennent,
-                            permettant au dauphin de voir sans bruit. </button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">Je ne sais pas ça.</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="quiz-question-container">
-            <div class="question-top">
-                <p>3/5</p>
-                <p id="timer">30</p>
-            </div>
-            <div class="quiz-question">
-                <p>Le dauphin est-il un animal solitaire ?</p>
-            </div>
-            <div class="question-img">
-                <img src="/images/dolfijn3.jpg" alt="">
-            </div>
-            <div class="question-answers">
-                <div class="answers-left">
-                    <div class="answer-option">
-                        <button class="question-answer">Oui, elle aime être seule.</button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">Elle préfère être dans un petit groupe.</button>
-                    </div>
-                </div>
-                <div class="answers-right">
-                    <div class="answer-option">
-                        <button class="question-answer">Non, elle vit en groupe.</button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">Je ne sais pas ça.</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="quiz-question-container">
-            <div class="question-top">
-                <p>4/5</p>
-                <p id="timer">30</p>
-            </div>
-            <div class="quiz-question">
-                <p>Y a-t-il des os dans les nageoires d’un dauphin ?</p>
-            </div>
-            <div class="question-img">
-                <img src="/images/dolfijn4.jpg" alt="">
-            </div>
-            <div class="question-answers">
-                <div class="answers-left">
-                    <div class="answer-option">
-                        <button class="question-answer">Oui, dans les nageoires pectorales et caudales.</button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">Uniquement dans la nageoire caudale.</button>
-                    </div>
-                </div>
-                <div class="answers-right">
-                    <div class="answer-option">
-                        <button class="question-answer">Uniquement dans la nageoire dorsale.</button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">Uniquement dans les nageoires pectorales.</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="quiz-question-container">
-            <div class="question-top">
-                <p>5/5</p>
-                <p id="timer">30</p>
-            </div>
-            <div class="quiz-question">
-                <p>Comment savoir si le dauphin est un mâle ou une femelle ?</p>
-            </div>
-            <div class="question-img">
-                <img src="/images/dolfijn5.jpg" alt="">
-            </div>
-            <div class="question-answers">
-                <div class="answers-left">
-                    <div class="answer-option">
-                        <button class="question-answer">Les mâles ont des nageoires plus longues et plus gracieuses que
-                            les femelles.
-                        </button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">Les mâles ont une couleur plus foncée que les femelles.
-                        </button>
-                    </div>
-                </div>
-                <div class="answers-right">
-                    <div class="answer-option">
-                        <button class="question-answer">Les mâles ont 2 fentes sur leur abdomen, les femelles seulement
-                            1.
-                        </button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">Les mâles ont une fente sur leur abdomen, les femelles en ont
-                            deux.
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="rating-container">

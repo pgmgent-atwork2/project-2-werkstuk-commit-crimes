@@ -18,9 +18,14 @@
 </head>
 
 <body>
-    <video autoplay muted loop>
+    <video autoplay muted loop class="video">
         <source src="/videos/background-video.mp4" type="video/mp4">
     </video>
+
+    <video autoplay muted loop class="phone-video">
+        <source src="/videos/phone-background.mp4" type="video/mp4">
+    </video>
+
     <div class="setup-container">
         <div class="setup-container__top">
             <h1>Boudewijn Seapark Quiz</h1>
@@ -126,172 +131,6 @@
     </div>
 
     </div>
-    <div class="quiz-container">
-        <div class="quiz-question-container">
-            <div class="question-top">
-                <p>1/5</p>
-                <p id="timer">30</p>
-            </div>
-            <div class="quizquestion" id="quiz-question">
-                <p id="question-text"></p>
-            </div>
-            <div class="question-img" id="image-container">
-
-            </div>
-            <div class="question-answers" id="question-answers">
-                <div class="answers-left">
-                    <div class="answer-option">
-                        <button class="question-answer" id="answer-1"></button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer" id="answer-2"></button>
-                    </div>
-                </div>
-                <div class="answers-right">
-                    <div class="answer-option">
-                        <button class="question-answer" id="answer-3"></button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer" id="answer-4"></button>
-                    </div>
-                </div>
-            </div>
-            <div class="quiz-question-container">
-                <div class="question-top">
-                    <p>2/5</p>
-                    <p id="timer">30</p>
-                </div>
-                <div class="quiz-question">
-                    <p>Wat is sonar?</p>
-                </div>
-                <div class="question-img">
-                    <img src="/images/sonar.jpg" alt="">
-                </div>
-                <div class="question-answers">
-                    <div class="answers-left">
-                        <div class="answer-option">
-                            <button class="question-answer">Lichtstralen zeer gevoelig kunnen oppikken zodat ze heel
-                                goed
-                                kunnen
-                                zien in donker water.</button>
-                        </div>
-                        <div class="answer-option">
-                            <button class="question-answer">Bepaalde frequenties in geluidsgolven horen dat mensen niet
-                                kunnen
-                                horen.</button>
-                        </div>
-                    </div>
-                    <div class="answers-right">
-                        <div class="answer-option">
-                            <button class="question-answer">Geluidjes uitsturen die botsen op een prooi en terugkomen
-                                zodat
-                                een
-                                dolfijn kan zien zonder geluid. </button>
-                        </div>
-                        <div class="answer-option">
-                            <button class="question-answer">Dat weet ik niet.</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="quiz-question-container">
-                <div class="question-top">
-                    <p>3/5</p>
-                    <p id="timer">30</p>
-                </div>
-                <div class="quiz-question">
-                    <p>Is een dolfijn een solitair dier?</p>
-                </div>
-                <div class="question-img">
-                    <img src="/images/dolfijn3.jpg" alt="">
-                </div>
-                <div class="question-answers">
-                    <div class="answers-left">
-                        <div class="answer-option">
-                            <button class="question-answer">Ja, ze is graag alleen. </button>
-                        </div>
-                        <div class="answer-option">
-                            <button class="question-answer">Ze is liever in een kleine groep. </button>
-                        </div>
-                    </div>
-                    <div class="answers-right">
-                        <div class="answer-option">
-                            <button class="question-answer">Neen, ze leeft in groepen.</button>
-                        </div>
-                        <div class="answer-option">
-                            <button class="question-answer">Dat weet ik niet. </button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="quiz-question-container">
-                <div class="question-top">
-                    <p>4/5</p>
-                    <p id="timer">30</p>
-                </div>
-                <div class="quiz-question">
-                    <p>Zitten er botten in de finnen van een dolfijn?</p>
-                </div>
-                <div class="question-img">
-                    <img src="/images/dolfijn4.jpg" alt="">
-                </div>
-                <div class="question-answers">
-                    <div class="answers-left">
-                        <div class="answer-option">
-                            <button class="question-answer">Ja, in de borstvinnen en staartvin. </button>
-                        </div>
-                        <div class="answer-option">
-                            <button class="question-answer">Enkel in de staartvin. </button>
-                        </div>
-                    </div>
-                    <div class="answers-right">
-                        <div class="answer-option">
-                            <button class="question-answer">Enkel in de rugvin.</button>
-                        </div>
-                        <div class="answer-option">
-                            <button class="question-answer">Enkel in de borstvinnen.</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="quiz-question-container">
-                <div class="question-top">
-                    <p>5/5</p>
-                    <p id="timer">30</p>
-                </div>
-                <div class="quiz-question">
-                    <p>Hoe weet je of de dolfijn een mannetje of een vrouwtje is?</p>
-                </div>
-                <div class="question-img">
-                    <img src="/images/dolfijn5.jpg" alt="">
-                </div>
-                <div class="question-answers">
-                    <div class="answers-left">
-                        <div class="answer-option">
-                            <button class="question-answer">De mannetjes hebben langere sierlijkere vinnen dan de
-                                vrouwtjes.
-                            </button>
-                        </div>
-                        <div class="answer-option">
-                            <button class="question-answer">De mannetjes hebben een donkerdere kleur dan de vrouwtjes.
-                            </button>
-                        </div>
-                    </div>
-                    <div class="answers-right">
-                        <div class="answer-option">
-                            <button class="question-answer">De mannetjes hebben 2 spleetjes op de buik, de vrouwtjes
-                                maar 1.
-                            </button>
-                        </div>
-                        <div class="answer-option">
-                            <button class="question-answer">De mannetjes hebben 1 spleetje op de buik, de vrouwtjes 2.
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="rating-container">
             <div class="rating-question">
