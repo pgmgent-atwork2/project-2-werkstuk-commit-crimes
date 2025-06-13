@@ -1,7 +1,7 @@
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 23.4375rem) {
   body {
-    min-width: 375px;
-    min-height: 667px;
+    min-width: 23.4375rem;
+    min-height: 41.6875rem;
   }
 
   .video {
@@ -21,8 +21,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 375px;
-    padding: 1px;
+    width: 23.4375rem;
+    padding: 0.0625rem;
   }
 
   .setup-container__top {
@@ -33,7 +33,7 @@
 
   .registration-container {
     display: flex;
-    width: 375px;
+    width: 23.4375rem;
     padding: 1.25rem;
   }
 
@@ -53,11 +53,11 @@
     justify-content: center;
     width: 100%;
     height: fit-content;
-    gap: 10px;
+    gap: 0.625rem;
   }
   .registration__top {
     text-align: center;
-    padding: 1px;
+    padding: 0.0625rem;
   }
 
   .registration__name {
@@ -70,12 +70,12 @@
   .registration__date__input {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem;
     text-align: center;
   }
 
   .registration-submit__btn {
-    width: 160px;
+    width: 10rem;
   }
 
   .setup-container__bottom {
@@ -89,27 +89,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 375px;
+    width: 23.4375rem;
     height: fit-content;
     flex-wrap: nowrap;
   }
 
   .question-img img {
-    padding: 10px;
+    padding: 0.625rem;
     margin: 0;
-    width: 300px;
+    width: 18.75rem;
   }
 
   .question-answers {
     display: flex;
-    width: 375px;
+    width: 23.4375rem;
     flex-direction: column;
     align-items: center;
     gap: 0;
   }
 
   .question-answer {
-    width: 340px;
+    width: 21.25rem;
     text-align: center;
   }
 
@@ -126,10 +126,10 @@
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 64rem) {
   body {
-    min-width: 1024px;
-    min-height: 768px;
+    min-width: 64rem;
+    min-height: 48rem;
   }
 
   .video {
@@ -149,7 +149,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 1px;
+    padding: 0.0625rem;
   }
 
   .setup-container__top {
@@ -174,7 +174,7 @@
 
   .registration__top {
     text-align: center;
-    padding: 1px;
+    padding: 0.0625rem;
   }
 
   .registration-form {
@@ -197,12 +197,12 @@
   .registration__date__input {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 0.625rem;
     text-align: center;
   }
 
   .registration-submit__btn {
-    width: 200px;
+    width: 12.5rem;
   }
 
   .setup-container__bottom {
@@ -216,13 +216,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 768px;
+    width: 48rem;
     height: fit-content;
     flex-wrap: nowrap;
   }
 
   .question-img img {
-    padding: 10px;
+    padding: 0.625rem;
     margin: auto;
     width: auto;
   }
@@ -236,10 +236,10 @@
   }
 }
 
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 120rem) {
   body {
-    min-width: 1905px;
-    min-height: 896px;
+    min-width: 119.0625rem;
+    min-height: 56rem;
   }
 
   .video {
@@ -259,7 +259,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1905px;
+    width: 119.0625rem;
   }
 
   .setup-container__top {
@@ -270,7 +270,7 @@
 
   .registration-container {
     display: flex;
-    width: 1905px;
+    width: 119.0625rem;
   }
 
   .registration {
@@ -284,7 +284,7 @@
 
   .registration__top {
     text-align: center;
-    padding: 1px;
+    padding: 0.0625rem;
   }
 
   .registration-form {
@@ -307,12 +307,12 @@
   .registration__date__input {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 0.625rem;
     text-align: center;
   }
 
   .registration-submit__btn {
-    width: 200px;
+    width: 12.5rem;
   }
 
   .setup-container__bottom {
@@ -326,13 +326,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 768px;
+    width: 48rem;
     height: fit-content;
     flex-wrap: nowrap;
   }
 
   .question-img img {
-    padding: 10px;
+    padding: 0.625rem;
     margin: auto;
     width: auto;
   }
