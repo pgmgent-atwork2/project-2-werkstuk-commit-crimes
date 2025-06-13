@@ -49,242 +49,83 @@
             <p>Answer our questions and discover more about these wonderful animals!</p>
         </div>
 
-        <div class="registration">
-            <p>Your date of birth:</p>
-            <div class="registration-form">
-                <form action="/your-submit-script" method="get">
-                    <select id="day-select" name="day">
-                        <option value="">Day</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                    </select>
+        <div class="registration-form">
+            <form action="/api/users" method="POST">
+                <div class="registration">
+                    <p>ton nom:</p>
+                    <div class="registration__name">
+                        <input class="registration__name__input" type="text" required placeholder="type your name here">
+                    </div>
+                    <p>Your name:</p>
+                    <div>
+                        <select id="day-select" name="day" required>
+                            <option value="">Day</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
 
-                    <label for="month-select"></label>
-                    <select id="month-select" name="month">
-                        <option value="">Month</option>
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
+                        <label for="month-select"></label>
+                        <select id="month-select" name="month" required>
+                            <option value="">month</option>
+                            <option value="1">january</option>
+                            <option value="2">february</option>
+                            <option value="3">march</option>
+                            <option value="4">april</option>
+                            <option value="5">may</option>
+                            <option value="6">june</option>
+                            <option value="7">july</option>
+                            <option value="8">august</option>
+                            <option value="9">september</option>
+                            <option value="10">october</option>
+                            <option value="11">november</option>
+                            <option value="12">december</option>
+                        </select>
 
-                    <label for="year-select"></label>
-                    <select id="year-select" name="year">
-                        <option value="jaar">Year</option>
-                    </select>
-                    <input type="submit" value="Continue" class="registration-submit__btn" />
-                </form>
-            </div>
+                        <label for="year-select"></label>
+                        <select id="year-select" name="year" required>
+                            <option value="jaar">year</option>
+                        </select>
+                    </div>
+
+                    <div class="submit__input__container">
+                        <a href="./quiz.html">
+                            <input type="submit" value="Continue" class="registration-submit__btn" />
+                        </a>
+                    </div>
+            </form>
+        </div>
 
         </div>
 
-    </div>
-    <div class="quiz-container">
-        <div class="quiz-question-container">
-            <div class="question-top">
-                <p>1/5</p>
-                <p id="timer">30</p>
-            </div>
-            <div class="quiz-question">
-                <p>What do you know about dolphin ears?</p>
-            </div>
-            <div class="question-img">
-                <img src="/images/dolphin-ear.jpg" alt="">
-            </div>
-            <div class="question-answers">
-                <div class="answers-left">
-                    <div class="answer-option">
-                        <button class="question-answer">A dolphin doesn't have any ears.</button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">A dolphin does have ears, but no external auricles.</button>
-                    </div>
-                </div>
-                <div class="answers-right">
-                    <div class="answer-option">
-                        <button class="question-answer">
-                            A dolphin
-                            does have ears and external auricles.
-                        </button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">
-                            I don't know anything about this.
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="quiz-question-container">
-            <div class="question-top">
-                <p>2/5</p>
-                <p id="timer">30</p>
-            </div>
-            <div class="quiz-question">
-                <p>What is sonar?</p>
-            </div>
-            <div class="question-img">
-                <img src="/images/sonar.jpg" alt="">
-            </div>
-            <div class="question-answers">
-                <div class="answers-left">
-                    <div class="answer-option">
-                        <button class="question-answer">
-                            Can pick up light rays very sensitively so they can see very
-                            well in dark water.
-                        </button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">
-                            Hearing certain frequencies in sound waves that humans can't hear.
-                        </button>
-                    </div>
-                </div>
-                <div class="answers-right">
-                    <div class="answer-option">
-                        <button class="question-answer">Sending out sounds that bounce off prey and return so that a
-                            dolphin can see without light. </button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">I don't know.</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="quiz-question-container">
-            <div class="question-top">
-                <p>3/5</p>
-                <p id="timer">30</p>
-            </div>
-            <div class="quiz-question">
-                <p>Is a dolphin a solitairy animal?</p>
-            </div>
-            <div class="question-img">
-                <img src="/images/dolfijn3.jpg" alt="">
-            </div>
-            <div class="question-answers">
-                <div class="answers-left">
-                    <div class="answer-option">
-                        <button class="question-answer">Yes, she likes being alone. </button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">No, she prefers being in a small group. </button>
-                    </div>
-                </div>
-                <div class="answers-right">
-                    <div class="answer-option">
-                        <button class="question-answer">No, she lives in a big group.</button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">I don't know this.</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="quiz-question-container">
-            <div class="question-top">
-                <p>4/5</p>
-                <p id="timer">30</p>
-            </div>
-            <div class="quiz-question">
-                <p>Are there any bones in a dolphin's fins?</p>
-            </div>
-            <div class="question-img">
-                <img src="/images/dolfijn4.jpg" alt="">
-            </div>
-            <div class="question-answers">
-                <div class="answers-left">
-                    <div class="answer-option">
-                        <button class="question-answer">Yes, in the pectoral and caudal fins.</button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">Only in the tail fin. </button>
-                    </div>
-                </div>
-                <div class="answers-right">
-                    <div class="answer-option">
-                        <button class="question-answer">Only in the dorsal fin.</button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">Only in the pectoral fins.</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="quiz-question-container">
-            <div class="question-top">
-                <p>5/5</p>
-                <p id="timer">30</p>
-            </div>
-            <div class="quiz-question">
-                <p>
-                    How do you know if the dolphin is male or female?
-                </p>
-            </div>
-            <div class="question-img">
-                <img src="/images/dolfijn5.jpg" alt="">
-            </div>
-            <div class="question-answers">
-                <div class="answers-left">
-                    <div class="answer-option">
-                        <button class="question-answer">The males have longer, more graceful fins than the females.
-                        </button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">The males have a darker color than the females.
-                        </button>
-                    </div>
-                </div>
-                <div class="answers-right">
-                    <div class="answer-option">
-                        <button class="question-answer">Males have 2 slits on their abdomen, females only 1.
-                        </button>
-                    </div>
-                    <div class="answer-option">
-                        <button class="question-answer">Males have 1 slit on their abdomen, females have 2.
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="rating-container">
