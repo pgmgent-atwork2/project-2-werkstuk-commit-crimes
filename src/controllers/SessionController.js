@@ -11,7 +11,7 @@ export const index = (req, res) => {
 export const getAllSessions = async (req, res) => {
   try {
     // Load sessions with their quiz
-    const sessions = await SessionItem.query().withGraphFetched("quiz");
+    const sessions = await SessionItem.query().withGraphFetched("quiz").withGraphFetched("user");
 
     // For each session, fetch all quizzes in the same group, including their questions
     const sessionsWithGroupQuizzes = await Promise.all(
