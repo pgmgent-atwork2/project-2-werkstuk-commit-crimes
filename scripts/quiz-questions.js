@@ -19,21 +19,27 @@ const resultContainer = document.getElementById("quiz-result-container");
 const scoreEl = document.getElementById("score");
 const restartBtn = document.getElementById("restart-btn");
 
+function getQueryParams() {
+  return new URLSearchParams(window.location.search);
+}
+
 async function fetchQuizData() {
+  const params = getQueryParams();
+  const quizId = params.get("quiz_id");
+  if (!quizId) {
+    alert("Geen quiz geselecteerd.");
+    return;
+  }
 
-  const quizRes = await fetch("http://localhost:3000/api/quiz?language=nl");
+  const quizRes = await fetch(`http://localhost:3000/api/quiz/${quizId}`);
   if (!quizRes.ok) throw new Error("Quiz ophalen mislukt");
-  const quizzes = await quizRes.json();
-  const quiz = Array.isArray(quizzes)
-    ? quizzes.find((q) => q.language === "nl")
-    : quizzes;
-  if (!quiz) throw new Error("Geen NL quiz gevonden");
+  const quiz = await quizRes.json();
 
+  console.log("Quiz taal:", quiz.language);
 
   const questionsRes = await fetch(`http://localhost:3000/api/questions?quiz_id=${quiz.id}`);
   if (!questionsRes.ok) throw new Error("Vragen ophalen mislukt");
   const questions = await questionsRes.json();
-
 
   const questionsWithAnswers = await Promise.all(
     questions.map(async (q) => {
@@ -52,6 +58,7 @@ async function fetchQuizData() {
   score = 0;
   showQuestion();
 }
+
 
 function showQuestion() {
   clearInterval(timerInterval);
