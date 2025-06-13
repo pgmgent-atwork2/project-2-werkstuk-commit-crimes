@@ -20,7 +20,10 @@ class UserItem extends Model {
         id: { type: "integer" },
         name: { type: "string", minLength: 1, maxLength: 255 },
         age: { type: "integer" },
-        session_id: { type: ["integer", "null"] }
+        session_id: { type: ["integer", "null"] },
+        language: { type: ["string", "null"], maxLength: 50 },
+        first_score: { type: ["integer", "null"] },
+        second_score: { type: ["integer", "null"] },
       },
     };
   }
