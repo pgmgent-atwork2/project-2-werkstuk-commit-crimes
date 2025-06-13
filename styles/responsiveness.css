@@ -3,9 +3,16 @@
     min-width: 375px;
     min-height: 667px;
   }
+
   video {
-    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
   }
+
   .setup-container {
     display: flex;
     flex-direction: column;
@@ -122,8 +129,17 @@
 
 @media screen and (min-width: 1024px) and (min-height: 768px) {
   body {
-    width: 1024px;
-    height: 768px;
+    min-width: 1024px;
+    min-height: 768px;
+  }
+
+  video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
   }
 
   .setup-container {
@@ -226,8 +242,8 @@
 
 @media screen and (min-width: 1920px) and (min-height: 911px) {
   body {
-    width: 1905px;
-    height: 911px;
+    min-width: 1905px;
+    min-height: 911px;
   }
 
   video {
