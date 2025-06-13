@@ -5,8 +5,8 @@
 @import url("./registration.css");
 @import url("./rating.css");
 @import url("./background.css");
-@import url( "./admin-login.css");
-@import url("./quiz-editor.css");
+@import url("./admin-login.css");
+@import url("./responsiveness.css");
 
 * {
   margin: 0;
