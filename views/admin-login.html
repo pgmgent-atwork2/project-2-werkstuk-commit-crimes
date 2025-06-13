@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>quiz-editor | Boudewijn Seapark</title>
+    <title>Login page</title>
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,16 +14,24 @@
 
 <body>
     <main class="admin-login__main">
-        <form class="admin-login__form">
+        <form method="POST" action="/login" class="admin-login__form">
             <div class="admin-login__form__title">
                 <h1>Admin login</h1>
             </div>
-            <div class="admin-login__form__password">
+            <div class="admin-login__form__item">
+                <div>
+                    <label for="email">email:</label>
+                </div>
+                <div>
+                    <input type="email" name="email" required class="admin-login__form__input email_input">
+                </div>
+            </div>
+            <div class="admin-login__form__item">
                 <div>
                     <label for="password">Wachtwoord:</label>
                 </div>
                 <div>
-                    <input type="password" required class="admin-login__form__password__input">
+                    <input type="password" name="password" required class="admin-login__form__input password_input">
                 </div>
             </div>
             <div>

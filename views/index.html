@@ -18,9 +18,14 @@
 </head>
 
 <body>
-    <video autoplay muted loop>
+    <video autoplay muted loop class="video">
         <source src="/videos/background-video.mp4" type="video/mp4">
     </video>
+
+    <video autoplay muted loop class="phone-video">
+        <source src="/videos/phone-background.mp4" type="video/mp4">
+    </video>
+
     <div class="setup-container">
         <div class="setup-container__top">
             <h1>Boudewijn Seapark Quiz</h1>
@@ -52,12 +57,14 @@
         <div class="registration-form">
             <form action="/api/users" method="POST">
                 <div class="registration">
-                    <p>Je naam:</p>
+
                     <div class="registration__name">
+                        <p>Je naam:</p>
                         <input class="registration__name__input" type="text" required placeholder="type hier je naam">
                     </div>
                     <p>Je geboortedatum:</p>
-                    <div>
+                    <div class="registration__date__input">
+
                         <select id="day-select" name="day" required>
                             <option value="">Dag</option>
                             <option value="1">1</option>

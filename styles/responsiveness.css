@@ -1,2 +1,324 @@
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 375px) and (max-height: 667px) {
+  body {
+    min-width: 375px;
+    min-height: 667px;
+  }
+
+  .video {
+    visibility: none;
+  }
+
+  .phone-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
+  }
+
+  .setup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 375px;
+    padding: 1px;
+  }
+
+  .setup-container__top {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .registration-container {
+    display: flex;
+    width: 375px;
+  }
+
+  .registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .registration form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+    gap: 10px;
+  }
+  .registration__top {
+    text-align: center;
+    padding: 1px;
+  }
+
+  .registration__name {
+    padding-left: 0;
+  }
+  .registration__name__input {
+    width: fit-content;
+  }
+
+  .registration__date__input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .registration-submit__btn {
+    width: 160px;
+  }
+
+  .setup-container__bottom {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .quiz-container {
+  }
+
+  .quiz-question-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 375px;
+    height: fit-content;
+    flex-wrap: nowrap;
+  }
+
+  .question-img img {
+    padding: 10px;
+    margin: 0;
+    width: 300px;
+  }
+
+  .question-answers {
+    display: flex;
+    width: 375px;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .question-answer {
+    width: 340px;
+    text-align: center;
+  }
+
+  .rating-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
+    height: 100vh;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 1024px) and (min-height: 768px) {
+  body {
+    min-width: 1024px;
+    min-height: 768px;
+  }
+
+  .setup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1024px;
+    padding: 1px;
+  }
+
+  .setup-container__top {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .registration-container {
+    display: flex;
+    width: 1024px;
+  }
+
+  .registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .registration__top {
+    text-align: center;
+    padding: 1px;
+  }
+
+  .registration-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .registration__name {
+    padding-left: 0;
+  }
+
+  .registration__name__input {
+    width: fit-content;
+  }
+
+  .registration__date__input {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .registration-submit__btn {
+    width: 200px;
+  }
+
+  .setup-container__bottom {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .quiz-question-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 768px;
+    height: fit-content;
+    flex-wrap: nowrap;
+  }
+
+  .question-img img {
+    padding: 10px;
+    margin: auto;
+    width: auto;
+  }
+
+  .question-answers {
+    display: flex;
+    width: fit-content;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
+}
+
+@media screen and (min-width: 1920px) and (min-height: 911px) {
+  body {
+    min-width: 1905px;
+    min-height: 896px;
+  }
+
+  .setup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1905px;
+  }
+
+  .setup-container__top {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .registration-container {
+    display: flex;
+    width: 1905px;
+  }
+
+  .registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .registration__top {
+    text-align: center;
+    padding: 1px;
+  }
+
+  .registration-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .registration__name {
+    padding-left: 0;
+  }
+
+  .registration__name__input {
+    width: fit-content;
+  }
+
+  .registration__date__input {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .registration-submit__btn {
+    width: 200px;
+  }
+
+  .setup-container__bottom {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .quiz-question-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 768px;
+    height: fit-content;
+    flex-wrap: nowrap;
+  }
+
+  .question-img img {
+    padding: 10px;
+    margin: auto;
+    width: auto;
+  }
+
+  .question-answers {
+    display: flex;
+    width: fit-content;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
 }
