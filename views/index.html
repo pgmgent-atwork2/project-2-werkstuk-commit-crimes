@@ -55,12 +55,11 @@
 
 
         <div class="registration-form">
-            <form action="/api/users" method="POST">
-                <div class="registration">
-
+            <form class="registration">
                     <div class="registration__name">
                         <p>Je naam:</p>
-                        <input class="registration__name__input" type="text" required placeholder="type hier je naam">
+                        <input name="name" id="name" class="registration__name__input" type="text" required
+                            placeholder="type hier je naam">
                     </div>
                     <p>Je geboortedatum:</p>
                     <div class="registration__date__input">
@@ -122,13 +121,9 @@
                             <option value="jaar">Jaar</option>
                         </select>
                     </div>
-
                     <div class="submit__input__container">
-                        <a href="./quiz.html">
-                            <input type="submit" value="Doorgaan" class="registration-submit__btn" />
-                        </a>
+                        <input type="submit" value="Doorgaan" class="registration-submit__btn" />
                     </div>
-
             </form>
 
         </div>
