@@ -12,3 +12,4 @@ document.getElementById("quizForm").addEventListener("submit", function(e) {
 
     startQuiz(day, month, year);
   });
+
