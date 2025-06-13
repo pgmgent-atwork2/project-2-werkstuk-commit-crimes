@@ -34,11 +34,11 @@ export async function updateQuiz(req, res) {
 
 export async function createQuiz(req, res) {
   try {
-    const { title, language } = req.body;
-    if (!title || !language) {
+    const { title, language, group_id } = req.body;
+    if (!title || !language || typeof group_id !== "number") {
       return res.status(400).json();
     }
-    const newQuiz = await QuizItem.query().insert({ title, language });
+    const newQuiz = await QuizItem.query().insert({ title, language, group_id });
     res.status(201).json(newQuiz);
   } catch (error) {
     console.error("Fout bij aanmaken quiz:", error);
@@ -54,5 +54,22 @@ export async function deleteQuiz(req, res) {
   } catch (error) {
     console.error("Fout bij verwijderen quiz:", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+export async function getQuizWithQuestions(req, res) {
+  try {
+    const quiz = await Quiz.query()
+      .findById(req.params.id)
+      .withGraphFetched("vragen.[antwoorden]");
+
+    if (!quiz) {
+      return res.status(404).json({ error: "Quiz niet gevonden" });
+    }
+
+    res.json({ questions: quiz.vragen });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Fout bij ophalen van quizvragen" });
   }
 }

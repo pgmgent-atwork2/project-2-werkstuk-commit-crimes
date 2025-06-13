@@ -17,3 +17,20 @@ export const getAllSessions = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export async function getQuizWithQuestions(req, res) {
+  try {
+    const quiz = await Quiz.query()
+      .findById(req.params.id)
+      .withGraphFetched("vragen.[antwoorden]");
+
+    if (!quiz) {
+      return res.status(404).json({ error: "Quiz niet gevonden" });
+    }
+
+    res.json({ questions: quiz.vragen });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Fout bij ophalen van quizvragen" });
+  }
+}
