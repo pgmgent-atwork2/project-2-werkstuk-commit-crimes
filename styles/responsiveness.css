@@ -84,9 +84,6 @@
     height: fit-content;
   }
 
-  .quiz-container {
-  }
-
   .quiz-question-container {
     display: flex;
     flex-direction: column;
