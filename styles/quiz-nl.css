@@ -1,8 +1,32 @@
+@import url("./reset.css");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #f0f0f0;
+  --color-secondary: #000000;
+  --background-primary: #ffffff;
+  --background-secondary: #000000;
+  --h1-font-family: "Ancizar Serif", serif;
+}
+.video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -100;
+}
+
 .quiz-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
 .quiz-question-container {
@@ -74,4 +98,23 @@
 
 .question-answer:active {
   background: linear-gradient(230deg, #1e90ff, #87ceeb, #87cefa);
+}
+
+@media (max-width: 64rem) {
+  .quiz-container {
+    width: 100%;
+  }
+
+  .quiz-question-container {
+    width: fit-content;
+  }
+
+  .video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vh;
+    height: 100vh;
+    z-index: -100;
+  }
 }
