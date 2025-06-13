@@ -22,10 +22,7 @@
   --h1-font-family: "Ancizar Serif", serif;
 }
 
-body {
-}
-
-video {
+.video {
   position: fixed;
   top: 0;
   left: 0;
