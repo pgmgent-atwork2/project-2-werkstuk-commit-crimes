@@ -49,8 +49,16 @@ async function loadSessions() {
           quizBtn.className = "quiz-button";
           quizBtn.textContent = quiz.title;
           quizBtn.addEventListener("click", () => {
-            window.location.href = `/quiz-nl.html?session_id=${session.id}&quiz_id=${quiz.id}`;
-          });
+
+        const lang = quiz.language || 'nl';
+        const page = {
+          nl: 'quiz-nl.html',
+          en: 'quiz-en.html',
+          fr: 'quiz-fr.html'
+        }[lang] || 'quiz-nl.html';
+
+        window.location.href = `/${page}?session_id=${session.id}&quiz_id=${quiz.id}`;
+        });
           dropdownContent.appendChild(quizBtn);
         });
       } else {
