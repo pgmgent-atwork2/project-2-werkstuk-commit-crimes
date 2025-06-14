@@ -3,7 +3,7 @@ function extractBaseTitle(title) {
   return title.replace(/\s*-\s*[A-Z]{2}$/, "").trim();
 }
 
-function getUserIdFromUrl() {
+export function getUserIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
   return params.get("user_id");
 }

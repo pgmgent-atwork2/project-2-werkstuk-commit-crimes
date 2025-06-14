@@ -1,4 +1,5 @@
 import UserItem from "../lib/models/UserItem.js";
+import SessionItem from "../lib/models/SessionItem.js";
 
 export const index = (req, res) => {
   res.render("layout", {
@@ -73,5 +74,40 @@ export const updateUserSession = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Kon user niet updaten" });
+  }
+};
+
+
+export const saveScore = async (req, res) => {
+  const { session_id, user_id, score } = req.body;
+
+  if (!session_id || !user_id || score === undefined) {
+    return res.status(400).json({ error: "session_id, user_id en score zijn verplicht" });
+  }
+
+  try {
+    const session = await SessionItem.query().findById(session_id);
+
+    if (!session) {
+      return res.status(404).json({ error: "Sessie niet gevonden" });
+    }
+
+    const isSecondTry = session.second_try === true;
+
+    const patchData = isSecondTry
+      ? { second_score: score }
+      : { first_score: score };
+
+    const updatedUser = await UserItem.query()
+      .patchAndFetchById(user_id, patchData);
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "Gebruiker niet gevonden" });
+    }
+
+    res.json({ success: true, user: updatedUser, attempt: isSecondTry ? "second_try" : "first_try" });
+  } catch (error) {
+    console.error("Fout bij opslaan score:", error);
+    res.status(500).json({ error: "Kon score niet opslaan" });
   }
 };
