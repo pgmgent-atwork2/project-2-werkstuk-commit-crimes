@@ -1,11 +1,21 @@
+let quizData = [];
 let currentQuestion = 0;
 let score = 0;
 let timeLeft = 30;
 let timerInterval;
-const timerEl = document.getElementById("time");
-const questionEl = document.querySelector(".question");
-const optionsEl = document.querySelector(".options");
-const resultEl = document.querySelector(".result");
+
+const timerEl = document.getElementById("timer");
+const questionEl = document.getElementById("question-text");
+const imageEl = document.getElementById("image-container");
+const answerBtns = [
+  document.getElementById("answer-1"),
+  document.getElementById("answer-2"),
+  document.getElementById("answer-3"),
+  document.getElementById("answer-4"),
+];
+const questionProgress = document.getElementById("question-progress");
+const quizContainer = document.getElementById("quiz-question-container");
+const resultContainer = document.getElementById("quiz-result-container");
 const scoreEl = document.getElementById("score");
 const restartBtn = document.getElementById("restart-btn");
 
@@ -48,58 +58,66 @@ function showQuestion() {
   timeLeft = 30;
   timerEl.textContent = timeLeft;
   startTimer();
-  const currentQuiz = quizData[currentQuestion];
-  questionEl.textContent = currentQuiz.question;
-  optionsEl.innerHTML = "";
-  currentQuiz.options.forEach((option) => {
-    const button = document.createElement("button");
-    button.classList.add("option");
-    button.textContent = option;
-    button.onclick = () => checkAnswer(option);
-    optionsEl.appendChild(button);
+
+  const q = quizData[currentQuestion];
+  questionEl.textContent = q.question_text;
+  questionProgress.textContent = `${currentQuestion + 1}/${quizData.length}`;
+
+  if (q.image_path) {
+    const img = document.createElement("img");
+    img.src = q.image_path;
+    img.alt = "Vraagafbeelding";
+    imageEl.innerHTML = "";
+    imageEl.appendChild(img);
+  } else {
+    imageEl.innerHTML = "";
+  }
+
+  const answers = q.answers || [];
+  answerBtns.forEach((btn, i) => {
+    btn.textContent = answers[i]?.answer_text || "";
+    btn.onclick = () => checkAnswer(answers[i]);
   });
 }
 
-function checkAnswer(selectedOption) {
-  if (selectedOption === quizData[currentQuestion].answer) {
-    score++;
-  }
+function checkAnswer(answer) {
+  if (answer?.is_correct) score++;
   currentQuestion++;
-  loadQuestion();
+  if (currentQuestion < quizData.length) {
+    showQuestion();
+  } else {
+    endQuiz();
+  }
+}
+
+function endQuiz() {
+  clearInterval(timerInterval);
+  quizContainer.style.display = "none";
+  resultContainer.style.display = "block";
+  scoreEl.textContent = `${score} / ${quizData.length}`;
 }
 
 function startTimer() {
+  timerEl.textContent = timeLeft;
   timerInterval = setInterval(() => {
     timeLeft--;
     timerEl.textContent = timeLeft;
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      endQuiz();
+      checkAnswer(null);
     }
   }, 1000);
-}
-
-function endQuiz() {
-  clearInterval(timerInterval);
-  questionEl.style.display = "none";
-  optionsEl.style.display = "none";
-  resultEl.style.display = "block";
-  scoreEl.textContent = score;
-  restartBtn.style.display = "block";
 }
 
 restartBtn.addEventListener("click", () => {
   currentQuestion = 0;
   score = 0;
-  timeLeft = 30;
-  timerEl.textContent = timeLeft;
-
-  questionEl.style.display = "block";
-  optionsEl.style.display = "flex";
-  resultEl.style.display = "none";
-  restartBtn.style.display = "none";
-
-  loadQuestion();
+  quizContainer.style.display = "block";
+  resultContainer.style.display = "none";
+  showQuestion();
+  startTimer();
 });
 
-loadQuestion();
+fetchQuizData().catch((err) => {
+  console.error("Kon quiz niet laden:", err);
+});
