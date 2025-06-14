@@ -6,7 +6,7 @@
   height: 100vh;
 }
 
-.registration {
+.registration-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;

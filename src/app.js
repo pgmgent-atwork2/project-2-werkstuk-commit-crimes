@@ -65,6 +65,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/quiz", quizRoutes);
 app.use("/api/feedback", feedbackRoutes);
+app.use(express.urlencoded({ extended: true }));
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}/`);
