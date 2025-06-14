@@ -59,9 +59,9 @@ export const checkExpiredSessions = async () => {
     const localOffsetMs = now.getTimezoneOffset() * 60 * 1000;
 
     const thirtyMinutesMs = 30 * 60 * 1000;
-    const TwoHoursthirtyMinutesMs = 30 * 60 * 1000;
+    const TwoHoursthirtyMinutesMs = 2 * 30 * 60 * 1000;
 
-    const expiredSessionTimer = new Date(Date.now() - localOffsetMs - thirtyMinutesMs).toISOString();
+    const expiredSessionTimer = new Date(Date.now() + localOffsetMs  - thirtyMinutesMs).toISOString();
     
     const expiredSessions = await SessionItem.query()
       .where('created_at', '<', expiredSessionTimer)
@@ -79,7 +79,7 @@ export const checkExpiredSessions = async () => {
 };
 
 // checks if minutes are over
-setInterval(checkExpiredSessions, 60 * 1000);
+setInterval(checkExpiredSessions, 1 * 60 * 1000);
 
 export const getLatestSession = async (req, res) => {
   try {

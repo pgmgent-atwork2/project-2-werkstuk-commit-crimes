@@ -1,4 +1,4 @@
-import { getUserIdFromUrl } from "./sessions";
+import { getUserIdFromUrl } from "./sessions.js";
 
 let quizData = [];
 let userAnswers = [];

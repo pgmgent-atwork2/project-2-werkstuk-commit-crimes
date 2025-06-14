@@ -38,7 +38,7 @@ class SessionItem extends Model {
   static get relationMappings() {
     return {
       user: {
-        relation: Model.HasOneRelation,
+        relation: Model.HasManyRelation,
         modelClass: UserItem,
         join: {
           from: "session.id",

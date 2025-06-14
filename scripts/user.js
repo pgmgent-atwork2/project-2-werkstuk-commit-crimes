@@ -14,7 +14,7 @@ function addUsers() {
     const language = formData.get("language") || getLanguageFromUrl() || "nl";
 
     try {
-      const response = await fetch("/api/users", {
+      const response = await fetch("http://localhost:3000/api/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
