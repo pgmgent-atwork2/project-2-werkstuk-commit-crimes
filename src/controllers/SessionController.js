@@ -10,8 +10,7 @@ export const index = (req, res) => {
 
 export const getAllSessions = async (req, res) => {
   try {
-    // Load sessions with their quiz
-    const sessions = await SessionItem.query().withGraphFetched("quiz");
+    const sessions = await SessionItem.query().withGraphFetched("quiz").withGraphFetched("user");
 
     // For each session, fetch all quizzes in the same group, including their questions
     const sessionsWithGroupQuizzes = await Promise.all(
@@ -25,7 +24,7 @@ export const getAllSessions = async (req, res) => {
 
         return {
           ...session,
-          groupQuizzes, // add all quizzes in the same group here
+          groupQuizzes, 
         };
       })
     );
@@ -53,7 +52,6 @@ export async function getQuizWithQuestions(req, res) {
     res.status(500).json({ error: "Fout bij ophalen van quizvragen" });
   }
 }
-
 
 export const checkExpiredSessions = async () => {
   try {
