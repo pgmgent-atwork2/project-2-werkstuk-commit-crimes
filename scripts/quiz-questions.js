@@ -1,3 +1,5 @@
+import { getUserIdFromUrl } from "./sessions";
+
 let quizData = [];
 let userAnswers = [];
 let currentQuestion = 0;
@@ -110,6 +112,7 @@ function endQuiz() {
   resultContainer.style.display = "block";
   scoreEl.textContent = `${score} / ${quizData.length}`;
   showReview();
+  saveScore();
 }
 
 function startTimer() {
@@ -168,4 +171,33 @@ function showReview() {
     questionDiv.appendChild(answersList);
     container.appendChild(questionDiv);
   });  
+}
+
+
+async function saveScore() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const sessionId = parseInt(urlParams.get("session_id"));
+  const userId = getUserIdFromUrl();
+  
+  if (!sessionId || !userId) {
+    console.error("Session ID of User ID ontbreekt");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3000/api/save-score", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        session_id: sessionId,
+        user_id: userId,
+        score: score
+      }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Kon score niet opslaan");
+    console.log("Score opgeslagen:", data);
+  } catch (error) {
+    console.error("Fout bij opslaan score:", error);
+  }
 }

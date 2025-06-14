@@ -23,7 +23,14 @@ function addUsers() {
       });
 
       if (response.ok) {
-        window.location.href = "/sessions.html";
+        const data = await response.json();
+        const user = data.user;
+
+        if (user && user.id) {
+          window.location.href = `/sessions.html?user_id=${user.id}`;
+        } else {
+          alert("Gebruiker aangemaakt, maar geen ID ontvangen.");
+        }
       } else {
         alert("Gebruiker kon niet aangemaakt worden");
       }
@@ -39,6 +46,7 @@ function getLanguageFromUrl() {
   if (path.includes("-en")) return "en";
   return "nl";
 }
+
 
 async function loadUsers() {
   const userListElement = document.getElementById("user-list");
