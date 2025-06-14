@@ -55,7 +55,13 @@ export async function getQuizWithQuestions(req, res) {
 
 export const checkExpiredSessions = async () => {
   try {
-    const expiredSessionTimer = new Date(Date.now() - 30 * 60 * 1000).toISOString();
+    const now = new Date();
+    const localOffsetMs = now.getTimezoneOffset() * 60 * 1000;
+
+    const thirtyMinutesMs = 30 * 60 * 1000;
+    const TwoHoursthirtyMinutesMs = 30 * 60 * 1000;
+
+    const expiredSessionTimer = new Date(Date.now() - localOffsetMs - thirtyMinutesMs).toISOString();
     
     const expiredSessions = await SessionItem.query()
       .where('created_at', '<', expiredSessionTimer)
