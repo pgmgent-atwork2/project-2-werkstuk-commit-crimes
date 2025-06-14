@@ -21,27 +21,30 @@ async function loadSessions() {
     let currentOpenDropdown = null;
 
     sessions.forEach((session) => {
-
       const dropdown = document.createElement("div");
       dropdown.className = "dropdown";
 
-      const sessionQuizzes = session.groupQuizzes || 
-                           [session.quiz].filter(Boolean) || 
-                           quizzes.filter(q => q.group_id === session.group);
-      
+      const sessionQuizzes =
+        session.groupQuizzes ||
+        [session.quiz].filter(Boolean) ||
+        quizzes.filter((q) => q.group_id === session.group);
+
       const primaryQuiz = sessionQuizzes.length > 0 ? sessionQuizzes[0] : null;
-      const mainButtonText = primaryQuiz ? extractBaseTitle(primaryQuiz.title) : `Session ${session.id}`;
-      
+      const mainButtonText =
+        session.title?.name || primaryQuiz
+          ? extractBaseTitle(primaryQuiz.title)
+          : `Session ${session.id}`;
+
       const sessionBtn = document.createElement("button");
       sessionBtn.className = "session-button";
       sessionBtn.textContent = mainButtonText;
-      
+
       const dropdownContent = document.createElement("div");
       dropdownContent.className = "dropdown-content";
       dropdownContent.style.display = "none";
-      
+
       if (sessionQuizzes.length > 0) {
-        sessionQuizzes.forEach(quiz => {
+        sessionQuizzes.forEach((quiz) => {
           const quizBtn = document.createElement("button");
           quizBtn.className = "quiz-button";
           quizBtn.textContent = quiz.title;
@@ -55,14 +58,14 @@ async function loadSessions() {
         noQuizMsg.textContent = "No quizzes available";
         dropdownContent.appendChild(noQuizMsg);
       }
-      
+
       sessionBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        
+
         if (currentOpenDropdown && currentOpenDropdown !== dropdownContent) {
           currentOpenDropdown.style.display = "none";
         }
-        
+
         if (dropdownContent.style.display === "block") {
           dropdownContent.style.display = "none";
           currentOpenDropdown = null;
@@ -71,7 +74,7 @@ async function loadSessions() {
           currentOpenDropdown = dropdownContent;
         }
       });
-      
+
       dropdown.appendChild(sessionBtn);
       dropdown.appendChild(dropdownContent);
       container.appendChild(dropdown);
@@ -91,6 +94,6 @@ async function loadSessions() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {    
-    loadSessions();
+document.addEventListener("DOMContentLoaded", () => {
+  loadSessions();
 });

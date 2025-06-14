@@ -642,5 +642,6 @@ function renderQuizGroup(quizzes, index, templates, container) {
   container.appendChild(groupDiv);
 }
 
-export { showQuizTitle };
-export default initQuizzes;
+document.addEventListener('DOMContentLoaded',() => {    
+    initQuizzes();
+})

@@ -1,4 +1,5 @@
 let quizData = [];
+let userAnswers = [];
 let currentQuestion = 0;
 let score = 0;
 let timeLeft = 30;
@@ -17,10 +18,8 @@ const questionProgress = document.getElementById("question-progress");
 const quizContainer = document.getElementById("quiz-question-container");
 const resultContainer = document.getElementById("quiz-result-container");
 const scoreEl = document.getElementById("score");
-const restartBtn = document.getElementById("restart-btn");
 
 async function fetchQuizData() {
-
   const quizRes = await fetch("http://localhost:3000/api/quiz?language=nl");
   if (!quizRes.ok) throw new Error("Quiz ophalen mislukt");
   const quizzes = await quizRes.json();
@@ -29,11 +28,9 @@ async function fetchQuizData() {
     : quizzes;
   if (!quiz) throw new Error("Geen NL quiz gevonden");
 
-
   const questionsRes = await fetch(`http://localhost:3000/api/questions?quiz_id=${quiz.id}`);
   if (!questionsRes.ok) throw new Error("Vragen ophalen mislukt");
   const questions = await questionsRes.json();
-
 
   const questionsWithAnswers = await Promise.all(
     questions.map(async (q) => {
@@ -81,13 +78,20 @@ function showQuestion() {
 }
 
 function checkAnswer(answer) {
+  userAnswers[currentQuestion] = answer;
+
   if (answer?.is_correct) score++;
-  currentQuestion++;
-  if (currentQuestion < quizData.length) {
-    showQuestion();
-  } else {
-    endQuiz();
-  }
+
+  answerBtns.forEach(btn => btn.disabled = true);
+
+  setTimeout(() => {
+    currentQuestion++;
+    if (currentQuestion < quizData.length) {
+      showQuestion();
+    } else {
+      endQuiz();
+    }
+  }, 500);
 }
 
 function endQuiz() {
@@ -95,6 +99,7 @@ function endQuiz() {
   quizContainer.style.display = "none";
   resultContainer.style.display = "block";
   scoreEl.textContent = `${score} / ${quizData.length}`;
+  showReview();
 }
 
 function startTimer() {
@@ -109,15 +114,48 @@ function startTimer() {
   }, 1000);
 }
 
-restartBtn.addEventListener("click", () => {
-  currentQuestion = 0;
-  score = 0;
-  quizContainer.style.display = "block";
-  resultContainer.style.display = "none";
-  showQuestion();
-  startTimer();
-});
-
 fetchQuizData().catch((err) => {
   console.error("Kon quiz niet laden:", err);
 });
+
+function showReview() {
+  const container = document.getElementById("review-answers-container");
+  container.innerHTML = "";
+
+  quizData.forEach((question, i) => {
+    const userAnswer = userAnswers[i];
+
+    const questionDiv = document.createElement("div");
+    questionDiv.className = "review-question";
+
+    const questionTitle = document.createElement("p");
+    questionTitle.className = "review-question-title";
+    questionTitle.textContent = `${i + 1}. ${question.question_text}`;
+    questionDiv.appendChild(questionTitle);
+
+    const answersList = document.createElement("ul");
+    answersList.className = "review-answers-list";
+
+    question.answers.forEach((answer) => {
+      const li = document.createElement("li");
+      li.textContent = answer.answer_text;
+      li.classList.add("review-answer");
+
+      if (answer.is_correct) {
+        li.classList.add("correct-answer");
+      }
+
+      if (userAnswer && userAnswer.id === answer.id) {
+        li.classList.add("user-selected");
+        if (!answer.is_correct) {
+          li.classList.add("incorrect-answer");
+        }
+      }
+
+      answersList.appendChild(li);
+    });
+
+    questionDiv.appendChild(answersList);
+    container.appendChild(questionDiv);
+  });  
+}

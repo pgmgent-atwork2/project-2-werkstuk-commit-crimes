@@ -54,76 +54,77 @@
         </div>
 
 
-        <div class="registration-form">
-            <form class="registration">
-                <div class="registration__name">
-                    <p>Je naam:</p>
-                    <input name="name" id="name" class="registration__name__input" type="text" required
-                        placeholder="type hier je naam">
-                </div>
-                <p>Je geboortedatum:</p>
-                <div class="registration__date__input">
+        <div>
+            <form class="registration registration-form">
+                    <div class="registration__name">
+                        <p>Je naam:</p>
+                        <input name="name" id="name" class="registration__name__input" type="text" required
+                            placeholder="type hier je naam">
+                    </div>
+                    <p>Je geboortedatum:</p>
+                    <div class="registration__date__input">
 
-                    <select id="day-select" name="day" required>
-                        <option value="">Dag</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                    </select>
+                        <select id="day-select" name="day" required>
+                            <option value="">Dag</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
 
-                    <label for="month-select"></label>
-                    <select id="month-select" name="month" required>
-                        <option value="">Maand</option>
-                        <option value="1">januari</option>
-                        <option value="2">februari</option>
-                        <option value="3">Maart</option>
-                        <option value="4">april</option>
-                        <option value="5">mei</option>
-                        <option value="6">juni</option>
-                        <option value="7">juli</option>
-                        <option value="8">augustus</option>
-                        <option value="9">september</option>
-                        <option value="10">oktober</option>
-                        <option value="11">november</option>
-                        <option value="12">december</option>
-                    </select>
+                        <label for="month-select"></label>
+                        <select id="month-select" name="month" required>
+                            <option value="">Maand</option>
+                            <option value="1">januari</option>
+                            <option value="2">februari</option>
+                            <option value="3">Maart</option>
+                            <option value="4">april</option>
+                            <option value="5">mei</option>
+                            <option value="6">juni</option>
+                            <option value="7">juli</option>
+                            <option value="8">augustus</option>
+                            <option value="9">september</option>
+                            <option value="10">oktober</option>
+                            <option value="11">november</option>
+                            <option value="12">december</option>
+                        </select>
 
-                    <label for="year-select"></label>
-                    <select id="year-select" name="year" required>
-                        <option value="jaar">Jaar</option>
-                    </select>
-                </div>
-                <div class="submit__input__container">
-                    <input type="submit" value="Doorgaan" class="registration-submit__btn" />
-                </div>
+                        <label for="year-select"></label>
+                        <select id="year-select" name="year" required>
+                            <option value="jaar">Jaar</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="language" value="nl" />
+                    <div class="submit__input__container">
+                        <input type="submit" value="Doorgaan" class="registration-submit__btn" />
+                    </div>
             </form>
 
         </div>
@@ -132,56 +133,54 @@
 
     </div>
 
-    <div class="rating-container">
-        <div class="rating-question">
-            <h3>Vond je de quiz informatief?</h3>
-            <div class="stars" data-question="1">
-                <span class="star" data-value="1">★</span>
-                <span class="star" data-value="2">★</span>
-                <span class="star" data-value="3">★</span>
-                <span class="star" data-value="4">★</span>
-                <span class="star" data-value="5">★</span>
+        <div class="rating-container">
+            <div class="rating-question">
+                <h3>Vond je de quiz informatief?</h3>
+                <div class="stars" data-question="1">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+            </div>
+
+            <div class="rating-question">
+                <h3>Waren de vragen duidelijk?</h3>
+                <div class="stars" data-question="2">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+            </div>
+            <div class="rating-question">
+                <h3>Had je voldoende tijd?</h3>
+                <div class="stars" data-question="3">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+            </div>
+            <div class="rating-question">
+                <h3>Hoe was jouw algemene ervaring?</h3>
+                <div class="stars" data-question="4">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
             </div>
         </div>
 
-        <div class="rating-question">
-            <h3>Waren de vragen duidelijk?</h3>
-            <div class="stars" data-question="2">
-                <span class="star" data-value="1">★</span>
-                <span class="star" data-value="2">★</span>
-                <span class="star" data-value="3">★</span>
-                <span class="star" data-value="4">★</span>
-                <span class="star" data-value="5">★</span>
-            </div>
-        </div>
-        <div class="rating-question">
-            <h3>Had je voldoende tijd?</h3>
-            <div class="stars" data-question="3">
-                <span class="star" data-value="1">★</span>
-                <span class="star" data-value="2">★</span>
-                <span class="star" data-value="3">★</span>
-                <span class="star" data-value="4">★</span>
-                <span class="star" data-value="5">★</span>
-            </div>
-        </div>
-        <div class="rating-question">
-            <h3>Hoe was jouw algemene ervaring?</h3>
-            <div class="stars" data-question="4">
-                <span class="star" data-value="1">★</span>
-                <span class="star" data-value="2">★</span>
-                <span class="star" data-value="3">★</span>
-                <span class="star" data-value="4">★</span>
-                <span class="star" data-value="5">★</span>
-            </div>
-        </div>
-    </div>
 
-
-    <script src="/scripts/main.js"></script>
-    <script src="/scripts/dateSelector.js"></script>
-    <script src="../scripts/questions.js"></script>
-    <script src="/scripts/rating.js"></script>
-    <script src="/scripts/user.js"></script>
+        <script type="module" src="/scripts/dateSelector.js"></script>
+        <script type="module" src="/scripts/rating.js"></script>
+        <script type="module" src="/scripts/user.js"></script>
 </body>
 
 </html>

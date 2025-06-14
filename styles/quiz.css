@@ -22,6 +22,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 50%;
+  gap: 50%;
 }
 
 .question-img img {
@@ -75,3 +76,47 @@
 .question-answer:active {
   background: linear-gradient(230deg, #1e90ff, #87ceeb, #87cefa);
 }
+
+.review-answers-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-question {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.review-question-title {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.review-answers-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.review-answer {
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.25rem;
+  border-radius: 4px;
+}
+
+.correct-answer {
+  color: green;
+  font-weight: bold;
+  background-color: #e6ffe6;
+}
+
+.user-selected {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.incorrect-answer {
+  color: red;
+  background-color: #ffe6e6;
+}
+
