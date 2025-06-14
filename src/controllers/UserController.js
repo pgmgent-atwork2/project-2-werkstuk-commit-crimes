@@ -87,12 +87,13 @@ export const saveScore = async (req, res) => {
 
   try {
     const session = await SessionItem.query().findById(session_id);
+    console.log("Session from DB:", session);
 
     if (!session) {
       return res.status(404).json({ error: "Sessie niet gevonden" });
     }
 
-    const isSecondTry = session.second_try === true;
+    const isSecondTry = session.second_try == 1;
 
     const patchData = isSecondTry
       ? { second_score: score }

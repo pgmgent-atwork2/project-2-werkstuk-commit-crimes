@@ -12,12 +12,12 @@ export const getAllSessions = async (req, res) => {
   try {
     const sessions = await SessionItem.query().withGraphFetched("quiz").withGraphFetched("user");
 
-    // For each session, fetch all quizzes in the same group, including their questions
+
     const sessionsWithGroupQuizzes = await Promise.all(
       sessions.map(async (session) => {
         if (!session.quiz) return session;
 
-        // Get all quizzes with the same group_id, including questions
+
         const groupQuizzes = await QuizItem.query()
           .where('group_id', session.quiz.group_id)
           .withGraphFetched('questions');
