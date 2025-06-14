@@ -28,13 +28,17 @@ async function fetchQuizData() {
     : quizzes;
   if (!quiz) throw new Error("Geen NL quiz gevonden");
 
-  const questionsRes = await fetch(`http://localhost:3000/api/questions?quiz_id=${quiz.id}`);
+  const questionsRes = await fetch(
+    `http://localhost:3000/api/questions?quiz_id=${quiz.id}`
+  );
   if (!questionsRes.ok) throw new Error("Vragen ophalen mislukt");
   const questions = await questionsRes.json();
 
   const questionsWithAnswers = await Promise.all(
     questions.map(async (q) => {
-      const answersRes = await fetch(`http://localhost:3000/api/answers?question_id=${q.id}`);
+      const answersRes = await fetch(
+        `http://localhost:3000/api/answers?question_id=${q.id}`
+      );
       if (!answersRes.ok) throw new Error("Antwoorden ophalen mislukt");
       const answers = await answersRes.json();
       return {
@@ -82,7 +86,7 @@ function checkAnswer(answer) {
 
   if (answer?.is_correct) score++;
 
-  answerBtns.forEach(btn => btn.disabled = true);
+  answerBtns.forEach((btn) => (btn.disabled = true));
 
   setTimeout(() => {
     currentQuestion++;
@@ -157,5 +161,5 @@ function showReview() {
 
     questionDiv.appendChild(answersList);
     container.appendChild(questionDiv);
-  });  
+  });
 }
