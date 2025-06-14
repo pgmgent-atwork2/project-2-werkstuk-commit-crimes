@@ -83,11 +83,8 @@ function showQuestion() {
 
 function checkAnswer(answer) {
   userAnswers[currentQuestion] = answer;
-
   if (answer?.is_correct) score++;
-
   answerBtns.forEach((btn) => (btn.disabled = true));
-
   setTimeout(() => {
     currentQuestion++;
     if (currentQuestion < quizData.length) {
