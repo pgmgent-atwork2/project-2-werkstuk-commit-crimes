@@ -6,4 +6,6 @@ router.get("/", userController.getAllUsers);
 
 router.post("/", userController.registerUser);
 
+router.patch("/update-session", userController.updateUserSession);
+
 export default router;
