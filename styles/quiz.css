@@ -22,6 +22,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 50%;
+  gap: 50%;
 }
 
 .question-img img {
