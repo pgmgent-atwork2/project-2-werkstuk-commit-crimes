@@ -18,31 +18,36 @@ async function loadSessions() {
     const quizResponse = await fetch("http://localhost:3000/api/quiz");
     const quizzes = quizResponse.ok ? await quizResponse.json() : [];
 
+    let currentOpenDropdown = null;
+
     sessions.forEach((session) => {
-      // Create dropdown container
       const dropdown = document.createElement("div");
       dropdown.className = "dropdown";
-      
-      // Create session button
+
+      const sessionQuizzes =
+        session.groupQuizzes ||
+        [session.quiz].filter(Boolean) ||
+        quizzes.filter((q) => q.group_id === session.group);
+
+      const primaryQuiz = sessionQuizzes.length > 0 ? sessionQuizzes[0] : null;
+      const mainButtonText =
+        session.title?.name || primaryQuiz
+          ? extractBaseTitle(primaryQuiz.title)
+          : `Session ${session.id}`;
+
       const sessionBtn = document.createElement("button");
       sessionBtn.className = "session-button";
-      sessionBtn.textContent = `Session ${session.id}`;
-      
-      // Create dropdown content
+      sessionBtn.textContent = mainButtonText;
+
       const dropdownContent = document.createElement("div");
       dropdownContent.className = "dropdown-content";
-      
-      // Find quizzes for this session
-      const sessionQuizzes = session.groupQuizzes || 
-                           [session.quiz].filter(Boolean) || 
-                           quizzes.filter(q => q.group_id === session.group);
-      
-      // Add quizzes to dropdown
+      dropdownContent.style.display = "none";
+
       if (sessionQuizzes.length > 0) {
-        sessionQuizzes.forEach(quiz => {
+        sessionQuizzes.forEach((quiz) => {
           const quizBtn = document.createElement("button");
           quizBtn.className = "quiz-button";
-          quizBtn.textContent = (quiz.title);
+          quizBtn.textContent = quiz.title;
           quizBtn.addEventListener("click", () => {
             window.location.href = `/quiz-nl.html?session_id=${session.id}&quiz_id=${quiz.id}`;
           });
@@ -53,21 +58,35 @@ async function loadSessions() {
         noQuizMsg.textContent = "No quizzes available";
         dropdownContent.appendChild(noQuizMsg);
       }
-      
-      // Toggle dropdown on click
+
       sessionBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        dropdownContent.classList.toggle("show");
+
+        if (currentOpenDropdown && currentOpenDropdown !== dropdownContent) {
+          currentOpenDropdown.style.display = "none";
+        }
+
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+          currentOpenDropdown = null;
+        } else {
+          dropdownContent.style.display = "block";
+          currentOpenDropdown = dropdownContent;
+        }
       });
-      
-      // Close dropdown when clicking elsewhere
-      document.addEventListener("click", () => {
-        dropdownContent.classList.remove("show");
-      });
-      
+
       dropdown.appendChild(sessionBtn);
       dropdown.appendChild(dropdownContent);
       container.appendChild(dropdown);
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".dropdown")) {
+        if (currentOpenDropdown) {
+          currentOpenDropdown.style.display = "none";
+          currentOpenDropdown = null;
+        }
+      }
     });
   } catch (error) {
     console.error("Error loading sessions:", error);
@@ -75,6 +94,6 @@ async function loadSessions() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {    
-    loadSessions();
+document.addEventListener("DOMContentLoaded", () => {
+  loadSessions();
 });
