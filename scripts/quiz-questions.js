@@ -1,4 +1,7 @@
-import { getUserIdFromUrl } from "./sessions.js";
+export function getUserIdFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("user_id");
+}
 
 let quizData = [];
 let userAnswers = [];
