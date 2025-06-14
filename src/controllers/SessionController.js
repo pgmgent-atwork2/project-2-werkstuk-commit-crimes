@@ -1,4 +1,5 @@
 import SessionItem from "../lib/models/SessionItem.js";
+import QuizItem from "../lib/models/QuizItem.js";
 
 export const index = (req, res) => {
     res.render('layout', {
@@ -9,9 +10,26 @@ export const index = (req, res) => {
 
 export const getAllSessions = async (req, res) => {
   try {
-    const sessions = await SessionItem.query().withGraphFetched("user");
-    console.log(sessions);
-    res.json(sessions);
+    const sessions = await SessionItem.query().withGraphFetched("quiz").withGraphFetched("user");
+
+    // For each session, fetch all quizzes in the same group, including their questions
+    const sessionsWithGroupQuizzes = await Promise.all(
+      sessions.map(async (session) => {
+        if (!session.quiz) return session;
+
+        // Get all quizzes with the same group_id, including questions
+        const groupQuizzes = await QuizItem.query()
+          .where('group_id', session.quiz.group_id)
+          .withGraphFetched('questions');
+
+        return {
+          ...session,
+          groupQuizzes, 
+        };
+      })
+    );
+
+    res.json(sessionsWithGroupQuizzes);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -34,3 +52,48 @@ export async function getQuizWithQuestions(req, res) {
     res.status(500).json({ error: "Fout bij ophalen van quizvragen" });
   }
 }
+
+export const checkExpiredSessions = async () => {
+  try {
+    const now = new Date();
+    const localOffsetMs = now.getTimezoneOffset() * 60 * 1000;
+
+    const thirtyMinutesMs = 30 * 60 * 1000;
+    const TwoHoursthirtyMinutesMs = 30 * 60 * 1000;
+
+    const expiredSessionTimer = new Date(Date.now() - localOffsetMs - thirtyMinutesMs).toISOString();
+    
+    const expiredSessions = await SessionItem.query()
+      .where('created_at', '<', expiredSessionTimer)
+      .where('second_try', false);
+
+    for (const session of expiredSessions) {
+      await SessionItem.query()
+        .findById(session.id)
+        .patch({ second_try: true });
+      console.log(`Updated session ${session.id} to second_try=true`);
+    }
+  } catch (error) {
+    console.error('Error checking expired sessions:', error);
+  }
+};
+
+// checks if minutes are over
+setInterval(checkExpiredSessions, 60 * 1000);
+
+export const getLatestSession = async (req, res) => {
+  try {
+    const session = await SessionItem.query()
+      .orderBy("created_at", "desc")
+      .first();
+
+    if (!session) {
+      return res.status(404).json({ error: "Geen sessie gevonden" });
+    }
+
+    res.json(session);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Fout bij ophalen van sessie" });
+  }
+};
