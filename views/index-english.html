@@ -18,8 +18,12 @@
 </head>
 
 <body>
-    <video autoplay muted loop>
+    <video autoplay muted loop class="video">
         <source src="/videos/background-video.mp4" type="video/mp4">
+    </video>
+
+    <video autoplay muted loop class="phone-video">
+        <source src="/videos/phone-background.mp4" type="video/mp4">
     </video>
     <div class="setup-container">
         <div class="setup-container__top">
@@ -28,13 +32,13 @@
         </div>
         <div class="setup-container__bottom">
             <div class="language-option" id="nl">
-                <a href="/views/index.html"><button class="language-btn">NL | Nederlands</button></a>
+                <a href="index.html"><button class="language-btn">NL | Nederlands</button></a>
             </div>
             <div class="language-option" id="fr">
-                <a href="/views/index-french.html"><button class="language-btn">FR | Français</button></a>
+                <a href="index-french.html"><button class="language-btn">FR | Français</button></a>
             </div>
             <div class="language-option" id="en">
-                <button class="language-btn" href="/views/index-english.html">GB | English</button>
+                <button class="language-btn language-selected" href="index-english.html">GB | English</button>
             </div>
         </div>
         <div class="btm-text">
@@ -42,6 +46,10 @@
         </div>
     </div>
 
+    <div class="user-list-container">
+        <h2>User list:</h2>
+        <ul id="user-list"></ul>
+    </div>
 
     <div class="registration-container">
         <div class="registration__top">

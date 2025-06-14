@@ -74,3 +74,20 @@ export const checkExpiredSessions = async () => {
 
 // checks if minutes are over
 setInterval(checkExpiredSessions, 60 * 1000);
+
+export const getLatestSession = async (req, res) => {
+  try {
+    const session = await SessionItem.query()
+      .orderBy("created_at", "desc")
+      .first();
+
+    if (!session) {
+      return res.status(404).json({ error: "Geen sessie gevonden" });
+    }
+
+    res.json(session);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Fout bij ophalen van sessie" });
+  }
+};
