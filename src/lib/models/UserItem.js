@@ -1,6 +1,8 @@
 import Knex from "../knex.js";
 import { Model } from "objection";
 
+import SessionItem from "./SessionItem.js";
+
 Model.knex(Knex);
 
 class UserItem extends Model {
@@ -26,6 +28,19 @@ class UserItem extends Model {
         second_score: { type: ["integer", "null"] },
       },
     };
+  }
+
+  static get relationMappings() {
+    return {
+      session: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: SessionItem,
+        join: {
+          from: "user_items.session_id",
+          to: "session.id",
+        },
+      }
+    }
   }
 }
 

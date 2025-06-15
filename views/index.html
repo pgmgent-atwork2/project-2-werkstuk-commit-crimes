@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz | Boudewijn Seapark</title>
-    <link rel="stylesheet" href="/styles/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&display=swap"
@@ -15,6 +14,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+
 </head>
 
 <body>
@@ -25,37 +30,43 @@
     <video autoplay muted loop class="phone-video">
         <source src="/videos/phone-background.mp4" type="video/mp4">
     </video>
-
-    <div class="setup-container">
-        <div class="setup-container__top">
-            <h1>Boudewijn Seapark Quiz</h1>
-            <p>Selecteer uw taal | Choissisez votre langue | Choose your language</p>
-        </div>
-        <div class="setup-container__bottom">
-            <div class="language-option" id="nl">
-                <a href="/views/index.html"><button class="language-btn language-selected">NL | Nederlands</button></a>
+    <main class="index__container">
+        <div class="setup-container">
+            <div class="setup-container__top">
+                <h1>Boudewijn Seapark Quiz</h1>
+                <p>Selecteer uw taal | Choissisez votre langue | Choose your language</p>
             </div>
-            <div class="language-option" id="fr">
-                <a href="/views/index-french.html"><button class="language-btn">FR | Français</button></a>
+            <div class="setup-container__bottom">
+                <div class="language-option" id="nl">
+                    <a href="index.html"><button class="language-btn language-selected">NL | Nederlands</button></a>
+                </div>
+                <div class="language-option" id="fr">
+                    <a href="index-french.html"><button class="language-btn">FR | Français</button></a>
+                </div>
+                <div class="language-option" id="en">
+                    <a href="index-english.html"><button class="language-btn">GB | English</button></a>
+                </div>
             </div>
-            <div class="language-option" id="en">
-                <a href="/views/index-english.html"><button class="language-btn">GB | English</button></a>
+            <div class="btm-text">
+                <p>Ontmoet. Heb lief. Bescherm</p>
             </div>
         </div>
-        <div class="btm-text">
-            <p>Ontmoet. Heb lief. Bescherm</p>
-        </div>
-    </div>
 
-    <div class="registration-container">
-        <div class="registration__top">
-            <h1>Vandaag ontmoet je de dolfijnen!</h1>
-            <p>Beantwoord onze vragen en ontdek meer over deze bijzondere dieren!</p>
+        <div class="user-list-container">
+            <h2>Gebruikerslijst:</h2>
+            <ul id="user-list"></ul>
         </div>
 
 
-        <div class="registration-form">
-            <form class="registration">
+        <div class="registration-container">
+            <div class="registration__top">
+                <h1>Vandaag ontmoet je de dolfijnen!</h1>
+                <p>Beantwoord onze vragen en ontdek meer over deze bijzondere dieren!</p>
+            </div>
+
+
+            <div>
+                <form class="registration registration-form">
                     <div class="registration__name">
                         <p>Je naam:</p>
                         <input name="name" id="name" class="registration__name__input" type="text" required
@@ -121,16 +132,17 @@
                             <option value="jaar">Jaar</option>
                         </select>
                     </div>
+                    <input type="hidden" name="language" value="nl" />
                     <div class="submit__input__container">
                         <input type="submit" value="Doorgaan" class="registration-submit__btn" />
                     </div>
-            </form>
+                </form>
+
+            </div>
 
         </div>
 
-    </div>
-
-    </div>
+        </div>
 
         <div class="rating-container">
             <div class="rating-question">
@@ -176,12 +188,12 @@
             </div>
         </div>
 
+    </main>
 
-        <script src="/scripts/main.js"></script>
-        <script src="/scripts/dateSelector.js"></script>
-        <script src="../scripts/questions.js"></script>
-        <script src="/scripts/rating.js"></script>
-        <script src="/scripts/user.js"></script>
+
+    <script type="module" src="/scripts/dateSelector.js"></script>
+    <script type="module" src="/scripts/rating.js"></script>
+    <script type="module" src="/scripts/user.js"></script>
 </body>
 
 </html>

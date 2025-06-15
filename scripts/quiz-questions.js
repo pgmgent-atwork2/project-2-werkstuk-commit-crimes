@@ -1,3 +1,8 @@
+export function getUserIdFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("user_id");
+}
+
 let quizData = [];
 let userAnswers = [];
 let currentQuestion = 0;
@@ -20,34 +25,46 @@ const resultContainer = document.getElementById("quiz-result-container");
 const scoreEl = document.getElementById("score");
 
 async function fetchQuizData() {
-  const quizRes = await fetch("http://localhost:3000/api/quiz?language=nl");
-  if (!quizRes.ok) throw new Error("Quiz ophalen mislukt");
-  const quizzes = await quizRes.json();
-  const quiz = Array.isArray(quizzes)
-    ? quizzes.find((q) => q.language === "nl")
-    : quizzes;
-  if (!quiz) throw new Error("Geen NL quiz gevonden");
+  const urlParams = new URLSearchParams(window.location.search);
+  const sessionId = parseInt(urlParams.get("session_id"));
+  const quizId = parseInt(urlParams.get("quiz_id"));
 
-  const questionsRes = await fetch(`http://localhost:3000/api/questions?quiz_id=${quiz.id}`);
-  if (!questionsRes.ok) throw new Error("Vragen ophalen mislukt");
-  const questions = await questionsRes.json();
+  if (!sessionId || !quizId) {
+    alert("Session ID or Quiz ID is missing from the URL");
+    return;
+  }
 
-  const questionsWithAnswers = await Promise.all(
-    questions.map(async (q) => {
-      const answersRes = await fetch(`http://localhost:3000/api/answers?question_id=${q.id}`);
-      if (!answersRes.ok) throw new Error("Antwoorden ophalen mislukt");
-      const answers = await answersRes.json();
-      return {
-        ...q,
-        answers,
-      };
-    })
-  );
+  try {
+    const sessionsRes = await fetch("http://localhost:3000/api/sessions");
+    if (!sessionsRes.ok) throw new Error("Failed to fetch sessions");
+    const sessions = await sessionsRes.json();
 
-  quizData = questionsWithAnswers;
-  currentQuestion = 0;
-  score = 0;
-  showQuestion();
+    const session = sessions.find((s) => s.id === sessionId);
+    if (!session) throw new Error("Session not found");
+
+    const quiz = session.groupQuizzes?.find((q) => q.id === quizId);
+    if (!quiz) throw new Error("Quiz not found in session");
+
+    const questions = quiz.questions || [];
+    if (questions.length === 0) throw new Error("No questions found for this quiz");
+
+    const questionsWithAnswers = await Promise.all(
+      questions.map(async (q) => {
+        const answersRes = await fetch(`http://localhost:3000/api/answers?question_id=${q.id}`);
+        if (!answersRes.ok) throw new Error("Failed to load answers");
+        const answers = await answersRes.json();
+        return { ...q, answers };
+      })
+    );
+
+    quizData = questionsWithAnswers;
+    currentQuestion = 0;
+    score = 0;
+    showQuestion();
+  } catch (err) {
+    console.error("Error loading quiz:", err);
+    alert(err.message);
+  }
 }
 
 function showQuestion() {
@@ -82,8 +99,6 @@ function checkAnswer(answer) {
 
   if (answer?.is_correct) score++;
 
-  answerBtns.forEach(btn => btn.disabled = true);
-
   setTimeout(() => {
     currentQuestion++;
     if (currentQuestion < quizData.length) {
@@ -100,6 +115,7 @@ function endQuiz() {
   resultContainer.style.display = "block";
   scoreEl.textContent = `${score} / ${quizData.length}`;
   showReview();
+  saveScore();
 }
 
 function startTimer() {
@@ -158,4 +174,33 @@ function showReview() {
     questionDiv.appendChild(answersList);
     container.appendChild(questionDiv);
   });  
+}
+
+
+async function saveScore() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const sessionId = parseInt(urlParams.get("session_id"));
+  const userId = getUserIdFromUrl();
+  
+  if (!sessionId || !userId) {
+    console.error("Session ID of User ID ontbreekt");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3000/api/users/save-score", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        session_id: sessionId,
+        user_id: userId,
+        score: score
+      }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Kon score niet opslaan");
+    console.log("Score opgeslagen:", data);
+  } catch (error) {
+    console.error("Fout bij opslaan score:", error);
+  }
 }

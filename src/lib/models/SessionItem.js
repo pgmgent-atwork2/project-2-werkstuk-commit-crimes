@@ -38,7 +38,7 @@ class SessionItem extends Model {
   static get relationMappings() {
     return {
       user: {
-        relation: Model.HasOneRelation,
+        relation: Model.HasManyRelation,
         modelClass: UserItem,
         join: {
           from: "session.id",
@@ -46,16 +46,15 @@ class SessionItem extends Model {
         },
       },
       quiz: {
-        relation: Model.BelongsToOneRelation,
+        relation: Model.HasOneRelation,
         modelClass: QuizItem,
         join: {
-          from: "session.group_id",
+          from: "session.group",
           to: "quiz_items.group_id",
         },
       },
     };
   }
-  
 }
 
 export default SessionItem;

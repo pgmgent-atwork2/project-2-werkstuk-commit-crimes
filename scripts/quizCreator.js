@@ -269,33 +269,39 @@ function renderQuiz($quiz, $index, $templates, $container) {
     const $input = $form.querySelector(".add-question-input");
 
     $form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const questionText = $input.value.trim();
-      if (!questionText) return alert("Vraag mag niet leeg zijn");
+  e.preventDefault();
+  const questionText = $input.value.trim();
+  if (!questionText) return alert("Vraag mag niet leeg zijn");
 
-      try {
-        const response = await fetch("http://localhost:3000/api/questions", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            question_text: questionText,
-            quiz_id: $quiz.id,
-          }),
-        });
+  const formData = new FormData();
+  formData.append('question_text', questionText);
+  formData.append('quiz_id', String($quiz.id)); 
+  
+  const imageInput = $form.querySelector('input[type="file"]');
+  if (imageInput.files[0]) {
+    formData.append('image', imageInput.files[0]);
+  }
 
-        if (!response.ok) {
-          const errorBody = await response.text();
-          throw new Error(`HTTP ${response.status}: ${errorBody}`);
-        }
-
-        const newQuestion = await response.json();
-        renderQuestion(newQuestion, $templates, $questionsContainer);
-        $input.value = "";
-      } catch (err) {
-        console.error("Fout bij toevoegen van vraag:", err);
-        alert("Fout bij toevoegen van vraag");
-      }
+  try {
+    const response = await fetch("http://localhost:3000/api/questions", {
+      method: "POST",
+      body: formData,
     });
+
+    if (!response.ok) {
+      const errorBody = await response.text();
+      throw new Error(`HTTP ${response.status}: ${errorBody}`);
+    }
+
+    const newQuestion = await response.json();
+    renderQuestion(newQuestion, $templates, $questionsContainer);
+    $input.value = "";
+    imageInput.value = "";
+  } catch (err) {
+    console.error("Fout bij toevoegen van vraag:", err);
+    alert("Fout bij toevoegen van vraag");
+  }
+});
 
     $addQuestionSection.style.display = "block";
     $questionsContainer.appendChild($addQuestionSection);
@@ -636,5 +642,6 @@ function renderQuizGroup(quizzes, index, templates, container) {
   container.appendChild(groupDiv);
 }
 
-export { showQuizTitle };
-export default initQuizzes;
+document.addEventListener('DOMContentLoaded',() => {    
+    initQuizzes();
+})
