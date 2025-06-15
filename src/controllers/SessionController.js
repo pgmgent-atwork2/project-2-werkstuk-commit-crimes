@@ -97,8 +97,8 @@ export const checkExpiredSessions = async () => {
   }
 };
 
-// checks if minutes are over
-setInterval(checkExpiredSessions, 1 * 60 * 1000);
+// checks if minutes are over every 10s
+setInterval(checkExpiredSessions, 1 * 10 * 1000);
 
 export const getActiveSessions = async (req, res) => {
   try {

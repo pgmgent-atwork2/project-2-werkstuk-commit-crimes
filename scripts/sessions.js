@@ -60,15 +60,22 @@ async function loadSessions() {
           const quizBtn = document.createElement("button");
           quizBtn.className = "quiz-button";
           quizBtn.textContent = quiz.title;
-          quizBtn.addEventListener("click", () => {
-            const lang = quiz.language || "nl";
-            const page = {
-              nl: "quiz-nl.html",
-              en: "quiz-en.html",
-              fr: "quiz-fr.html",
-            }[lang] || "quiz-nl.html";
+          quizBtn.addEventListener("click", async () => {
 
-            window.location.href = `/${page}?session_id=${session.id}&quiz_id=${quiz.id}&user_id=${user_id}`;
+            const password = prompt("Voer het wachtwoord in om de quiz te starten:");
+            
+            if (password === session.password) {
+              const lang = quiz.language || "nl";
+              const page = {
+                nl: "quiz-nl.html",
+                en: "quiz-en.html",
+                fr: "quiz-fr.html",
+              }[lang] || "quiz-nl.html";
+
+              window.location.href = `/${page}?session_id=${session.id}&quiz_id=${quiz.id}&user_id=${user_id}`;
+            } else {
+              alert("Ongeldig wachtwoord. Probeer het opnieuw.");
+            }
           });
           dropdownContent.appendChild(quizBtn);
         });
@@ -133,7 +140,6 @@ async function loadSessions() {
     alert("Something went wrong while loading sessions");
   }
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
   loadSessions();
