@@ -1,13 +1,40 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const submitBtn = document.getElementById("submitFeedback");
   const allStars = document.querySelectorAll(".star");
   const expectedCount = document.querySelectorAll(".stars").length;
   const ratings = {};
+  const ratingContainer = document.querySelector(".rating-container");
+
+  ratingContainer.style.display = "none";
 
   const urlParams = new URLSearchParams(window.location.search);
   const userId = urlParams.get("user_id");
   const quizId = urlParams.get("quiz_id");
   const sessionId = urlParams.get("session_id");
+
+  let isSecondTry = false;
+  
+  try {
+    const sessionResponse = await fetch(`http://localhost:3000/api/sessions`);
+    if (sessionResponse.ok) {
+      const sessions = await sessionResponse.json();
+      const currentSession = sessions.find(s => s.id === parseInt(sessionId));
+      if (currentSession) {
+        isSecondTry = currentSession.second_try || false;
+      }
+    }
+  } catch (error) {
+    console.error("Error checking session data:", error);
+  }
+
+  function checkQuizCompletion() {
+    const quizResultContainer = document.getElementById("quiz-result-container");
+    if (quizResultContainer && quizResultContainer.style.display !== "none" && isSecondTry) {
+      ratingContainer.style.display = "block";
+    }
+  }
+
+  document.addEventListener('quizCompleted', checkQuizCompletion);
 
   function handleStarClick(star) {
     const questionId = star.parentElement.dataset.question;
@@ -63,18 +90,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-    for (const [questionId, rating] of Object.entries(ratings)) {
-      const response = await fetch("http://localhost:3000/api/feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          user_id: userId,
-          session_id: sessionId,
-          feedback: `Rating voor vraag ${questionId}`,
-          rating, 
-        }),
-      });
-
+      for (const [questionId, rating] of Object.entries(ratings)) {
+        const response = await fetch("http://localhost:3000/api/feedback", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            user_id: userId,
+            session_id: sessionId,
+            feedback: `Rating voor vraag ${questionId}`,
+            rating, 
+          }),
+        });
 
         if (!response.ok) {
           throw new Error(
