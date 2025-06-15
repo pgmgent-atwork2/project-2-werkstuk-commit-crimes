@@ -8,6 +8,6 @@ router.post("/", userController.registerUser);
 
 router.patch("/update-session", userController.updateUserSession);
 
-router.post("/api/save-score", userController.saveScore);
+router.post("/save-score", userController.saveScore);
 
 export default router;

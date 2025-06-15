@@ -1,4 +1,7 @@
-import { getUserIdFromUrl } from "./sessions";
+export function getUserIdFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("user_id");
+}
 
 let quizData = [];
 let userAnswers = [];
@@ -185,7 +188,7 @@ async function saveScore() {
   }
 
   try {
-    const res = await fetch("http://localhost:3000/api/save-score", {
+    const res = await fetch("http://localhost:3000/api/users/save-score", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

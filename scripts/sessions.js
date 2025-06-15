@@ -10,6 +10,12 @@ export function getUserIdFromUrl() {
 
 async function loadSessions() {
   try {
+    const user_id = getUserIdFromUrl();
+    if (!user_id) {
+      alert("Geen gebruiker gevonden om sessies te laden.");
+      return;
+    }
+
     const response = await fetch("http://localhost:3000/api/sessions");
     if (!response.ok) {
       alert("Failed to load sessions");
@@ -61,7 +67,7 @@ async function loadSessions() {
               fr: "quiz-fr.html",
             }[lang] || "quiz-nl.html";
 
-            window.location.href = `/${page}?session_id=${session.id}&quiz_id=${quiz.id}`;
+            window.location.href = `/${page}?session_id=${session.id}&quiz_id=${quiz.id}&user_id=${user_id}`;
           });
           dropdownContent.appendChild(quizBtn);
         });
@@ -86,14 +92,8 @@ async function loadSessions() {
           currentOpenDropdown = dropdownContent;
         }
 
-        const user_id = getUserIdFromUrl();
-        if (!user_id) {
-          alert("Geen gebruiker gevonden om sessie aan te koppelen.");
-          return;
-        }
-
         try {
-          const response = await fetch("/api/users/update-session", {
+          const response = await fetch("http://localhost:3000/api/users/update-session", {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
