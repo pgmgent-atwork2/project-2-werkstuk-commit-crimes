@@ -11,6 +11,12 @@ body {
   text-align: center;
 }
 
+.admin__quiz__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .admin__quiz {
   display: flex;
   flex-direction: column;
@@ -157,6 +163,29 @@ body {
 
 .admin-popover__close:hover {
   color: #d32f2f;
+}
+
+.download-excel-button {
+  background-color: #4CAF50; 
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.download-excel-button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.download-excel-button__container {
+  display: flex;
+  justify-content: center;
+  padding-top: 10rem;
 }
 
 @media screen and (min-width: 23.4375rem) {
