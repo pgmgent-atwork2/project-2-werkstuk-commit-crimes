@@ -159,7 +159,7 @@ body {
   color: #d32f2f;
 }
 
-@media screen and (min-width: 375px) and (min-height: 667px) {
+@media screen and (min-width: 23.4375rem) {
   .admin__title {
     width: 23.4375rem;
     height: fit-content;
@@ -182,7 +182,7 @@ body {
   }
 }
 
-@media screen and (min-width: 64rem) and (min-height: 48rem) {
+@media screen and (min-width: 64rem) {
   .admin__title {
     width: 64rem;
     height: fit-content;
