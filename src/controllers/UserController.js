@@ -113,3 +113,18 @@ export const saveScore = async (req, res) => {
     res.status(500).json({ error: "Kon score niet opslaan" });
   }
 };
+
+export const getUsersWithActiveSession = async (req, res) => {
+  try {
+    const timeLimit = new Date(Date.now() - 2.5 * 60 * 60 * 1000);
+    const users = await UserItem.query()
+      .join('session', 'user_items.session_id', 'session.id')
+      .where('session.created_at', '>', timeLimit)
+      .select('user_items.*');
+
+    res.json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Fout bij ophalen van gebruikers met actieve sessie" });
+  }
+};

@@ -54,7 +54,7 @@ async function loadUsers() {
   if (!userListElement || !userListContainer) return;
 
   try {
-    const usersRes = await fetch(`/api/users`);
+    const usersRes = await fetch(`http://localhost:3000/api/users/active`);
     if (!usersRes.ok) throw new Error("Kan gebruikers niet ophalen");
     const users = await usersRes.json();
 
