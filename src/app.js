@@ -48,10 +48,10 @@ function requireAuth(req, res, next) {
   if (req.session.isAuthenticated) {
     return next();
   }
-  return res.redirect("/admin-login.html");
+  return res.redirect("../admin-login.html");
 }
 
-app.get("/admin-panel.html", requireAuth, (req, res) => {
+app.get("../admin-panel.html", requireAuth, (req, res) => {
   res.sendFile("admin-panel.html", { root: "views" });
 });
 app.use(express.static("views"));
