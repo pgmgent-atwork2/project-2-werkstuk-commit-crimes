@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
 .quiz-question-container {
@@ -119,4 +120,3 @@
   color: red;
   background-color: #ffe6e6;
 }
-
