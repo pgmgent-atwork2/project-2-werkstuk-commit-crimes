@@ -118,3 +118,22 @@ export const getActiveSessions = async (req, res) => {
     res.status(500).json({ error: "Fout bij ophalen van actieve sessies" });
   }
 };
+
+export const getUsersBySessionId = async (req, res) => {
+  try {
+    const sessionId = req.params.id;
+
+    const sessionWithUsers = await SessionItem.query()
+      .findById(sessionId)
+      .withGraphFetched("user");
+
+    if (!sessionWithUsers) {
+      return res.status(404).json({ error: "Sessie niet gevonden" });
+    }
+
+    res.json(sessionWithUsers.user || []);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Fout bij ophalen van gebruikers" });
+  }
+};

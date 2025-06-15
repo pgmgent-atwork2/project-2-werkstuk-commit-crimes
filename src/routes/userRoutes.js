@@ -10,6 +10,4 @@ router.patch("/update-session", userController.updateUserSession);
 
 router.post("/save-score", userController.saveScore);
 
-router.get('/active', userController.getUsersWithActiveSession);
-
 export default router;
