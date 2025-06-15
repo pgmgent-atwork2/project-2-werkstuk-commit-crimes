@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz-editor | Boudewijn Seapark</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="admin__title">
+            <h1>Admin panel</h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="admin__quiz">
+            <div class="admin__quiz__title">
+                <h2>Kies een quiz voor een sessie te starten:</h2>
+            </div>
+            <div class="admin__quiz__list" id="quiz-list">
+
+            </div>
+
+            <article id="admin-password-popover" class="admin_popover">
+                <form id="password-form" class="admin_popover_password">
+                    <button type="button" class="admin-popover__close">X</button>
+                    <label class="admin-popover__label" for="password-input">Wachtwoord voor de quiz:</label>
+                    <input class="admin-popover__input" type="password" id="password-input" required />
+                    <button type="submit" class="admin-popover__submit">Start een sessie</button>
+                </form>
+            </article>
+        </section>
+    </main>
+
+    <script type="module" src="/scripts/adminPanel.js"></script>
+</body>
+
+</html>

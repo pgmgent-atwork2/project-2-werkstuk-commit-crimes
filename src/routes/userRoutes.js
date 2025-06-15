@@ -4,6 +4,10 @@ import * as userController from "../controllers/UserController.js";
 
 router.get("/", userController.getAllUsers);
 
-router.post("/api/users", userController.registerUser);
+router.post("/", userController.registerUser);
+
+router.patch("/update-session", userController.updateUserSession);
+
+router.post("/save-score", userController.saveScore);
 
 export default router;

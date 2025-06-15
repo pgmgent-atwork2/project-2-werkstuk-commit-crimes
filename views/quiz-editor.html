@@ -55,7 +55,7 @@
                         </div>
                         <div class="add-question-section" style="display:none;">
                             <h4>Voeg een vraag toe:</h4>
-                            <form class="add-question-form">
+                            <form class="add-question-form" method="POST" enctype="multipart/form-data" action="/upload">
                                 <input type="text" class="add-question-input" name="question" required>
                                 <label for="imageUpload"></label>
                                 <input type="file" id="imageUpload" name="image" accept="image/*" required>
@@ -144,14 +144,12 @@
             </template>
         </section>
 
-
         <section class="add-quizzes">
-            <h2 class="add-quizzes__title">Voeg hier een quiz toe!</h2>
-
-            <form class="quiz-form">
-                <input type="text" placeholder="Voeg de quiz titel hier toe" class="quiz-add-txt" required>
-                <input type="submit" class="quiz-add-submit">
-            </form>
+        <h2 class="add-quizzes__title">Voeg een quizgroep toe</h2>
+        <form form class="quiz-form">
+            <input type="text" placeholder="Quiz titel (voor alle talen)" class="quiz-add-txt" required>
+            <input type="submit" value="Voeg quizgroep toe" class="quiz-add-submit">
+        </form>
         </section>
 
         <section class="feedback-editor__container" id="feedbackEditor">
@@ -161,8 +159,7 @@
         </section>
     </main>
 
-
-    <script type="module" src="/scripts/main.js"></script>
+    <script type="module" src="/scripts/quizCreator.js"></script>
 </body>
 
 </html>

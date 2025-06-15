@@ -1,129 +1,206 @@
-const quizData = [
-  {
-    question: "Wat weet je over de oren van een dolfijn?",
-    options: [
-      "Een dolfijn heeft geen oren.",
-      "Een dolfijn heeft wel oren maar geen uitwendige oorschelpen.",
-      "Een dolfijn heeft wel oren en uitwendige oorschelpen.",
-      "Hier weet ik niets over.",
-    ],
-    answer: "Een dolfijn heeft wel oren maar geen uitwendige oorschelpen.",
-  },
-  {
-    question: "Wat is sonar?",
-    options: [
-      "Lichtstralen zeer gevoelig kunnen oppikken zodat ze heel goed kunnen zien in donker water.",
-      "Bepaalde frequenties in geluidsgolven horen dat mensen niet kunnen horen.",
-      "Geluidjes uitsturen die botsen op een prooi en terugkomen zodat een dolfijn kan zien zonder geluid.",
-      "Dat weet ik niet.",
-    ],
-    answer:
-      "Geluidjes uitsturen die botsen op een prooi en terugkomen zodat een dolfijn kan zien zonder geluid.",
-  },
-  {
-    question: "Is een dolfijn een solitair dier?",
-    options: [
-      "Ja, ze is graag alleen.",
-      "Ze is liever in een kleine groep.",
-      "Neen, ze leeft in groepen.",
-      "Dat weet ik niet.",
-    ],
-    answer: "Neen, ze leeft in groepen.",
-  },
-  {
-    question: "Zitten er botten in de finnen van een dolfijn?",
-    options: [
-      "Ja, in de borstvinnen en staartvin.",
-      "Enkel in de staartvin.",
-      "Enkel in de rugvin.",
-      "Enkel in de borstvinnen.",
-    ],
-    answer: "Ja, in de borstvinnen en staartvin.",
-  },
-  {
-    question: "Hoe weet je of de dolfijn een mannetje of een vrouwtje is?",
-    options: [
-      "De mannetjes hebben langere sierlijkere vinnen dan de vrouwtjes.",
-      "De mannetjes hebben een donkerdere kleur dan de vrouwtjes.",
-      "De mannetjes hebben 2 spleetjes op de buik, de vrouwtjes maar 1.",
-      "De mannetjes hebben 1 spleetje op de buik, de vrouwtjes 2.",
-    ],
-    answer: "De mannetjes hebben 2 spleetjes op de buik, de vrouwtjes maar 1.",
-  },
-];
+export function getUserIdFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("user_id");
+}
 
+let quizData = [];
+let userAnswers = [];
 let currentQuestion = 0;
 let score = 0;
 let timeLeft = 30;
 let timerInterval;
-const timerEl = document.getElementById("time");
-const questionEl = document.querySelector(".question");
-const optionsEl = document.querySelector(".options");
-const resultEl = document.querySelector(".result");
-const scoreEl = document.getElementById("score");
-const restartBtn = document.querySelector(".restart-btn");
 
-function loadQuestion() {
-  if (currentQuestion >= quizData.length) {
-    endQuiz();
+const timerEl = document.getElementById("timer");
+const questionEl = document.getElementById("question-text");
+const imageEl = document.getElementById("image-container");
+const answerBtns = [
+  document.getElementById("answer-1"),
+  document.getElementById("answer-2"),
+  document.getElementById("answer-3"),
+  document.getElementById("answer-4"),
+];
+const questionProgress = document.getElementById("question-progress");
+const quizContainer = document.getElementById("quiz-question-container");
+const resultContainer = document.getElementById("quiz-result-container");
+const scoreEl = document.getElementById("score");
+
+async function fetchQuizData() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const sessionId = parseInt(urlParams.get("session_id"));
+  const quizId = parseInt(urlParams.get("quiz_id"));
+
+  if (!sessionId || !quizId) {
+    alert("Session ID or Quiz ID is missing from the URL");
     return;
   }
+
+  try {
+    const sessionsRes = await fetch("http://localhost:3000/api/sessions");
+    if (!sessionsRes.ok) throw new Error("Failed to fetch sessions");
+    const sessions = await sessionsRes.json();
+
+    const session = sessions.find((s) => s.id === sessionId);
+    if (!session) throw new Error("Session not found");
+
+    const quiz = session.groupQuizzes?.find((q) => q.id === quizId);
+    if (!quiz) throw new Error("Quiz not found in session");
+
+    const questions = quiz.questions || [];
+    if (questions.length === 0) throw new Error("No questions found for this quiz");
+
+    const questionsWithAnswers = await Promise.all(
+      questions.map(async (q) => {
+        const answersRes = await fetch(`http://localhost:3000/api/answers?question_id=${q.id}`);
+        if (!answersRes.ok) throw new Error("Failed to load answers");
+        const answers = await answersRes.json();
+        return { ...q, answers };
+      })
+    );
+
+    quizData = questionsWithAnswers;
+    currentQuestion = 0;
+    score = 0;
+    showQuestion();
+  } catch (err) {
+    console.error("Error loading quiz:", err);
+    alert(err.message);
+  }
+}
+
+function showQuestion() {
   clearInterval(timerInterval);
   timeLeft = 30;
   timerEl.textContent = timeLeft;
   startTimer();
-  const currentQuiz = quizData[currentQuestion];
-  questionEl.textContent = currentQuiz.question;
-  optionsEl.innerHTML = "";
-  currentQuiz.options.forEach((option) => {
-    const button = document.createElement("button");
-    button.classList.add("option");
-    button.textContent = option;
-    button.onclick = () => checkAnswer(option);
-    optionsEl.appendChild(button);
+
+  const q = quizData[currentQuestion];
+  questionEl.textContent = q.question_text;
+  questionProgress.textContent = `${currentQuestion + 1}/${quizData.length}`;
+
+  if (q.image_path) {
+    const img = document.createElement("img");
+    img.src = q.image_path;
+    img.alt = "Vraagafbeelding";
+    imageEl.innerHTML = "";
+    imageEl.appendChild(img);
+  } else {
+    imageEl.innerHTML = "";
+  }
+
+  const answers = q.answers || [];
+  answerBtns.forEach((btn, i) => {
+    btn.textContent = answers[i]?.answer_text || "";
+    btn.onclick = () => checkAnswer(answers[i]);
   });
 }
 
-function checkAnswer(selectedOption) {
-  if (selectedOption === quizData[currentQuestion].answer) {
-    score++;
-  }
-  currentQuestion++;
-  loadQuestion();
+function checkAnswer(answer) {
+  userAnswers[currentQuestion] = answer;
+
+  if (answer?.is_correct) score++;
+
+  setTimeout(() => {
+    currentQuestion++;
+    if (currentQuestion < quizData.length) {
+      showQuestion();
+    } else {
+      endQuiz();
+    }
+  }, 500);
+}
+
+function endQuiz() {
+  clearInterval(timerInterval);
+  quizContainer.style.display = "none";
+  resultContainer.style.display = "block";
+  scoreEl.textContent = `${score} / ${quizData.length}`;
+  showReview();
+  saveScore();
 }
 
 function startTimer() {
+  timerEl.textContent = timeLeft;
   timerInterval = setInterval(() => {
     timeLeft--;
     timerEl.textContent = timeLeft;
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      endQuiz();
+      checkAnswer(null);
     }
   }, 1000);
 }
 
-function endQuiz() {
-  clearInterval(timerInterval);
-  questionEl.style.display = "none";
-  optionsEl.style.display = "none";
-  resultEl.style.display = "block";
-  scoreEl.textContent = score;
-  restartBtn.style.display = "block";
-}
-
-restartBtn.addEventListener("click", () => {
-  currentQuestion = 0;
-  score = 0;
-  timeLeft = 30;
-  timerEl.textContent = timeLeft;
-
-  questionEl.style.display = "block";
-  optionsEl.style.display = "flex";
-  resultEl.style.display = "none";
-  restartBtn.style.display = "none";
-
-  loadQuestion();
+fetchQuizData().catch((err) => {
+  console.error("Kon quiz niet laden:", err);
 });
 
-loadQuestion();
+function showReview() {
+  const container = document.getElementById("review-answers-container");
+  container.innerHTML = "";
+
+  quizData.forEach((question, i) => {
+    const userAnswer = userAnswers[i];
+
+    const questionDiv = document.createElement("div");
+    questionDiv.className = "review-question";
+
+    const questionTitle = document.createElement("p");
+    questionTitle.className = "review-question-title";
+    questionTitle.textContent = `${i + 1}. ${question.question_text}`;
+    questionDiv.appendChild(questionTitle);
+
+    const answersList = document.createElement("ul");
+    answersList.className = "review-answers-list";
+
+    question.answers.forEach((answer) => {
+      const li = document.createElement("li");
+      li.textContent = answer.answer_text;
+      li.classList.add("review-answer");
+
+      if (answer.is_correct) {
+        li.classList.add("correct-answer");
+      }
+
+      if (userAnswer && userAnswer.id === answer.id) {
+        li.classList.add("user-selected");
+        if (!answer.is_correct) {
+          li.classList.add("incorrect-answer");
+        }
+      }
+
+      answersList.appendChild(li);
+    });
+
+    questionDiv.appendChild(answersList);
+    container.appendChild(questionDiv);
+  });  
+}
+
+
+async function saveScore() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const sessionId = parseInt(urlParams.get("session_id"));
+  const userId = getUserIdFromUrl();
+  
+  if (!sessionId || !userId) {
+    console.error("Session ID of User ID ontbreekt");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3000/api/users/save-score", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        session_id: sessionId,
+        user_id: userId,
+        score: score
+      }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Kon score niet opslaan");
+    console.log("Score opgeslagen:", data);
+  } catch (error) {
+    console.error("Fout bij opslaan score:", error);
+  }
+}
