@@ -1,13 +1,6 @@
 import SessionItem from "../lib/models/SessionItem.js";
 import QuizItem from "../lib/models/QuizItem.js";
 
-export const index = (req, res) => {
-    res.render('layout', {
-        title: "Make It Happen",
-        body: "index",
-    });
-};
-
 export const getAllSessions = async (req, res) => {
   try {
     const sessions = await SessionItem.query().withGraphFetched("quiz").withGraphFetched("user");
@@ -52,6 +45,24 @@ export async function getQuizWithQuestions(req, res) {
     res.status(500).json({ error: "Fout bij ophalen van quizvragen" });
   }
 }
+
+export const createSession = async (req, res) => {
+  try {
+    const { group_id, password } = req.body;
+    
+    const newSession = await SessionItem.query().insert({
+      group: Number(group_id), 
+      password: password,
+      second_try: false
+    });
+
+    res.status(201).json(newSession);
+  } catch (error) {
+    console.error('Error creating session:', error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 
 export const checkExpiredSessions = async () => {
   try {

@@ -2,6 +2,7 @@ import Knex from "../knex.js";
 import { Model } from "objection";
 
 import SessionItem from "./SessionItem.js";
+import FeedbackItem from "./FeedbackItem.js";
 
 Model.knex(Knex);
 
@@ -39,7 +40,15 @@ class UserItem extends Model {
           from: "user_items.session_id",
           to: "session.id",
         },
-      }
+      },
+      feedback: {
+        relation: Model.HasManyRelation,
+        modelClass: FeedbackItem,
+        join: {
+          from: "user_items.id",
+          to: "feedback_items.user_id",
+        },
+      },
     }
   }
 }
