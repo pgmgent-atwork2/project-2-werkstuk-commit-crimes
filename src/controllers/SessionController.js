@@ -66,18 +66,31 @@ export const createSession = async (req, res) => {
 
 export const checkExpiredSessions = async () => {
   try {
-    const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
-    const formattedTime = thirtyMinutesAgo.toISOString().replace('T', ' ').replace(/\.\d+Z$/, '');
+    const now = Date.now();
+    const thirtyMinutesAgo = new Date(now - 30 * 60 * 1000);
+    const twoHoursThirtyMinutesAgo = new Date(now - 150 * 60 * 1000);
 
-    const expiredSessions = await SessionItem.query()
-      .where('created_at', '<', formattedTime)
+    const formatted30MinAgo = thirtyMinutesAgo.toISOString().replace('T', ' ').replace(/\.\d+Z$/, '');
+    const formatted2h30MinAgo = twoHoursThirtyMinutesAgo.toISOString().replace('T', ' ').replace(/\.\d+Z$/, '');
+
+    const sessionsForSecondTry = await SessionItem.query()
+      .where('created_at', '<', formatted30MinAgo)
       .where('second_try', false);
 
-    for (const session of expiredSessions) {
+    for (const session of sessionsForSecondTry) {
       await SessionItem.query()
         .findById(session.id)
         .patch({ second_try: true });
       console.log(`Marked session ${session.id} as second_try (created at: ${session.created_at})`);
+    }
+
+    const sessionsToDelete = await SessionItem.query()
+      .where('created_at', '<', formatted2h30MinAgo);
+
+    for (const session of sessionsToDelete) {
+      await SessionItem.query()
+        .deleteById(session.id);
+      console.log(`Deleted session ${session.id} (created at: ${session.created_at})`);
     }
   } catch (error) {
     console.error('Error checking expired sessions:', error);
