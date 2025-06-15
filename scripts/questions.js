@@ -30,5 +30,3 @@ fetch("http://localhost:3000/api/questions")
   .catch(error => {
     console.error("Error fetching question:", error);
   });
-
-

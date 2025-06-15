@@ -1,9 +1,9 @@
 import Knex from "../knex.js";
 import { Model } from "objection";
 
-Model.knex(Knex);
-
 import SessionItem from "./SessionItem.js";
+
+Model.knex(Knex);
 
 class UserItem extends Model {
   static get tableName() {
@@ -17,27 +17,31 @@ class UserItem extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["name", "age", "session_id"],
+      required: ["name", "age"],
       properties: {
         id: { type: "integer" },
         name: { type: "string", minLength: 1, maxLength: 255 },
         age: { type: "integer" },
+        session_id: { type: ["integer", "null"] },
+        language: { type: ["string", "null"], maxLength: 50 },
+        first_score: { type: ["integer", "null"] },
+        second_score: { type: ["integer", "null"] },
       },
     };
   }
 
   static get relationMappings() {
-  return {
-    session: {
-      relation: Model.BelongsToOneRelation,
-      modelClass: SessionItem,
-      join: {
-        from: "user_items.session_id",
-        to: "session.id",
-      },
-    },
-  };
-}
+    return {
+      session: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: SessionItem,
+        join: {
+          from: "user_items.session_id",
+          to: "session.id",
+        },
+      }
+    }
+  }
 }
 
 export default UserItem;

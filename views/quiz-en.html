@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz en</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <video autoplay muted loop class="video">
+        <source src="/videos/background-video.mp4" type="video/mp4">
+    </video>
+
+    <div class="quiz-container">
+        <div class="quiz-question-container" id="quiz-question-container">
+            <div class="question-top">
+                <p id="question-progress">1/5</p>
+                <p id="timer">30</p>
+            </div>
+            <div class="quizquestion" id="quiz-question">
+                <p id="question-text"></p>
+            </div>
+            <div class="question-img" id="image-container"></div>
+            <div class="question-answers" id="question-answers">
+                <div class="answers-left">
+                    <div class="answer-option">
+                        <button class="question-answer" id="answer-1"></button>
+                    </div>
+                    <div class="answer-option">
+                        <button class="question-answer" id="answer-2"></button>
+                    </div>
+                </div>
+                <div class="answers-right">
+                    <div class="answer-option">
+                        <button class="question-answer" id="answer-3"></button>
+                    </div>
+                    <div class="answer-option">
+                        <button class="question-answer" id="answer-4"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-result-container" id="quiz-result-container" style="display:none;">
+            <h2>quiz over!</h2>
+            <p>your score: <span id="score"></span></p>
+
+            <div id="review-answers-container" class="review-answers-container"></div>
+        </div>
+    </div>
+
+    <script type="module" src="../scripts/startQuiz.js"></script>
+    <script type="module" src="/scripts/dateSelector.js"></script>
+    <script type="module" src="../scripts/questions.js"></script>
+    <script type="module" src="/scripts/rating.js"></script>
+    <script type="module" src="/scripts/quiz-questions.js"></script>
+</body>
+
+</html>

@@ -96,11 +96,11 @@ async function addAnswer($questionId, $answerText, $isCorrect) {
   return await $response.json();
 }
 
-async function addQuiz(title) {
+async function addQuiz(title, language, group_id) {
   const $response = await fetch("http://localhost:3000/api/quiz", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, language: "nl" }),
+    body: JSON.stringify({ title, language, group_id }),
   });
   if (!$response.ok) throw new Error("Fout bij toevoegen van quiz");
   return await $response.json();
@@ -269,33 +269,39 @@ function renderQuiz($quiz, $index, $templates, $container) {
     const $input = $form.querySelector(".add-question-input");
 
     $form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const questionText = $input.value.trim();
-      if (!questionText) return alert("Vraag mag niet leeg zijn");
+  e.preventDefault();
+  const questionText = $input.value.trim();
+  if (!questionText) return alert("Vraag mag niet leeg zijn");
 
-      try {
-        const response = await fetch("http://localhost:3000/api/questions", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            question_text: questionText,
-            quiz_id: $quiz.id,
-          }),
-        });
+  const formData = new FormData();
+  formData.append('question_text', questionText);
+  formData.append('quiz_id', String($quiz.id)); 
+  
+  const imageInput = $form.querySelector('input[type="file"]');
+  if (imageInput.files[0]) {
+    formData.append('image', imageInput.files[0]);
+  }
 
-        if (!response.ok) {
-          const errorBody = await response.text();
-          throw new Error(`HTTP ${response.status}: ${errorBody}`);
-        }
-
-        const newQuestion = await response.json();
-        renderQuestion(newQuestion, $templates, $questionsContainer);
-        $input.value = "";
-      } catch (err) {
-        console.error("Fout bij toevoegen van vraag:", err);
-        alert("Fout bij toevoegen van vraag");
-      }
+  try {
+    const response = await fetch("http://localhost:3000/api/questions", {
+      method: "POST",
+      body: formData,
     });
+
+    if (!response.ok) {
+      const errorBody = await response.text();
+      throw new Error(`HTTP ${response.status}: ${errorBody}`);
+    }
+
+    const newQuestion = await response.json();
+    renderQuestion(newQuestion, $templates, $questionsContainer);
+    $input.value = "";
+    imageInput.value = "";
+  } catch (err) {
+    console.error("Fout bij toevoegen van vraag:", err);
+    alert("Fout bij toevoegen van vraag");
+  }
+});
 
     $addQuestionSection.style.display = "block";
     $questionsContainer.appendChild($addQuestionSection);
@@ -520,34 +526,122 @@ function initQuizzes() {
 
   fetchQuizzes()
     .then(($quizzes) => {
-      $quizzes.forEach(($quiz, $index) => {
-        renderQuiz($quiz, $index, $templates, $quizList);
-      });
+      const grouped = {};
+      $quizzes.forEach((quiz) => {
+    if (!grouped[quiz.group_id]) {
+      grouped[quiz.group_id] = [];
+  }
+  grouped[quiz.group_id].push(quiz);
+});
+
+let groupCounter = 1;
+for (const groupId in grouped) {
+  const groupQuizzes = grouped[groupId];
+  renderQuizGroup(groupQuizzes, groupCounter++, $templates, $quizList);
+}
     })
     .catch(($error) => {
       console.error("Fout bij laden van quizzes:", $error);
     });
 
   const $addQuizForm = document.querySelector(".add-quizzes form");
-  if ($addQuizForm) {
-    $addQuizForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const $input = $addQuizForm.querySelector("input[type='text']");
-      const title = $input.value.trim();
-      if (!title) return alert("Titel mag niet leeg zijn");
-      try {
-        const $newQuiz = await addQuiz(title);
+  $addQuizForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-        const $quizCount = $quizList.querySelectorAll("template").length;
-        renderQuiz($newQuiz, $quizCount, $templates, $quizList);
-        $input.value = "";
-      } catch (err) {
-        alert("Fout bij toevoegen van quiz");
-        console.error(err);
-      }
-    });
+  const $input = $addQuizForm.querySelector(".quiz-add-txt");
+  const baseTitle = $input.value.trim();
+
+  if (!baseTitle) {
+    return alert("Titel mag niet leeg zijn");
   }
+
+  try {
+    const group_id = Date.now(); // simple unique ID
+
+    const quizzes = await Promise.all([
+      addQuiz(`${baseTitle} - NL`, "nl", group_id),
+      addQuiz(`${baseTitle} - EN`, "en", group_id),
+      addQuiz(`${baseTitle} - FR`, "fr", group_id),
+    ]);
+
+    const $quizList = document.getElementById("quiz-list");
+    const $templates = {
+      quizTemplate: document.getElementById("quiz-template"),
+      questionTemplate: document.getElementById("question-template"),
+      answerTemplate: document.getElementById("answer-template"),
+    };
+
+    quizzes.forEach((quiz, index) => {
+      renderQuiz(quiz, index, $templates, $quizList);
+    });
+
+    $addQuizForm.reset();
+  } catch (err) {
+    alert("Fout bij toevoegen van quizgroep");
+    console.error(err);
+  }
+});
 }
 
-export { showQuizTitle };
-export default initQuizzes;
+function renderQuizGroup(quizzes, index, templates, container) {
+  const groupDiv = document.createElement("div");
+  groupDiv.classList.add("quiz-group");
+
+  const title = quizzes[0].title.split(" - ")[0];
+  const groupHeader = document.createElement("h2");
+  groupHeader.textContent = `Quiz ${index}: ${title}`;
+  groupHeader.classList.add("quiz-group__title");
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("delete__btn");
+
+  const deleteIcon = document.createElement("img");
+  deleteIcon.src = "/images/delete-icon.svg";
+  deleteIcon.alt = "delete button";
+
+  deleteBtn.appendChild(deleteIcon);
+
+  deleteBtn.addEventListener("click", async () => {
+    const confirmDelete = confirm(`Weet je zeker dat je quizgroep "${title}" wilt verwijderen?`);
+    if (!confirmDelete) return;
+
+    try {
+      for (const quiz of quizzes) {
+        await deleteQuizById(quiz.id);
+      }
+      container.removeChild(groupDiv);
+    } catch (err) {
+      alert("Fout bij verwijderen van quizgroep");
+      console.error(err);
+    }
+  });
+
+  const toggleBtn = document.createElement("button");
+  toggleBtn.textContent = "Toon quizversies";
+  toggleBtn.classList.add("quiz-group__toggle");
+
+  const groupContent = document.createElement("div");
+  groupContent.classList.add("quiz-group__content");
+  groupContent.style.display = "none";
+
+  toggleBtn.addEventListener("click", () => {
+    const visible = groupContent.style.display === "block";
+    groupContent.style.display = visible ? "none" : "block";
+    toggleBtn.textContent = visible ? "Toon quizversies" : "Verberg quizversies";
+  });
+
+  quizzes.forEach((quiz, idx) => {
+    renderQuiz(quiz, idx, templates, groupContent);
+  });
+
+  groupDiv.appendChild(groupHeader);
+
+  groupDiv.appendChild(toggleBtn);
+  groupDiv.appendChild(deleteBtn);
+  groupDiv.appendChild(groupContent);
+  container.appendChild(groupDiv);
+}
+
+document.addEventListener('DOMContentLoaded',() => {    
+    initQuizzes();
+})
