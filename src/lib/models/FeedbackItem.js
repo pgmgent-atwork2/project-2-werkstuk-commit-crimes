@@ -18,7 +18,7 @@ class FeedbackItem extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["name", "age", "session_id"],
+      required: ["user_id", "feedback", "rating"],  
       properties: {
         id: { type: "integer" },
         user_id: { type: "integer" },
