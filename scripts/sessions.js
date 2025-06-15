@@ -3,8 +3,19 @@ function extractBaseTitle(title) {
   return title.replace(/\s*-\s*[A-Z]{2}$/, "").trim();
 }
 
+export function getUserIdFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("user_id");
+}
+
 async function loadSessions() {
   try {
+    const user_id = getUserIdFromUrl();
+    if (!user_id) {
+      alert("Geen gebruiker gevonden om sessies te laden.");
+      return;
+    }
+
     const response = await fetch("http://localhost:3000/api/sessions");
     if (!response.ok) {
       alert("Failed to load sessions");
@@ -49,7 +60,14 @@ async function loadSessions() {
           quizBtn.className = "quiz-button";
           quizBtn.textContent = quiz.title;
           quizBtn.addEventListener("click", () => {
-            window.location.href = `/quiz-nl.html?session_id=${session.id}&quiz_id=${quiz.id}`;
+            const lang = quiz.language || "nl";
+            const page = {
+              nl: "quiz-nl.html",
+              en: "quiz-en.html",
+              fr: "quiz-fr.html",
+            }[lang] || "quiz-nl.html";
+
+            window.location.href = `/${page}?session_id=${session.id}&quiz_id=${quiz.id}&user_id=${user_id}`;
           });
           dropdownContent.appendChild(quizBtn);
         });
@@ -59,7 +77,7 @@ async function loadSessions() {
         dropdownContent.appendChild(noQuizMsg);
       }
 
-      sessionBtn.addEventListener("click", (e) => {
+      sessionBtn.addEventListener("click", async (e) => {
         e.stopPropagation();
 
         if (currentOpenDropdown && currentOpenDropdown !== dropdownContent) {
@@ -72,6 +90,26 @@ async function loadSessions() {
         } else {
           dropdownContent.style.display = "block";
           currentOpenDropdown = dropdownContent;
+        }
+
+        try {
+          const response = await fetch("http://localhost:3000/api/users/update-session", {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ user_id: Number(user_id), session_id: session.id }),
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            console.log("Session gekoppeld aan user:", data.user);
+          } else {
+            alert("Kon sessie niet koppelen aan gebruiker.");
+          }
+        } catch (error) {
+          alert("Fout bij koppelen sessie aan gebruiker.");
+          console.error(error);
         }
       });
 

@@ -7,6 +7,7 @@
 @import url("./background.css");
 @import url("./admin-login.css");
 @import url("./responsiveness.css");
+@import url("./user_list.css");
 
 * {
   margin: 0;

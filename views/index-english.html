@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz | Boudewijn Seapark</title>
-    <link rel="stylesheet" href="/styles/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&display=swap"
@@ -15,160 +14,177 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+
 </head>
 
 <body>
-    <video autoplay muted loop>
+    <video autoplay muted loop class="video">
         <source src="/videos/background-video.mp4" type="video/mp4">
     </video>
-    <div class="setup-container">
-        <div class="setup-container__top">
-            <h1>Boudewijn Seapark Quiz</h1>
-            <p>Selecteer uw taal | Choissisez votre langue | Choose your language</p>
-        </div>
-        <div class="setup-container__bottom">
-            <div class="language-option" id="nl">
-                <a href="/views/index.html"><button class="language-btn">NL | Nederlands</button></a>
+
+    <video autoplay muted loop class="phone-video">
+        <source src="/videos/phone-background.mp4" type="video/mp4">
+    </video>
+
+    <main class="index__container">
+        <div class="setup-container">
+            <div class="setup-container__top">
+                <h1>Boudewijn Seapark Quiz</h1>
+                <p>Selecteer uw taal | Choissisez votre langue | Choose your language</p>
             </div>
-            <div class="language-option" id="fr">
-                <a href="/views/index-french.html"><button class="language-btn">FR | Français</button></a>
+            <div class="setup-container__bottom">
+                <div class="language-option" id="nl">
+                    <a href="index.html"><button class="language-btn">NL | Nederlands</button></a>
+                </div>
+                <div class="language-option" id="fr">
+                    <a href="index-french.html"><button class="language-btn">FR | Français</button></a>
+                </div>
+                <div class="language-option" id="en">
+                    <button class="language-btn language-selected" href="index-english.html">GB | English</button>
+                </div>
             </div>
-            <div class="language-option" id="en">
-                <button class="language-btn" href="/views/index-english.html">GB | English</button>
+            <div class="btm-text">
+                <p>Meet. love. Protect</p>
             </div>
         </div>
-        <div class="btm-text">
-            <p>Meet. love. Protect</p>
-        </div>
-    </div>
 
-
-    <div class="registration-container">
-        <div class="registration__top">
-            <h1>Today you'll meet the dolphins!</h1>
-            <p>Answer our questions and discover more about these wonderful animals!</p>
+        <div class="user-list-container">
+            <h2>User list:</h2>
+            <ul id="user-list"></ul>
         </div>
 
-        <div class="registration">
-
-            <div class="registration__name">
-                <p>Your name:</p>
-                <input class="registration__name__input" type="text" required placeholder="type your name here">
+        <div class="registration-container">
+            <div class="registration__top">
+                <h1>Today you'll meet the dolphins!</h1>
+                <p>Answer our questions and discover more about these wonderful animals!</p>
             </div>
-            <p>Your date of birth:</p>
-            <div class="registration-form">
-                <form action="/your-submit-script" method="get">
-                    <select id="day-select" name="day">
-                        <option value="">Day</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                    </select>
 
-                    <label for="month-select"></label>
-                    <select id="month-select" name="month">
-                        <option value="">Month</option>
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
+            <div>
+                <form class="registration registration-form">
+                    <div class="registration__name">
+                        <p>Your name:</p>
+                        <input name="name" id="name" class="registration__name__input" type="text" required
+                            placeholder="type hier je naam">
+                    </div>
+                    <p>Your date of birth:</p>
+                    <div class="registration__date__input">
+                        <select id="day-select" name="day">
+                            <option value="">Day</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
 
-                    <label for="year-select"></label>
-                    <select id="year-select" name="year">
-                        <option value="jaar">Year</option>
-                    </select>
-                    <input type="submit" value="Continue" class="registration-submit__btn" />
+                        <label for="month-select"></label>
+                        <select id="month-select" name="month">
+                            <option value="">Month</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+
+                        <label for="year-select"></label>
+                        <select id="year-select" name="year">
+                            <option value="jaar">Year</option>
+                        </select>
+                        <input type="hidden" name="language" value="en" />
+                        <div class="submit__input__container">
+                            <input type="submit" value="Continue" class="registration-submit__btn" />
+                        </div>
+                    </div>
                 </form>
             </div>
 
         </div>
 
-    </div>
+        <div class="rating-container">
+            <div class="rating-question">
+                <h3>Did you find the quiz informative?</h3>
+                <div class="stars" data-question="1">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+            </div>
 
-    <div class="rating-container">
-        <div class="rating-question">
-            <h3>Did you find the quiz informative?</h3>
-            <div class="stars" data-question="1">
-                <span class="star" data-value="1">★</span>
-                <span class="star" data-value="2">★</span>
-                <span class="star" data-value="3">★</span>
-                <span class="star" data-value="4">★</span>
-                <span class="star" data-value="5">★</span>
+            <div class="rating-question">
+                <h3>Were the questions clear?</h3>
+                <div class="stars" data-question="2">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+            </div>
+            <div class="rating-question">
+                <h3>Did you have enough time?</h3>
+                <div class="stars" data-question="3">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+            </div>
+            <div class="rating-question">
+                <h3>How was your general experience?</h3>
+                <div class="stars" data-question="4">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
             </div>
         </div>
+    </main>
 
-        <div class="rating-question">
-            <h3>Were the questions clear?</h3>
-            <div class="stars" data-question="2">
-                <span class="star" data-value="1">★</span>
-                <span class="star" data-value="2">★</span>
-                <span class="star" data-value="3">★</span>
-                <span class="star" data-value="4">★</span>
-                <span class="star" data-value="5">★</span>
-            </div>
-        </div>
-        <div class="rating-question">
-            <h3>Did you have enough time?</h3>
-            <div class="stars" data-question="3">
-                <span class="star" data-value="1">★</span>
-                <span class="star" data-value="2">★</span>
-                <span class="star" data-value="3">★</span>
-                <span class="star" data-value="4">★</span>
-                <span class="star" data-value="5">★</span>
-            </div>
-        </div>
-        <div class="rating-question">
-            <h3>How was your general experience?</h3>
-            <div class="stars" data-question="4">
-                <span class="star" data-value="1">★</span>
-                <span class="star" data-value="2">★</span>
-                <span class="star" data-value="3">★</span>
-                <span class="star" data-value="4">★</span>
-                <span class="star" data-value="5">★</span>
-            </div>
-        </div>
-    </div>
 
-    <script src="/scripts/main.js"></script>
-    <script src="/scripts/dateSelector.js"></script>
-    <script src="/scripts/rating.js"></script>
+
+    <script type="module" src="/scripts/dateSelector.js"></script>
+    <script type="module" src="/scripts/rating.js"></script>
+    <script type="module" src="/scripts/user.js"></script>
 </body>
 
 </html>

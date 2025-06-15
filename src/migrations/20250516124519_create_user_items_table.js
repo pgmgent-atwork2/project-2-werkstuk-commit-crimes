@@ -8,7 +8,7 @@ export function up(knex) {
     table.string("language", 2).notNullable();
     table.integer("first_score").nullable().unsigned();
     table.integer("second_score").nullable().unsigned();
-    table.integer("session_id").unsigned().unique().notNullable();
+    table.integer("session_id").unsigned().nullable();
 
     table.foreign("session_id").references("session.id").onDelete("CASCADE");
   });

@@ -1,4 +1,5 @@
-document.getElementById("quizForm").addEventListener("submit", function(e) {
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("quizForm").addEventListener("submit", function(e) {
     e.preventDefault(); 
 
     const day = document.getElementById("day-select").value;
@@ -12,4 +13,4 @@ document.getElementById("quizForm").addEventListener("submit", function(e) {
 
     startQuiz(day, month, year);
   });
-
+})
