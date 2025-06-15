@@ -9,6 +9,7 @@ let currentQuestion = 0;
 let score = 0;
 let timeLeft = 30;
 let timerInterval;
+let isSecondTry = false;
 
 const timerEl = document.getElementById("timer");
 const questionEl = document.getElementById("question-text");
@@ -23,6 +24,7 @@ const questionProgress = document.getElementById("question-progress");
 const quizContainer = document.getElementById("quiz-question-container");
 const resultContainer = document.getElementById("quiz-result-container");
 const scoreEl = document.getElementById("score");
+const ratingContainer = document.querySelector(".rating-container");
 
 async function fetchQuizData() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -41,6 +43,8 @@ async function fetchQuizData() {
 
     const session = sessions.find((s) => s.id === sessionId);
     if (!session) throw new Error("Session not found");
+
+    isSecondTry = session.second_try || false;
 
     const quiz = session.groupQuizzes?.find((q) => q.id === quizId);
     if (!quiz) throw new Error("Quiz not found in session");
@@ -116,6 +120,9 @@ function endQuiz() {
   scoreEl.textContent = `${score} / ${quizData.length}`;
   showReview();
   saveScore();
+  
+  const event = new Event('quizCompleted');
+  document.dispatchEvent(event);
 }
 
 function startTimer() {
