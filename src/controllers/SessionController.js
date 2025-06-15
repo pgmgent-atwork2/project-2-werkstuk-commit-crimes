@@ -81,19 +81,21 @@ export const checkExpiredSessions = async () => {
 // checks if minutes are over
 setInterval(checkExpiredSessions, 1 * 60 * 1000);
 
-export const getLatestSession = async (req, res) => {
+export const getActiveSessions = async (req, res) => {
   try {
-    const session = await SessionItem.query()
-      .orderBy("created_at", "desc")
-      .first();
+    const timeLimit = new Date(Date.now() - 2.5 * 60 * 60 * 1000);
 
-    if (!session) {
-      return res.status(404).json({ error: "Geen sessie gevonden" });
+    const activeSessions = await SessionItem.query()
+      .where('created_at', '>', timeLimit)
+      .orderBy('created_at', 'desc');
+
+    if (!activeSessions || activeSessions.length === 0) {
+      return res.status(404).json({ error: "Geen actieve sessies gevonden" });
     }
 
-    res.json(session);
+    res.json(activeSessions);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Fout bij ophalen van sessie" });
+    res.status(500).json({ error: "Fout bij ophalen van actieve sessies" });
   }
 };

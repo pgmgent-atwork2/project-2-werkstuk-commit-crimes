@@ -10,7 +10,7 @@ export function getUserIdFromUrl() {
 
 async function loadSessions() {
   try {
-    const user_id = getUserIdFromUrl(); // 👈 FIX: declare here once, use everywhere
+    const user_id = getUserIdFromUrl();
     if (!user_id) {
       alert("Geen gebruiker gevonden om sessies te laden.");
       return;
