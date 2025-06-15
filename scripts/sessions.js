@@ -24,6 +24,7 @@ async function loadSessions() {
     const sessions = await response.json();
 
     const container = document.getElementById("sessions-container");
+    container.classList.add("sessions-wrapper");
     container.innerHTML = "";
 
     const quizResponse = await fetch("http://localhost:3000/api/quiz");
@@ -33,7 +34,7 @@ async function loadSessions() {
 
     sessions.forEach((session) => {
       const dropdown = document.createElement("div");
-      dropdown.className = "dropdown";
+      dropdown.className = "dropdown session-dropdown";
 
       const sessionQuizzes =
         session.groupQuizzes ||
@@ -73,6 +74,7 @@ async function loadSessions() {
         });
       } else {
         const noQuizMsg = document.createElement("p");
+        noQuizMsg.className = "no-quizzes-msg";
         noQuizMsg.textContent = "No quizzes available";
         dropdownContent.appendChild(noQuizMsg);
       }
@@ -84,11 +86,11 @@ async function loadSessions() {
           currentOpenDropdown.style.display = "none";
         }
 
-        if (dropdownContent.style.display === "block") {
+        if (dropdownContent.style.display === "flex") {
           dropdownContent.style.display = "none";
           currentOpenDropdown = null;
         } else {
-          dropdownContent.style.display = "block";
+          dropdownContent.style.display = "flex";
           currentOpenDropdown = dropdownContent;
         }
 
@@ -131,6 +133,7 @@ async function loadSessions() {
     alert("Something went wrong while loading sessions");
   }
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   loadSessions();
