@@ -161,7 +161,7 @@ body {
 
 @media screen and (min-width: 23.4375rem) {
   .admin__title {
-    width: 23.4375rem;
+    width: 100vw;
     height: fit-content;
     font-size: 1rem;
     text-align: center;
@@ -184,7 +184,7 @@ body {
 
 @media screen and (min-width: 64rem) {
   .admin__title {
-    width: 64rem;
+    width: 100vw;
     height: fit-content;
     font-size: 2.5rem;
     text-align: center;
