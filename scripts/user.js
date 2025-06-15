@@ -47,34 +47,49 @@ function getLanguageFromUrl() {
   return "nl";
 }
 
-
 async function loadUsers() {
   const userListElement = document.getElementById("user-list");
   const userListContainer = document.querySelector(".user-list-container");
   if (!userListElement || !userListContainer) return;
 
   try {
-    const usersRes = await fetch(`http://localhost:3000/api/users/active`);
-    if (!usersRes.ok) throw new Error("Kan gebruikers niet ophalen");
-    const users = await usersRes.json();
+    const sessionsRes = await fetch(
+      "http://localhost:3000/api/sessions/active"
+    );
+    if (!sessionsRes.ok) throw new Error("Kan sessies niet ophalen");
+    const sessions = await sessionsRes.json();
 
-    if (users.length === 0) return;
+    if (sessions.length === 0) {
+      userListContainer.style.display = "none";
+      return;
+    }
 
     userListContainer.style.display = "block";
 
-    users.forEach((user) => {
-      const li = document.createElement("li");
+    for (const session of sessions) {
+      const usersRes = await fetch(
+        `http://localhost:3000/api/sessions/${session.id}/users`
+      );
+      if (!usersRes.ok) {
+        console.warn(`Kan gebruikers voor sessie ${session.id} niet ophalen`);
+        continue;
+      }
+      const users = await usersRes.json();
 
-      const button = document.createElement("button");
-      button.textContent = user.name;
-      button.classList.add("user-button");
-      button.addEventListener("click", () => {
-        window.location.href = `/sessions.html?user_id=${user.id}`;
+      users.forEach((user) => {
+        const li = document.createElement("li");
+
+        const button = document.createElement("button");
+        button.textContent = user.name;
+        button.classList.add("user-button");
+        button.addEventListener("click", () => {
+          window.location.href = `/sessions.html?user_id=${user.id}`;
+        });
+
+        li.appendChild(button);
+        userListElement.appendChild(li);
       });
-
-      li.appendChild(button);
-      userListElement.appendChild(li);
-    });
+    }
   } catch (err) {
     console.error("Fout bij ophalen van gebruikers:", err);
     const li = document.createElement("li");
@@ -82,9 +97,6 @@ async function loadUsers() {
     userListElement.appendChild(li);
   }
 }
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   addUsers();
