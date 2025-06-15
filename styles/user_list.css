@@ -1,3 +1,49 @@
+.index__container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center; 
+  flex-direction: column;
+  align-items: center;   
+}
+
 .user-list-container {
   display: none;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding-inline: 6rem;
+  padding-block: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+
+
+  & li {
+    list-style-type: none;
+    font-family: "Roboto", sans-serif;
+  }
+
+  & h2 {
+  margin-bottom: 1rem;
+  color: #19cfef;
+}
+}
+
+.user-button {
+  background-color: #19cfef;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 250px;
+
+}
+
+.user-button:hover {
+  background-color: #005fa3;
 }
