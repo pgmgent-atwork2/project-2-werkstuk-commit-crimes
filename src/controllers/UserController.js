@@ -1,5 +1,6 @@
 import UserItem from "../lib/models/UserItem.js";
 import SessionItem from "../lib/models/SessionItem.js";
+import FeedbackItem from "../lib/models/FeedbackItem.js";
 
 export const index = (req, res) => {
   res.render("layout", {
@@ -10,7 +11,7 @@ export const index = (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await UserItem.query();
+    const users = await UserItem.query().withGraphFetched("feedback");
     console.log(users);
     res.json(users);
   } catch (error) {
