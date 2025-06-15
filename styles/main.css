@@ -8,6 +8,7 @@
 @import url("./admin-login.css");
 @import url("./responsiveness.css");
 @import url("./user_list.css");
+@import url("./sessions.css");
 
 * {
   margin: 0;
