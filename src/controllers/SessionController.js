@@ -55,23 +55,18 @@ export async function getQuizWithQuestions(req, res) {
 
 export const checkExpiredSessions = async () => {
   try {
-    const now = new Date();
-    const localOffsetMs = now.getTimezoneOffset() * 60 * 1000;
+    const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
+    const formattedTime = thirtyMinutesAgo.toISOString().replace('T', ' ').replace(/\.\d+Z$/, '');
 
-    const thirtyMinutesMs = 30 * 60 * 1000;
-    const TwoHoursthirtyMinutesMs = 2 * 30 * 60 * 1000;
-
-    const expiredSessionTimer = new Date(Date.now() + localOffsetMs  - thirtyMinutesMs).toISOString();
-    
     const expiredSessions = await SessionItem.query()
-      .where('created_at', '<', expiredSessionTimer)
+      .where('created_at', '<', formattedTime)
       .where('second_try', false);
 
     for (const session of expiredSessions) {
       await SessionItem.query()
         .findById(session.id)
         .patch({ second_try: true });
-      console.log(`Updated session ${session.id} to second_try=true`);
+      console.log(`Marked session ${session.id} as second_try (created at: ${session.created_at})`);
     }
   } catch (error) {
     console.error('Error checking expired sessions:', error);
