@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function sendFeedback() {
+    const userId = urlParams.get("user_id");
+    const sessionId = urlParams.get("session_id");
     if (!userId || !quizId || !sessionId) {
       alert(
         "Ongeldige URL: user_id, quiz_id en session_id moeten aanwezig zijn."
@@ -61,18 +63,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      for (const [questionId, rating] of Object.entries(ratings)) {
-        const response = await fetch("http://localhost:3000/api/feedback", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            user_id: userId,
-            quiz_id: quizId,
-            session_id: sessionId,
-            feedback: `Rating voor vraag ${questionId}`,
-            rating,
-          }),
-        });
+    for (const [questionId, rating] of Object.entries(ratings)) {
+      const response = await fetch("http://localhost:3000/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: userId,
+          session_id: sessionId,
+          feedback: `Rating voor vraag ${questionId}`,
+          rating, 
+        }),
+      });
+
 
         if (!response.ok) {
           throw new Error(

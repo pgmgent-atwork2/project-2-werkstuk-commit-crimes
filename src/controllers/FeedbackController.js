@@ -9,54 +9,86 @@ export const getAllFeedback = async (req, res) => {
             return res.json(feedback);
         }
 
-    const allFeedback = await FeedbackItem.query().withGraphFetched("user");
-    res.json(allFeedback);
+        const allFeedback = await FeedbackItem.query().withGraphFetched("user");
+        res.json(allFeedback);
     } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+        console.error("Error getting feedback:", error);
+        res.status(500).json({ 
+            error: "Failed to retrieve feedback",
+            details: error.message 
+        });
     }
 };
 
 export const postFeedback = async (req, res) => {
     try {
-        const { user_id, session_id, feedback, rating } = req.body;
+        const { user_id, feedback, rating } = req.body;
 
-        const newFeedback = await FeedbackItem.query().insert({
-            user_id,
-            session_id,
+        const feedbackData = {
+            user_id: Number(user_id),
+            feedback: String(feedback),
+            rating: Number(rating),
+        };
+
+        if (!feedbackData.user_id || !feedbackData.feedback || isNaN(feedbackData.rating)) {
+            return res.status(400).json({ error: "Invalid or missing required fields" });
+        }
+
+        const newFeedback = await FeedbackItem.query().insert(feedbackData);
+        res.status(201).json(newFeedback);
+    } catch (error) {
+        console.error("Error creating feedback:", error);
+        res.status(400).json({ 
+            error: "Invalid feedback data",
+            details: error.message 
+        });
+    }
+};
+
+
+export const updateFeedback = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { feedback, rating } = req.body;
+
+        if (!feedback && rating === undefined) {
+            return res.status(400).json({ error: "Nothing to update" });
+        }
+
+        const updatedFeedback = await FeedbackItem.query().patchAndFetchById(id, {
             feedback,
             rating,
         });
 
-        res.status(201).json(newFeedback);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-};
-
-export const updateFeedback = async (req, res) => {
-    try {
-        const { id } = req.params.id;
-        const { feedback } = req.body;
-
-        const updatedFeedback = await FeedbackItem.query().patchAndFetchById(id, {
-            feedback,
-        });
+        if (!updatedFeedback) {
+            return res.status(404).json({ error: "Feedback not found" });
+        }
 
         res.json(updatedFeedback);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
+        console.error("Error updating feedback:", error);
+        res.status(500).json({ 
+            error: "Failed to update feedback",
+            details: error.message 
+        });
     }
 };
 
 export const deleteFeedback = async (req, res) => {
     try {
-        await FeedbackItem.query().deleteById(req.params.id);
+        const { id } = req.params;
+        const deletedCount = await FeedbackItem.query().deleteById(id);
+
+        if (deletedCount === 0) {
+            return res.status(404).json({ error: "Feedback not found" });
+        }
+
         res.json({ success: true });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
+        console.error("Error deleting feedback:", error);
+        res.status(500).json({ 
+            error: "Failed to delete feedback",
+            details: error.message 
+        });
     }
 };
