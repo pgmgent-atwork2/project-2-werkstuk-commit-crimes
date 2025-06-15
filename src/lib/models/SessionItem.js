@@ -20,11 +20,11 @@ class SessionItem extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["group_id", "password"],
+      required: ["group", "password"],
       properties: {
         id: { type: "integer" },
         user_id: { type: "integer" },
-        group_id: { type: "integer" },
+        group: { type: "integer" },
         attempt_number: { type: "integer" },
         password: { type: "string" },
         created_at: {

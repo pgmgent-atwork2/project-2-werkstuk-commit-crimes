@@ -1,4 +1,8 @@
-import { fetchQuizzes } from "./quizCreator.js";
+async function fetchQuizzes() {
+  const $response = await fetch("http://localhost:3000/api/quiz");
+  if (!$response.ok) throw new Error("Fout bij ophalen quizzes");
+  return await $response.json();
+}
 
 function showQuizTitle($titleEl, $index, $quiz) {
   $titleEl.textContent = `Quiz ${$index + 1}: ${$quiz.title}`;
@@ -12,10 +16,9 @@ async function displayQuizzesAdminPanel() {
   try {
     const quizzes = await fetchQuizzes();
 
-    const container = document.querySelector("#quiz-list"); // fixed the ID
+    const container = document.querySelector("#quiz-list"); 
     container.innerHTML = "";
 
-    // Step 1: Group quizzes by group_id
     const grouped = quizzes.reduce((acc, quiz) => {
       const key = quiz.group_id;
       if (!acc[key]) acc[key] = [];
@@ -23,39 +26,84 @@ async function displayQuizzesAdminPanel() {
       return acc;
     }, {});
 
-    // Step 2: Display grouped quizzes
     let groupIndex = 0;
     for (const groupId in grouped) {
       groupIndex++;
       const group = grouped[groupId];
       const baseTitle = extractBaseTitle(group[0].title);
 
-      // Create a container for each quiz group
       const groupContainer = document.createElement("div");
       groupContainer.className = "quiz-group";
 
-      // Group Title: Quiz 1: dolfijnen
       const groupTitle = document.createElement("h3");
       groupTitle.textContent = `Quiz ${groupIndex}: ${baseTitle}`;
       groupContainer.appendChild(groupTitle);
 
-      // Add each quiz variant (NL, EN, FR...)
+      groupTitle.dataset.groupId = groupId;
+      
+      groupTitle.addEventListener("click", () => {
+        const popOver = document.querySelector("#admin-password-popover");
+        if (popOver) {
+          popOver.style.display = "flex";
 
-// 👉 Add this AFTER the forEach — to only trigger on group title
-groupTitle.addEventListener("click", () => {
-  const popOver = document.querySelector("#admin-password-popover");
-  if (popOver) popOver.style.display = "flex";
-});
+          popOver.dataset.groupId = groupId;
+        }
+      });
 
       container.appendChild(groupContainer);
     }
 
-    // Close popover logic
     const popOver = document.querySelector("#admin-password-popover");
     const closeBtn = document.querySelector(".admin-popover__close");
+    const passwordForm = document.querySelector("#password-form");
+
     if (closeBtn && popOver) {
       closeBtn.addEventListener("click", () => {
         popOver.style.display = "none";
+      });
+    }
+
+    if (passwordForm) {
+      passwordForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        const passwordInput = document.querySelector("#password-input");
+        const password = passwordInput.value;
+        const groupId = popOver.dataset.groupId;
+
+        if (!groupId) {
+          console.error("No quiz group selected");
+          return;
+        }
+
+        try {
+          const response = await fetch("http://localhost:3000/api/sessions", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              group_id: Number(groupId),
+              password: password
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to create session");
+          }
+
+          const sessionData = await response.json();
+          console.log("Session created:", sessionData);
+          
+          popOver.style.display = "none";
+          passwordInput.value = "";
+          
+          alert("Session started successfully!");
+          
+        } catch (error) {
+          console.error("Error creating session:", error);
+          alert("Failed to start session. Please try again.");
+        }
       });
     }
   } catch (error) {
@@ -63,6 +111,6 @@ groupTitle.addEventListener("click", () => {
   }
 }
 
-document.addEventListener('DOMContentLoaded',() => {    
+document.addEventListener('DOMContentLoaded', () => {    
     displayQuizzesAdminPanel();
-})
+});
